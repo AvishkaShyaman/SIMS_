@@ -55,17 +55,17 @@
                         <FontAwesomeIcon fill="WHITE" glyphName="HISTORY" size="1.5em" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_timetable1" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="435.0" mnemonicParsing="false" onAction="#btn_timetableActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Attendance">
+                  <Button fx:id="btn_Attendance" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="435.0" mnemonicParsing="false" onAction="#btn_AttendanceActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Attendance">
                      <graphic>
                         <FontAwesomeIcon fill="WHITE" glyphName="" size="1.5em" text="" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_timetable11" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="492.0" mnemonicParsing="false" onAction="#btn_timetableActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Grade &amp; GPA">
+                  <Button fx:id="btn_gradeAndGPA" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="492.0" mnemonicParsing="false" onAction="#btn_gradeAndGPAActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Grade &amp; GPA">
                      <graphic>
                         <FontAwesomeIcon fill="WHITE" glyphName="" glyphStyle="FILE" size="1.5em" text="" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_timetable111" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="550.0" mnemonicParsing="false" onAction="#btn_timetableActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Medicals">
+                  <Button fx:id="btn_medical" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="550.0" mnemonicParsing="false" onAction="#btn_medicalActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Medicals">
                      <graphic>
                         <FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.5em" text="" />
                      </graphic>

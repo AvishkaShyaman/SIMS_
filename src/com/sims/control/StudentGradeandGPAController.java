@@ -21,7 +21,11 @@ public class StudentGradeandGPAController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        setgpa();
+    }
+
+    private void setgpa(){
+        
+    }
     
 }

@@ -75,13 +75,13 @@ public class LoginController implements Initializable {
               
                     switch(userType){
                         case "student":
-                            root = FXMLLoader.load(getClass().getResource("/com/sims /view/StudentDashboard.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("/com/sims/view/StudentDashboard.fxml"));
                             break;
                         case "Lecturer":
-                            root = FXMLLoader.load(getClass().getResource("/com/sims /view/LecturerDashboard.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("/com/sims/view/LecturerDashboard.fxml"));
                             break;
                         case "Technical Officer":
-                            root = FXMLLoader.load(getClass().getResource("/com/sims /view/TechnicalOfficerDashboard.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerDashboard.fxml"));
                             break;
                         case "Admin":
                             root = FXMLLoader.load(getClass().getResource("/com/sims/view/AdminDash.fxml"));
