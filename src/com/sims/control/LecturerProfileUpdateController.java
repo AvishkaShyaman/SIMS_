@@ -25,17 +25,17 @@ import javafx.scene.control.ToggleGroup;
 public class LecturerProfileUpdateController implements Initializable {
 
     @FXML
+    private ToggleGroup Gender;
+    @FXML
     private TextField txt_Fname;
     @FXML
     private TextField txt_Lname;
     @FXML
-    private DatePicker date_dob;
+    private DatePicker txt_DOB;
     @FXML
-    private RadioButton rad_male;
+    private RadioButton rad_Male;
     @FXML
-    private ToggleGroup Gender;
-    @FXML
-    private RadioButton rad_female;
+    private RadioButton rad_Female;
     @FXML
     private TextField txt_NIC;
     @FXML
@@ -45,11 +45,13 @@ public class LecturerProfileUpdateController implements Initializable {
     @FXML
     private TextArea txa_Address;
     @FXML
-    private Button btn_Update;
-    @FXML
     private Button btn_Edit;
     @FXML
+    private Button btn_Update;
+    @FXML
     private Button btn_Cancel;
+    @FXML
+    private TextArea txa_Qualifications;
 
     /**
      * Initializes the controller class.
@@ -60,15 +62,16 @@ public class LecturerProfileUpdateController implements Initializable {
     }    
 
     @FXML
-    private void btn_UpdateActionHandel(ActionEvent event) {
+    private void btn_EditActionPerformed(ActionEvent event) {
     }
 
     @FXML
-    private void btn_EditActionHandel(ActionEvent event) {
+    private void btn_UpdateActionPerformed(ActionEvent event) {
     }
 
     @FXML
-    private void btn_CancelActionHandel(ActionEvent event) {
+    private void btn_CancelActionPerformed(ActionEvent event) {
     }
+
     
 }

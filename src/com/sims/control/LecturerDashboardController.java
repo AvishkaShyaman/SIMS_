@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -33,6 +34,10 @@ public class LecturerDashboardController implements Initializable {
     private Button btn_student;
     @FXML
     private VBox notice_vbox;
+    @FXML
+    private DatePicker cmb_date;
+    @FXML
+    private Button btn_Search;
 
     /**
      * Initializes the controller class.
@@ -56,6 +61,10 @@ public class LecturerDashboardController implements Initializable {
 
     @FXML
     private void btn_studentActionHandel(ActionEvent event) {
+    }
+
+    @FXML
+    private void btn_SearchActionPerformed(ActionEvent event) {
     }
     
 }

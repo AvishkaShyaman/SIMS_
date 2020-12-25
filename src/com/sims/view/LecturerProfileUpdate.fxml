@@ -23,184 +23,193 @@
             <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="Profile" />
          </children>
       </Pane>
-      <Pane prefHeight="735.0" prefWidth="1000.0">
+      <Pane prefHeight="499.0" prefWidth="1000.0">
          <children>
-            <VBox layoutX="36.0" layoutY="76.0" prefHeight="385.0" prefWidth="157.0">
+            <HBox prefHeight="724.0" prefWidth="1000.0">
                <children>
-                  <Label prefHeight="42.0" prefWidth="184.0" styleClass="main-font" text="First Name:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="184.0" styleClass="main-font" text="Last Name:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="52.0" prefHeight="42.0" prefWidth="184.0" styleClass="main-font" text="DOB:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="95.0" prefHeight="42.0" prefWidth="184.0" styleClass="main-font" text="Gender" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="137.0" prefHeight="42.0" prefWidth="184.0" styleClass="main-font" text="NIC:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox layoutX="193.0" layoutY="76.0" prefHeight="366.0" prefWidth="157.0">
-               <children>
-                  <TextField fx:id="txt_Fname" style="-fx-background-radius: 20;">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="25.0" top="22.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="txt_Lname" layoutX="10.0" layoutY="10.0" style="-fx-background-radius: 20;">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="25.0" top="22.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <DatePicker fx:id="date_dob" style="-fx-background-radius: 0;">
-                     <VBox.margin>
-                        <Insets bottom="25.0" top="22.0" />
-                     </VBox.margin>
-                  </DatePicker>
-                  <HBox prefHeight="38.0" prefWidth="158.0">
+                  <VBox prefHeight="200.0" prefWidth="445.0" style="-fx-border-style: solid; -fx-border-color: #00ccff; -fx-border-radius: 10;">
                      <children>
-                        <RadioButton fx:id="rad_male" mnemonicParsing="false" text="Male">
-                           <HBox.margin>
-                              <Insets right="20.0" top="10.0" />
-                           </HBox.margin>
+                        <Label text="First Name">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="Gender" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="rad_female" mnemonicParsing="false" text="Female" toggleGroup="$Gender">
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
+                           <VBox.margin>
+                              <Insets left="40.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txt_Fname" styleClass="txtbox-form">
+                           <VBox.margin>
+                              <Insets left="50.0" right="150.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="10.0" text="Last Name">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
-                        </RadioButton>
+                           <VBox.margin>
+                              <Insets left="40.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txt_Lname" layoutX="10.0" layoutY="28.0" styleClass="txtbox-form">
+                           <VBox.margin>
+                              <Insets left="50.0" right="150.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="53.0" text="DOB">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <DatePicker fx:id="txt_DOB" promptText="DD/MM/YYYY" style="-fx-border-radius: 20; -fx-font-size: 22;" styleClass="txtbox-form">
+                           <VBox.margin>
+                              <Insets left="50.0" right="150.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </DatePicker>
+                        <HBox prefHeight="26.0" prefWidth="366.0">
+                           <children>
+                              <Label text="Gender">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton fx:id="rad_Male" mnemonicParsing="false" text="Male">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="Gender" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="rad_Female" mnemonicParsing="false" text="Female" toggleGroup="$Gender">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="40.0" top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label layoutX="10.0" layoutY="140.0" text="NIC">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txt_NIC" layoutX="10.0" layoutY="71.0" styleClass="txtbox-form">
+                           <VBox.margin>
+                              <Insets left="50.0" right="150.0" />
+                           </VBox.margin>
+                        </TextField>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="25.0" top="22.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <TextField fx:id="txt_NIC" style="-fx-background-radius: 20;">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="25.0" top="22.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-            <VBox layoutX="562.0" layoutY="76.0" prefHeight="378.0" prefWidth="157.0">
-               <children>
-                  <Label prefHeight="42.0" prefWidth="184.0" styleClass="main-font" text="Contact No:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="184.0" styleClass="main-font" text="Email:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="52.0" prefHeight="42.0" prefWidth="184.0" styleClass="main-font" text="Address:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox layoutX="719.0" layoutY="76.0" prefHeight="378.0" prefWidth="157.0">
-               <children>
-                  <TextField fx:id="txt_Contact" style="-fx-background-radius: 20;">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="25.0" top="25.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="txt_Email" layoutX="10.0" layoutY="10.0" style="-fx-background-radius: 20;">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="25.0" top="25.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextArea fx:id="txa_Address" prefHeight="90.0" prefWidth="158.0" style="-fx-background-radius: 0;">
-                     <VBox.margin>
-                        <Insets bottom="25.0" top="25.0" />
-                     </VBox.margin>
-                  </TextArea>
-               </children>
-            </VBox>
-            <HBox layoutX="193.0" layoutY="494.0" prefHeight="100.0" prefWidth="642.0">
-               <children>
-                  <Button fx:id="btn_Update" mnemonicParsing="false" onAction="#btn_UpdateActionHandel" styleClass="btn-update" text="Update">
                      <HBox.margin>
-                        <Insets left="10.0" right="10.0" top="30.0" />
+                        <Insets bottom="200.0" right="5.0" />
                      </HBox.margin>
-                  </Button>
-                  <Button fx:id="btn_Edit" mnemonicParsing="false" onAction="#btn_EditActionHandel" styleClass="btn-add" text="Edit">
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="445.0" style="-fx-border-style: solid; -fx-border-color: #00ccff; -fx-border-radius: 10;">
+                     <children>
+                        <Label text="Contact No.">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="40.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txt_Contact" styleClass="txtbox-form">
+                           <VBox.margin>
+                              <Insets left="150.0" right="50.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="432.0" layoutY="10.0" text="Email">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="40.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txt_Email" layoutX="10.0" layoutY="28.0" styleClass="txtbox-form">
+                           <VBox.margin>
+                              <Insets left="150.0" right="50.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="432.0" layoutY="10.0" text="Address">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="40.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="txa_Address" prefHeight="122.0" prefWidth="344.0" style="-fx-border-radius: 15;" styleClass="txtbox-form">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                        </TextArea>
+                        <Label text="Qualifications">
+                           <VBox.margin>
+                              <Insets right="40.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="txa_Qualifications" layoutX="60.0" layoutY="232.0" prefHeight="122.0" prefWidth="344.0" style="-fx-border-radius: 15;" styleClass="txtbox-form">
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
                      <HBox.margin>
-                        <Insets left="10.0" right="10.0" top="30.0" />
+                        <Insets bottom="200.0" left="5.0" />
                      </HBox.margin>
-                  </Button>
-                  <Button fx:id="btn_Cancel" mnemonicParsing="false" onAction="#btn_CancelActionHandel" styleClass="btn-ok" text="Cancel">
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" top="30.0" />
-                     </HBox.margin>
-                  </Button>
+                  </VBox>
                </children>
+               <padding>
+                  <Insets left="50.0" top="50.0" />
+               </padding>
             </HBox>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </Pane>
+      <HBox alignment="CENTER" prefHeight="94.0" prefWidth="1000.0">
+         <VBox.margin>
+            <Insets top="50.0" />
+         </VBox.margin>
+         <children>
+            <Button fx:id="btn_Edit" mnemonicParsing="false" onAction="#btn_EditActionPerformed" styleClass="btn-add" text="Edit">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_Update" mnemonicParsing="false" onAction="#btn_UpdateActionPerformed" styleClass="btn-update" text="Update">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_Cancel" mnemonicParsing="false" onAction="#btn_CancelActionPerformed" styleClass="btn-delete" text="Cancel">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </VBox>

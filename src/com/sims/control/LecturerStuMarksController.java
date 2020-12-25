@@ -19,22 +19,16 @@ import javafx.scene.control.TextField;
  *
  * @author Helanka
  */
-public class LecturerExamController implements Initializable {
+public class LecturerStuMarksController implements Initializable {
 
     @FXML
     private ComboBox<?> cmb_CourseCode;
     @FXML
     private ComboBox<?> cmb_ExamType;
     @FXML
-    private Button btn_Add;
-    @FXML
-    private Button btn_Update;
+    private Button btn_Search;
     @FXML
     private TextField txt_StudentId;
-    @FXML
-    private TextField txt_Marks;
-    @FXML
-    private Button btn_Delete;
 
     /**
      * Initializes the controller class.
@@ -45,19 +39,7 @@ public class LecturerExamController implements Initializable {
     }    
 
     @FXML
-    private void btn_AddActionPerformed(ActionEvent event) {
-    }
-
-    @FXML
-    private void btn_UpdateActionPerformed(ActionEvent event) {
-    }
-
-    @FXML
-    private void btn_DeleteActionPerformed(ActionEvent event) {
-    }
-    
-    private boolean isTextFieldsEmpty() {
-        return txtId.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty();
+    private void btn_SearchActionPerformed(ActionEvent event) {
     }
     
 }
