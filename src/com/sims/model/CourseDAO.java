@@ -22,6 +22,31 @@ public class CourseDAO {
 
     PreparedStatement pst;
     ResultSet rs;
+    
+    public boolean saveCourse(Course course) {
+        boolean value = false;
+
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("insert into course_module values(?,?,?,?,?,?);");
+            pst.setString(1, course.getCourseid());
+            pst.setString(2, course.getCourseName());
+            pst.setInt(3, course.getCredit());
+            pst.setString(4, course.getCourse_dpt());
+            pst.setInt(5, course.getCourseyear());
+            pst.setInt(6, course.getCourseSemester());
+
+            if (pst.executeUpdate() >= 1) {
+                value = true;
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return value;
+    }
 
     public ArrayList<Course> getStudentAllCourseList(String studenid, int year, int sem) {
         ArrayList<Course> courselist = new ArrayList<Course>();
