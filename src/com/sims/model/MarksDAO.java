@@ -67,12 +67,11 @@ public class MarksDAO {
         String[] dataRow = new String[4];
         
         try {
+            String[] examRow = examDAO.getExam(courseId, examType);
             
             con = DBConnectionUtil.getDBConnection();
             
-            String[] examRow = examDAO.getExam(courseId, examType);
-            
-            String getMarkForAStudent = "SELECT * FROM marks WHERE marks_st_id = ? AND marks_examid = ?";
+            String getMarkForAStudent = "SELECT * FROM marks WHERE marks_st_id = ? AND marks_examid = ?;";
             PreparedStatement preparedStatement = con.prepareStatement(getMarkForAStudent);
             preparedStatement.setString(1, studentId);
             preparedStatement.setString(2, examRow[0]);
@@ -111,14 +110,13 @@ public class MarksDAO {
         Connection con = null;
         
         try {
+            String[] examRow = examDAO.getExam(courseId, examType);
             
             con = DBConnectionUtil.getDBConnection();
             
-            String[] examRow = examDAO.getExam(courseId, examType);
-            
             int rowIndex = 0;
             
-            String rowcount = "SELECT count(marks_examid) FROM marks WHERE marks_examid = ?";
+            String rowcount = "SELECT count(marks_examid) FROM marks WHERE marks_examid = ?;";
             PreparedStatement ps = con.prepareStatement(rowcount);
             ps.setString(1, examRow[0]);
             
@@ -127,7 +125,7 @@ public class MarksDAO {
             int rowCount = rs.getInt(1);
             dataRow = new String[rowCount][3];
             
-            String getMarks = "SELECT * FROM marks WHERE marks_examid = ?";
+            String getMarks = "SELECT * FROM marks WHERE marks_examid = ?;";
             PreparedStatement preparedStatement = con.prepareStatement(getMarks);
             preparedStatement.setString(1, examRow[0]);
             
@@ -165,14 +163,11 @@ public class MarksDAO {
         
         try {
             
-            
             con  = DBConnectionUtil.getDBConnection();
             
             int rowIndex = 0;
             
-            String[][] examRow = examDAO.getExam();
-            
-            String rowcount = "SELECT count(marks_examid) FROM marks";
+            String rowcount = "SELECT count(examid) FROM marks, exam WHERE marks_examid = examid;";
             PreparedStatement ps = con.prepareStatement(rowcount);
             
             ResultSet rs = ps.executeQuery();
@@ -180,16 +175,16 @@ public class MarksDAO {
             int rowCount = rs.getInt(1);
             dataRow = new String[rowCount][4];
             
-            String getAllMarks = "SELECT * FROM marks";
+            String getAllMarks = "SELECT exam_courseid, exam_type, marks_st_id, mark FROM marks, exam WHERE marks_examid = examid;";
             PreparedStatement preparedStatement = con.prepareStatement(getAllMarks);
             
             ResultSet resultSet = preparedStatement.executeQuery();
             
             while (resultSet.next()) {
-                dataRow[rowIndex][0] = examRow[rowIndex][3];
-                dataRow[rowIndex][1] = examRow[rowIndex][1];
-                dataRow[rowIndex][2] = resultSet.getString(1);
-                dataRow[rowIndex][3] = resultSet.getString(3);
+                dataRow[rowIndex][0] = resultSet.getString(1);
+                dataRow[rowIndex][1] = resultSet.getString(2);
+                dataRow[rowIndex][2] = resultSet.getString(3);
+                dataRow[rowIndex][3] = resultSet.getString(4);
                 
                 System.out.println(dataRow[rowIndex][0] + ", " + dataRow[rowIndex][1] + ", " + dataRow[rowIndex][2] + ", " + dataRow[rowIndex][3]);
                 
@@ -217,13 +212,11 @@ public class MarksDAO {
         Connection con = null;
         
         try {
-            
+            String[] examRow = examDAO.getExam(courseId, examType);
             
             con = DBConnectionUtil.getDBConnection();
             
-            String[] examRow = examDAO.getExam(courseId, examType);
-            
-            String updateMarks = "UPDATE marks SET mark = ? WHERE marks_examid = ? AND marks_st_id = ?";
+            String updateMarks = "UPDATE marks SET mark = ? WHERE marks_examid = ? AND marks_st_id = ?;";
             PreparedStatement preparedStatement  = con.prepareStatement(updateMarks);
             preparedStatement.setFloat(1, marks);
             preparedStatement.setString(2, examRow[0]);
@@ -260,13 +253,11 @@ public class MarksDAO {
         
         try {
             
-            
+            String[] examRow = examDAO.getExam(courseId, examType);
             
             con = DBConnectionUtil.getDBConnection();
             
-            String[] examRow = examDAO.getExam(courseId, examType);
-            
-            String deleteMarks = "DELETE FROM mark WHERE marks_st_id = ? AND marks_examid = ?";
+            String deleteMarks = "DELETE FROM mark WHERE marks_st_id = ? AND marks_examid = ?;";
             PreparedStatement preparedStatement = con.prepareStatement(deleteMarks);
             preparedStatement.setString(1, studentId);
             preparedStatement.setString(1, examRow[0]);
@@ -293,8 +284,7 @@ public class MarksDAO {
         return status;
     }
     
+
     
-    
-    
-    
+       
 }
