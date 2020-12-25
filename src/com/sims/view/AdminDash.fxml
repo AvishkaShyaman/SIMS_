@@ -114,11 +114,11 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TableView prefHeight="497.0" prefWidth="1000.0">
+                  <TableView fx:id="table_view" prefHeight="497.0" prefWidth="1000.0">
                     <columns>
-                      <TableColumn prefWidth="196.79998779296875" text="Date" />
-                      <TableColumn minWidth="0.0" prefWidth="566.3999938964844" text="Titel" />
-                        <TableColumn prefWidth="196.0" text="View" />
+                      <TableColumn fx:id="tale_col_date" prefWidth="196.79998779296875" text="Date" />
+                      <TableColumn fx:id="table_col_titel" minWidth="0.0" prefWidth="566.3999938964844" text="Titel" />
+                        <TableColumn fx:id="table_col_publisher" prefWidth="196.0" text="publisher" />
                     </columns>
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />

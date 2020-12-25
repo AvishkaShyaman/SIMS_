@@ -86,14 +86,14 @@
             </AnchorPane>
          </children>
       </HBox>
-      <TableView prefHeight="538.0" prefWidth="1000.0">
+      <TableView fx:id="table_view" prefHeight="538.0" prefWidth="1000.0">
         <columns>
-          <TableColumn prefWidth="111.99999696016312" text="C1" />
-          <TableColumn prefWidth="254.40000915527344" text="Name" />
-            <TableColumn prefWidth="250.39996337890625" text="Email" />
-            <TableColumn prefWidth="118.39990234375" text="Department" />
-            <TableColumn prefWidth="106.4000244140625" text="User Type" />
-            <TableColumn prefWidth="165.60003662109375" text="View" />
+          <TableColumn fx:id="table_cl_id" prefWidth="111.99999696016312" text="ID" />
+          <TableColumn fx:id="table_cl_name" prefWidth="240.7999725341797" text="Name" />
+            <TableColumn fx:id="table_cl_email" prefWidth="247.20001220703125" text="Email" />
+            <TableColumn fx:id="table_cl_dpt" prefWidth="136.79998779296875" text="Department" />
+            <TableColumn fx:id="table_cl_" minWidth="0.0" prefWidth="114.39996337890625" text="User Type" />
+            <TableColumn minWidth="5.0" prefWidth="107.2000732421875" text="View" />
         </columns>
          <VBox.margin>
             <Insets left="20.0" right="20.0" />

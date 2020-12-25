@@ -77,10 +77,9 @@
       </HBox>
       <TableView fx:id="tableview" prefHeight="370.0" prefWidth="960.0">
          <columns>
-            <TableColumn fx:id="colcoursecode" prefWidth="159.9999656677246" text="Course Code" />
-            <TableColumn fx:id="colcoursename" prefWidth="378.4000244140625" text="Course Name" />
-            <TableColumn fx:id="colgrade" prefWidth="222.4000244140625" text="Grade" />
-            <TableColumn fx:id="colhours" prefWidth="200.800048828125" text="Hours" />
+            <TableColumn fx:id="colcoursecode" prefWidth="232.80002975463867" text="Course Code" />
+            <TableColumn fx:id="colcoursename" prefWidth="371.199951171875" text="Course Name" />
+            <TableColumn fx:id="colgrade" prefWidth="354.39996337890625" text="Grade" />
          </columns>
          <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -93,6 +92,23 @@
                   <Insets bottom="20.0" left="20.0" right="50.0" top="20.0" />
                </HBox.margin>
                <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SGPA value in this semester" wrappingWidth="142.9039306640625">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Label fx:id="lable_sgpa" alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="10.0" prefHeight="146.0" prefWidth="122.0" style="-fx-background-color: #42CD00; -fx-background-radius: 0 20px 20px 0; -fx-text-fill: #ffffff;" text="3.8">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="345.0" layoutY="30.0" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #FF4BB7; -fx-background-radius: 20px;">
+               <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Cummulative GPA value according to the relesed Results(CGPA)" wrappingWidth="142.9039306640625">
                      <font>
                         <Font size="14.0" />
@@ -101,18 +117,16 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Text>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="146.0" prefWidth="122.0" style="-fx-background-color: #42CD00; -fx-background-radius: 0 20px 20px 0; -fx-text-fill: #ffffff;" text="3.8">
+                  <Label fx:id="lable_cgpa" alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="10.0" prefHeight="146.0" prefWidth="122.0" style="-fx-background-color: #DB2F96; -fx-background-radius: 0 20px 20px 0; -fx-text-fill: #ffffff;" text="3.8">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
                </children>
-            </HBox>
-            <VBox alignment="CENTER" layoutX="477.0" layoutY="30.0" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #FF4BB7; -fx-background-radius: 20px;">
                <HBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="50.0" top="20.0" />
+                  <Insets bottom="20.0" left="50.0" right="20.0" top="20.0" />
                </HBox.margin>
-            </VBox>
+            </HBox>
          </children>
       </HBox>
    </children>

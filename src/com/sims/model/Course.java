@@ -17,6 +17,15 @@ public class Course {
     private String course_dpt;
     private int courseyear;
     private int courseSemester;
+    private String grade;
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 
     public int getCourseyear() {
         return courseyear;
