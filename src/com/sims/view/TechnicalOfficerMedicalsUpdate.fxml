@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="680.0" style="-fx-background-color: white;" stylesheets="@../resource/common.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.sims.control.TechnicalOfficerMedicalsUpdateController">
+   <children>
+      <VBox prefHeight="364.0" prefWidth="680.0">
+         <children>
+            <Pane prefHeight="60.0" prefWidth="680.0">
+               <children>
+                  <Label layoutX="24.0" layoutY="13.0" style="-fx-font-size: 24px; -fx-text-fill: #0598FF;" text="Update Medicals" />
+               </children>
+            </Pane>
+            <Pane prefHeight="293.0" prefWidth="659.0" style="-fx-border-color: #014778; -fx-border-radius: 25px;">
+               <children>
+                  <Pane layoutX="63.0" prefHeight="95.0" prefWidth="530.0">
+                     <children>
+                        <Label layoutY="8.0" style="-fx-font-size: 18px; -fx-text-fill: #014778;" text="Student ID" />
+                        <TextField layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="247.0" promptText="TG/XXXX/XXX" styleClass="txtbox-form" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="66.0" layoutY="94.0" prefHeight="95.0" prefWidth="530.0">
+                     <children>
+                        <Label layoutY="8.0" style="-fx-font-size: 18px; -fx-text-fill: #014778;" text="Medical Start Date" />
+                        <DatePicker layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="247.0" promptText="MM/DD/YYYY" styleClass="txtbox-form" />
+                        <Label layoutX="283.0" layoutY="8.0" style="-fx-font-size: 18px; -fx-text-fill: #014778;" text="Medical End Date" />
+                        <DatePicker layoutX="283.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="247.0" promptText="MM/DD/YYYY" styleClass="txtbox-form" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="66.0" layoutY="189.0" prefHeight="95.0" prefWidth="530.0">
+                     <children>
+                        <Label layoutY="6.0" style="-fx-font-size: 18px; -fx-text-fill: #014778;" text="Course ID" />
+                        <Label layoutX="284.0" layoutY="8.0" style="-fx-font-size: 18px; -fx-text-fill: #014778;" text="Course Type" />
+                        <ComboBox layoutX="283.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="247.0" styleClass="txtbox-form" />
+                        <ComboBox layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="247.0" styleClass="txtbox-form" />
+                     </children>
+                  </Pane>
+               </children>
+               <VBox.margin>
+                  <Insets left="12.0" right="12.0" />
+               </VBox.margin>
+            </Pane>
+         </children>
+      </VBox>
+      <Button layoutX="249.0" layoutY="374.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" styleClass="btn-update" text="Update" />
+      <Button layoutX="478.0" layoutY="374.0" mnemonicParsing="false" styleClass="btn-ok" text="Ok" />
+   </children>
+</AnchorPane>
