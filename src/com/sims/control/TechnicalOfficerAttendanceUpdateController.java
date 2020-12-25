@@ -7,7 +7,11 @@ package com.sims.control;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -15,6 +19,13 @@ import javafx.fxml.Initializable;
  * @author pragith
  */
 public class TechnicalOfficerAttendanceUpdateController implements Initializable {
+
+    @FXML
+    private TextField txtStudent;
+    @FXML
+    private DatePicker date;
+    @FXML
+    private ComboBox<?> combCourseID;
 
     /**
      * Initializes the controller class.

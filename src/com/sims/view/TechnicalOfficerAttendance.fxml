@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="784.0" prefWidth="1306.0" style="-fx-background-color: white;" stylesheets="@../resource/common.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.sims.control.TechnicalOfficerAttendanceController">
+<AnchorPane id="AnchorPane" prefHeight="784.0" prefWidth="1306.0" style="-fx-background-color: white;" stylesheets="@../resource/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.TechnicalOfficerAttendanceController">
    <children>
       <BorderPane fx:id="mainPane" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../resource/common.css">
          <right>
@@ -26,18 +26,14 @@
                      </VBox.margin>
                      <children>
                         <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="Attendance" />
-                        <TextField layoutX="354.0" layoutY="17.0" prefWidth="287.0" promptText="Student ID" styleClass="txtbox-search" />
-                        <DatePicker layoutX="842.0" layoutY="17.0" minHeight="-Infinity" minWidth="-Infinity" promptText="MM/DD/YYYY" styleClass="txtbox-search" />
-                        <Button alignment="CENTER" layoutX="665.0" layoutY="17.0" mnemonicParsing="false" styleClass="btn-search" text="Search">
+                        <TextField fx:id="txtStuId" layoutX="354.0" layoutY="17.0" prefWidth="217.0" promptText="Student ID" styleClass="txtbox-search" />
+                        <DatePicker fx:id="txtDate" layoutX="842.0" layoutY="17.0" minHeight="-Infinity" minWidth="-Infinity" promptText="MM/DD/YYYY" styleClass="txtbox-search" />
+                        <Button fx:id="btnSearch" alignment="CENTER" graphicTextGap="8.0" layoutX="1148.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="btn-search" text="Search">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="SEARCH" size="1.2em" />
                            </graphic>
                         </Button>
-                        <Button alignment="CENTER" graphicTextGap="8.0" layoutX="1148.0" layoutY="17.0" mnemonicParsing="false" styleClass="btn-search" text="Filter">
-                           <graphic>
-                              <FontAwesomeIcon fill="WHITE" glyphName="FILTER" size="1.2em" />
-                           </graphic>
-                        </Button>
+                        <TextField fx:id="txtCourseId" layoutX="598.0" layoutY="17.0" prefWidth="217.0" promptText="Course ID" styleClass="txtbox-search" />
                      </children>
                   </Pane>
                   <ScrollPane prefHeight="618.0" prefWidth="1226.0">
@@ -45,13 +41,13 @@
                         <Insets left="40.0" right="40.0" top="20.0" />
                      </VBox.margin>
                      <content>
-                        <TableView prefHeight="200.0" prefWidth="1224.0">
+                        <TableView fx:id="tableAttendance" prefHeight="200.0" prefWidth="1224.0">
                           <columns>
-                            <TableColumn prefWidth="119.99996566772461" resizable="false" text="No" />
-                            <TableColumn prefWidth="249.6000213623047" resizable="false" text="Date" />
-                              <TableColumn prefWidth="313.6000061035156" resizable="false" text="Student ID" />
-                              <TableColumn prefWidth="275.20001220703125" resizable="false" text="Course ID" />
-                              <TableColumn prefWidth="267.199951171875" resizable="false" text="Status" />
+                            <TableColumn fx:id="colNo" prefWidth="119.99996566772461" resizable="false" text="No" />
+                            <TableColumn fx:id="colDate" prefWidth="249.6000213623047" resizable="false" text="Date" />
+                              <TableColumn fx:id="colStudent" prefWidth="313.6000061035156" resizable="false" text="Student ID" />
+                              <TableColumn fx:id="colCourseId" prefWidth="275.20001220703125" resizable="false" text="Course ID" />
+                              <TableColumn fx:id="colStatus" prefWidth="267.199951171875" resizable="false" text="Status" />
                           </columns>
                         </TableView>
                      </content>
