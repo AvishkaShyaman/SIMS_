@@ -98,7 +98,7 @@ public class UserDAO {
         try {
             Connection con = DBConnectionUtil.getDBConnection();
 
-            java.sql.Date sqlDate = getsqldate(user.getDob());
+            //java.sql.Date sqlDate = getsqldate(user.getDob());
 
             pst = con.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?);");
             pst.setString(1, user.getUserID());
@@ -108,7 +108,7 @@ public class UserDAO {
             pst.setInt(5, user.getPhone());
             pst.setString(6, user.getEmail());
             pst.setString(7, user.getAddress());
-            pst.setDate(8, sqlDate);
+            pst.setDate(8, null);
             pst.setString(9, user.getGender());
 
             if (pst.executeUpdate() >= 1) {

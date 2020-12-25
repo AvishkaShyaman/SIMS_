@@ -30,19 +30,19 @@
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField styleClass="txtbox-form" />
+                                    <TextField fx:id="txt_id" styleClass="txtbox-form" />
                                     <Label layoutX="10.0" layoutY="35.0" text="Email">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField layoutX="10.0" layoutY="52.0" styleClass="txtbox-form" />
+                                    <TextField fx:id="txt_email" layoutX="10.0" layoutY="52.0" styleClass="txtbox-form" />
                                     <Label layoutX="10.0" layoutY="103.0" text="NIC">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField layoutX="10.0" layoutY="120.0" styleClass="txtbox-form" />
+                                    <TextField fx:id="txt_nic" layoutX="10.0" layoutY="120.0" styleClass="txtbox-form" />
                                     <Label layoutX="10.0" layoutY="220.0" text="Department">
                                        <VBox.margin>
                                           <Insets top="25.0" />
@@ -61,25 +61,25 @@
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField styleClass="txtbox-form" />
+                                    <TextField fx:id="txt_fname" styleClass="txtbox-form" />
                                     <Label layoutX="10.0" layoutY="35.0" text="Contact">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField layoutX="10.0" layoutY="52.0" styleClass="txtbox-form" />
+                                    <TextField fx:id="txt_contact" layoutX="10.0" layoutY="52.0" styleClass="txtbox-form" />
                                     <Label layoutX="10.0" layoutY="103.0" text="Batch">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField layoutX="10.0" layoutY="120.0" styleClass="txtbox-form" />
+                                    <TextField fx:id="txt_batch" layoutX="10.0" layoutY="120.0" styleClass="txtbox-form" />
                                     <Label layoutX="10.0" layoutY="220.0" text="DOB">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <DatePicker prefHeight="49.0" prefWidth="246.0" />
+                                    <DatePicker fx:id="date_dob" prefHeight="49.0" prefWidth="246.0" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
@@ -92,13 +92,13 @@
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField styleClass="txtbox-form" />
+                                    <TextField fx:id="txt_lname" styleClass="txtbox-form" />
                                     <Label layoutX="10.0" layoutY="35.0" text="Address">
                                        <VBox.margin>
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField layoutX="10.0" layoutY="52.0" prefHeight="37.0" prefWidth="245.0" styleClass="txtbox-form" />
+                                    <TextField fx:id="txt_address" layoutX="10.0" layoutY="52.0" prefHeight="37.0" prefWidth="245.0" styleClass="txtbox-form" />
                                     <Label text="Gender">
                                        <VBox.margin>
                                           <Insets left="40.0" top="40.0" />
@@ -107,7 +107,7 @@
                                           <Insets top="50.0" />
                                        </padding>
                                     </Label>
-                                    <RadioButton mnemonicParsing="false" text="Male">
+                                    <RadioButton fx:id="radio_btn" mnemonicParsing="false" text="Male">
                                        <VBox.margin>
                                           <Insets left="60.0" top="5.0" />
                                        </VBox.margin>
@@ -124,7 +124,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Button layoutX="441.0" layoutY="424.0" mnemonicParsing="false" styleClass="btn-add" text="Add" />
+                        <Button fx:id="btn_add" layoutX="441.0" layoutY="424.0" mnemonicParsing="false" onAction="#btn_addActionHandler" styleClass="btn-add" text="Add" />
                         <Button layoutX="645.0" layoutY="424.0" mnemonicParsing="false" styleClass="btn-reset" text="Reset" />
                      </children>
                   </AnchorPane>

@@ -5,6 +5,7 @@
  */
 package com.sims.control;
 
+import com.sims.model.CourseDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,6 +46,8 @@ public class AdminDashboardController implements Initializable {
     private BorderPane mainPane;
     @FXML
     private Button btn_AddNotice;
+    @FXML
+    private Button btn_update;
 
     /**
      * Initializes the controller class.
@@ -98,6 +101,14 @@ public class AdminDashboardController implements Initializable {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    @FXML
+    private void btn_update_test(ActionEvent event) {
+        
+        CourseDAO doa = new CourseDAO();
+        
+        System.out.println(doa.getCoursegrade("ENG1222","Tg/2016/224"));
     }
 
 }

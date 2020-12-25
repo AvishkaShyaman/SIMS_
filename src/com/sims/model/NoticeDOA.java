@@ -23,7 +23,7 @@ public class NoticeDOA {
     PreparedStatement pst;
     ResultSet rs;
 
-    public boolean saveStaff(Notice notice) {
+    public boolean saveNotice(Notice notice) {
         boolean value = false;
 
         try {
@@ -46,7 +46,7 @@ public class NoticeDOA {
         return value;
     }
 
-    public boolean updateStaff(Notice notice) {
+    public boolean updateNotice(Notice notice) {
         boolean value = false;
 
         try {
@@ -70,7 +70,7 @@ public class NoticeDOA {
         return value;
     }
 
-    public boolean deleteStaff(Notice notice) {
+    public boolean deleteNotice(Notice notice) {
         boolean value = false;
         try {
             Connection con = DBConnectionUtil.getDBConnection();
@@ -89,7 +89,7 @@ public class NoticeDOA {
         return value;
     }
 
-    public Notice getStaff(String noticeid) {
+    public Notice getNotice(String noticeid) {
         Notice notice = new Notice();
 
         try {
@@ -116,7 +116,7 @@ public class NoticeDOA {
         return notice;
     }
     
-    public  ArrayList<Notice> getAllUser() {
+    public  ArrayList<Notice> getAllNotice() {
         ArrayList<Notice> userlist = new ArrayList<Notice>();
         try {
             Connection con = DBConnectionUtil.getDBConnection();
