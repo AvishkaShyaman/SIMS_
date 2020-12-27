@@ -37,7 +37,7 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="txt_Fname" styleClass="txtbox-form">
+                        <TextField fx:id="txt_Fname" style="-fx-font-size: 16;" styleClass="txtbox-form">
                            <VBox.margin>
                               <Insets left="50.0" right="150.0" />
                            </VBox.margin>
@@ -50,7 +50,7 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="txt_Lname" layoutX="10.0" layoutY="28.0" styleClass="txtbox-form">
+                        <TextField fx:id="txt_Lname" layoutX="10.0" layoutY="28.0" style="-fx-font-size: 16;" styleClass="txtbox-form">
                            <VBox.margin>
                               <Insets left="50.0" right="150.0" />
                            </VBox.margin>
@@ -63,7 +63,7 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <DatePicker fx:id="txt_DOB" promptText="DD/MM/YYYY" style="-fx-border-radius: 20; -fx-font-size: 22;" styleClass="txtbox-form">
+                        <DatePicker fx:id="txt_DOB" promptText="DD/MM/YYYY" style="-fx-font-size: 16; -fx-padding: 0 15px 0 15px;" styleClass="txtbox-form">
                            <VBox.margin>
                               <Insets left="50.0" right="150.0" />
                            </VBox.margin>
@@ -110,7 +110,7 @@
                               <Insets left="40.0" top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="txt_NIC" layoutX="10.0" layoutY="71.0" styleClass="txtbox-form">
+                        <TextField fx:id="txt_NIC" layoutX="10.0" layoutY="71.0" style="-fx-font-size: 16;" styleClass="txtbox-form">
                            <VBox.margin>
                               <Insets left="50.0" right="150.0" />
                            </VBox.margin>
@@ -130,7 +130,7 @@
                               <Insets right="40.0" top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="txt_Contact" styleClass="txtbox-form">
+                        <TextField fx:id="txt_Contact" style="-fx-font-size: 16;" styleClass="txtbox-form">
                            <VBox.margin>
                               <Insets left="150.0" right="50.0" />
                            </VBox.margin>
@@ -143,7 +143,7 @@
                               <Insets right="40.0" top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="txt_Email" layoutX="10.0" layoutY="28.0" styleClass="txtbox-form">
+                        <TextField fx:id="txt_Email" layoutX="10.0" layoutY="28.0" style="-fx-font-size: 16;" styleClass="txtbox-form">
                            <VBox.margin>
                               <Insets left="150.0" right="50.0" />
                            </VBox.margin>
@@ -156,7 +156,7 @@
                               <Insets right="40.0" top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextArea fx:id="txa_Address" prefHeight="122.0" prefWidth="344.0" style="-fx-border-radius: 15;" styleClass="txtbox-form">
+                        <TextArea fx:id="txa_Address" minHeight="100.0" prefHeight="82.0" prefWidth="344.0" style="-fx-font-size: 16; -fx-padding: 0 15px 0 15px;" styleClass="txtbox-form">
                            <VBox.margin>
                               <Insets left="50.0" right="50.0" />
                            </VBox.margin>
@@ -169,7 +169,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="txa_Qualifications" layoutX="60.0" layoutY="232.0" prefHeight="122.0" prefWidth="344.0" style="-fx-border-radius: 15;" styleClass="txtbox-form">
+                        <TextArea fx:id="txa_Qualifications" layoutX="60.0" layoutY="232.0" minHeight="100.0" prefHeight="122.0" prefWidth="344.0" style="-fx-font-size: 16; -fx-padding: 0 15px 0 15px;" styleClass="txtbox-form">
                            <VBox.margin>
                               <Insets left="50.0" right="50.0" />
                            </VBox.margin>

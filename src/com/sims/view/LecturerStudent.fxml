@@ -24,18 +24,18 @@
             <Insets top="150.0" />
          </VBox.margin>
          <children>
-            <Button fx:id="btn_stuDetails" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_stuDetailsActionHandel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #f0a800;" text="Student Details" textAlignment="CENTER">
+            <Button fx:id="btn_stuDetails" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_stuDetailsActionHandel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #006FBC;" text="Student Details" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
                <graphic>
-                  <FontAwesomeIcon glyphName="USERS" size="5em" />
+                  <FontAwesomeIcon fill="#cdc0c0" glyphName="USERS" size="5em" />
                </graphic>
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btn_StuEligibility" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuEligibilityActionHandel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #49f590;" text="Eligibility" textAlignment="CENTER">
+            <Button fx:id="btn_StuEligibility" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuEligibilityActionHandel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #006FBC;" text="Eligibility" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
@@ -43,10 +43,10 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon size="5em" />
+                  <FontAwesomeIcon fill="#cdc0c0" glyphName="CHECK_SQUARE_ALT" size="5em" />
                </graphic>
             </Button>
-            <Button fx:id="btn_StuAttendance" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuAttendanceActionHandel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #d94e55;" text="Attendance" textAlignment="CENTER">
+            <Button fx:id="btn_StuAttendance" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuAttendanceActionHandel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #006FBC;" text="Attendance" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
@@ -54,14 +54,14 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon size="5em" text="" />
+                  <FontAwesomeIcon fill="#cdc0c0" glyphName="BAR_CHART" size="5em" />
                </graphic>
             </Button>
          </children>
       </HBox>
       <HBox prefHeight="178.0" prefWidth="1000.0">
          <children>
-            <Button fx:id="btn_StuMarks" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuMarksActionHadel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #00ccff;" text="Marks" textAlignment="CENTER">
+            <Button fx:id="btn_StuMarks" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuMarksActionHadel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #006FBC;" text="Marks" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
@@ -69,10 +69,10 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon size="5em" />
+                  <FontAwesomeIcon fill="#cdc0c0" glyphName="BOOK" size="5em" />
                </graphic>
             </Button>
-            <Button fx:id="btn_StuGPAGrade" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuGPAGradeActionHadel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #EDD817;" text="GPA &amp; Grade" textAlignment="CENTER">
+            <Button fx:id="btn_StuGPAGrade" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuGPAGradeActionHadel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #006FBC;" text="GPA &amp; Grade" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
@@ -80,15 +80,15 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon size="5em" />
+                  <FontAwesomeIcon fill="#cdc0c0" glyphName="CALCULATOR" size="5em" />
                </graphic>
             </Button>
-            <Button fx:id="btn_StuMedical" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuMedicalActionHadel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #a9307e;" text="Medical" textAlignment="CENTER">
+            <Button fx:id="btn_StuMedical" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btn_StuMedicalActionHadel" prefHeight="175.0" prefWidth="235.0" style="-fx-background-radius: 30; -fx-background-color: #006FBC;" text="Medical" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
                <graphic>
-                  <FontAwesomeIcon size="5em" />
+                  <FontAwesomeIcon fill="#cdc0c0" glyphName="USER_MD" size="5em" />
                </graphic>
                <font>
                   <Font name="System Bold" size="18.0" />

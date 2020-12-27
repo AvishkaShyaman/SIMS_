@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 /**
@@ -27,6 +28,20 @@ public class LecturerStuMedicalController implements Initializable {
     private TextField txt_SearchBy;
     @FXML
     private Button btn_Search;
+    @FXML
+    private Button btn_StuBack;
+    @FXML
+    private TableColumn<?, ?> tbl_StudentId;
+    @FXML
+    private TableColumn<?, ?> tbl_StartDate;
+    @FXML
+    private TableColumn<?, ?> tbl_EndDate;
+    @FXML
+    private TableColumn<?, ?> tbl_CourseCode;
+    @FXML
+    private TableColumn<?, ?> tbl_Type;
+    @FXML
+    private TableColumn<?, ?> tbl_Status;
 
     /**
      * Initializes the controller class.
@@ -38,6 +53,10 @@ public class LecturerStuMedicalController implements Initializable {
 
     @FXML
     private void btn_SearchActionPerformed(ActionEvent event) {
+    }
+
+    @FXML
+    private void btn_StuBackActionPerformed(ActionEvent event) {
     }
     
 }

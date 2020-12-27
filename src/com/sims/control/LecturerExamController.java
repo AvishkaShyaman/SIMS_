@@ -5,7 +5,11 @@
  */
 package com.sims.control;
 
+import com.sims.model.Exam;
 import com.sims.model.ExamDAO;
+import com.sims.model.ExamsMarks;
+import com.sims.model.ExamsMarksDAO;
+import com.sims.model.Marks;
 import com.sims.model.MarksDAO;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,14 +21,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
  *
  * @author Helanka
  */
-public class LecturerExamController implements Initializable {
+public class LecturerExamController extends javax.swing.JFrame implements Initializable {
 
     @FXML
     private ComboBox<String> cmb_CourseCode;
@@ -40,10 +47,24 @@ public class LecturerExamController implements Initializable {
     private TextField txt_Marks;
     @FXML
     private Button btn_Delete;
-    
+    @FXML
+    private TableColumn<ExamsMarks, String> tbl_CourseCode;
+    @FXML
+    private TableColumn<ExamsMarks, String> tbl_ExamType;
+    @FXML
+    private TableColumn<ExamsMarks, String> tbl_StudentId;
+    @FXML
+    private TableColumn<ExamsMarks, Double> tbl_Marks;
+    @FXML
+    private TableView<ExamsMarks> table;
     
     MarksDAO marksDAO = new MarksDAO();
     ExamDAO examDAO = new ExamDAO();
+    Exam exam = new Exam();
+    Marks marks = new Marks();
+    ExamsMarksDAO examsMarksDAO = new ExamsMarksDAO();
+    
+    
     //ComboBox database
     private ArrayList<String> courseid() {
         ArrayList<String> id = new ArrayList<String>();
@@ -60,13 +81,32 @@ public class LecturerExamController implements Initializable {
     }
     ObservableList<String> examType = FXCollections.observableArrayList(examType());
     
+    //Table View
+    ObservableList<ExamsMarks> obslist = FXCollections.observableArrayList();
+    public void tableView() {
+        ArrayList<ExamsMarks> marksData = examsMarksDAO.getMarks();
+        
+        for(ExamsMarks mark : marksData){
+            obslist.add(mark);
+            System.out.println(" "+mark.getExamCourseId()+" "+mark.getType()+" "+mark.getMarksStuId()+" "+mark.getMarks());
+        }
+        
+        tbl_CourseCode.setCellValueFactory(new PropertyValueFactory<>("examCourseId"));
+        tbl_ExamType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        tbl_StudentId.setCellValueFactory(new PropertyValueFactory<>("marksStuId"));
+        tbl_Marks.setCellValueFactory(new PropertyValueFactory<>("marks"));
+        
+        table.setItems(obslist);
+    
+    }
+    
     private void clearField() {
         txt_StudentId.setText("");
         txt_Marks.setText("");
         cmb_CourseCode.setValue("");
         cmb_ExamType.setValue("");
     }
-    
+
     
     /**
      * Initializes the controller class.
@@ -74,17 +114,23 @@ public class LecturerExamController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //ComboBox database
-        cmb_CourseCode.setItems(courseId);
+        cmb_CourseCode.setItems(courseId);  //getItems().addAll(courseId)
         cmb_ExamType.setItems(examType);
+        tableView();
+        clearField();
     }    
 
     @FXML
     private void btn_AddActionPerformed(ActionEvent event) {
+        exam.setExamCourseId(cmb_CourseCode.getValue().toUpperCase());
+        exam.setType(cmb_ExamType.getValue().toUpperCase());
+        marks.setMarksStuId(txt_StudentId.getText());
+        marks.setMarks(Double.parseDouble(txt_Marks.getText()));
         
         if (isFieldsEmpty()) {
             //JOptionPane.showMessageDialog(this, "Some fields are missing", "Alert", JOptionPane.WARNING_MESSAGE);
         } else {
-            if (marksDAO.insertMarks(cmb_CourseCode.getValue().toUpperCase(), cmb_ExamType.getValue().toUpperCase(), txt_StudentId.getText(), Float.parseFloat(txt_Marks.getText()))) {
+            if (marksDAO.insertMarks(marks, exam)) {
                 //JOptionPane.showMessageDialog(this, "successfully inserted");
                 //setAllStudentTabale();
                 clearField();
@@ -99,14 +145,54 @@ public class LecturerExamController implements Initializable {
 
     @FXML
     private void btn_UpdateActionPerformed(ActionEvent event) {
+        exam.setExamCourseId(cmb_CourseCode.getValue().toUpperCase());
+        exam.setType(cmb_ExamType.getValue().toUpperCase());
+        marks.setMarksStuId(txt_StudentId.getText());
+        marks.setMarks(Double.parseDouble(txt_Marks.getText()));
+        
+        if (isFieldsEmpty()) {
+            //JOptionPane.showMessageDialog(this, "Some fields are missing", "Alert", JOptionPane.WARNING_MESSAGE);
+        } else {
+            switch (marksDAO.updateMarks(marks, exam)) {
+                case 1:
+                    //JOptionPane.showMessageDialog(this, "successfully updated");
+                    //setAllStudentTabale();
+                    clearField();
+                    break;
+                case 0:
+                    //JOptionPane.showMessageDialog(this, "Please check the student ID", "Warning", JOptionPane.ERROR_MESSAGE);
+                    break;
+                case -1:
+                    //JOptionPane.showMessageDialog(this, "Data too long for Name or Address", "Warning", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+        }
     }
 
     @FXML
     private void btn_DeleteActionPerformed(ActionEvent event) {
+        exam.setExamCourseId(cmb_CourseCode.getValue().toUpperCase());
+        exam.setType(cmb_ExamType.getValue().toUpperCase());
+        marks.setMarksStuId(txt_StudentId.getText());
+        
+        if (txt_StudentId.getText().isEmpty() ||  exam.getExamCourseId().isEmpty() || exam.getType().isEmpty()) {
+            //JOptionPane.showMessageDialog(this, "Please Enter a Student ID", "Alert", JOptionPane.WARNING_MESSAGE);
+        } else{
+            //int select = JOptionPane.showConfirmDialog(this, "Are you sure that you want to delete?", "Alert", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            //if (select == JOptionPane.YES_OPTION) {
+                if (marksDAO.deleteMarks(marks, exam)) {
+                    //JOptionPane.showMessageDialog(this, "successfully deleted");
+                    //setAllStudentTabale();
+                    clearField();
+                } else {
+                    //JOptionPane.showMessageDialog(this, "Please check the student ID", "Warning", JOptionPane.ERROR_MESSAGE);
+                }
+            //}
+        }
     }
     
     private boolean isFieldsEmpty() {
-        return cmb_CourseCode.getValue()== null || cmb_ExamType.getValue()== null || txt_Marks.getText().isEmpty() || txt_StudentId.getText().isEmpty();
+        return exam.getExamCourseId().isEmpty() || exam.getType().isEmpty() || txt_Marks.getText().isEmpty() || txt_StudentId.getText().isEmpty();
     }
     
     

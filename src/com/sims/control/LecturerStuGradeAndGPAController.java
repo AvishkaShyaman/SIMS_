@@ -46,19 +46,23 @@ public class LecturerStuGradeAndGPAController implements Initializable {
     @FXML
     private TableView<?> tableview;
     @FXML
-    private TableColumn<?, ?> colcoursecode;
-    @FXML
-    private TableColumn<?, ?> colcoursename;
-    @FXML
-    private TableColumn<?, ?> colgrade;
-    @FXML
-    private TableColumn<?, ?> colhours;
-    @FXML
     private TextField txt1;
     @FXML
     private Button btn_SearchBottom;
     @FXML
     private Label lbl_GPA;
+    @FXML
+    private Button btn_StuBack;
+    @FXML
+    private TableColumn<?, ?> tbl_CourseCode;
+    @FXML
+    private TableColumn<?, ?> tbl_Subject;
+    @FXML
+    private TableColumn<?, ?> tbl_StudentId;
+    @FXML
+    private TableColumn<?, ?> tbl_Garde;
+    @FXML
+    private TableColumn<?, ?> tbl_Year;
 
     /**
      * Initializes the controller class.
@@ -82,6 +86,10 @@ public class LecturerStuGradeAndGPAController implements Initializable {
 
     @FXML
     private void btn_SearchBottomActionPerformed(ActionEvent event) {
+    }
+
+    @FXML
+    private void btn_StuBackActionPerformed(ActionEvent event) {
     }
     
 }
