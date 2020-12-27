@@ -20,9 +20,9 @@ import java.util.logging.Logger;
 public class ExamDAO {
     
     //Get Exam from exam table according to the given Course ID and Exam Type
-    public  String[] getExam(String courseId, String examType) {
-    
-        String[] dataRow = null;
+    public Exam getExam(Exam exam) {
+        
+        Exam column = null;
         
         Connection con = null;
                 
@@ -30,25 +30,24 @@ public class ExamDAO {
             
             con = DBConnectionUtil.getDBConnection();
             
-            dataRow = new String[4];
+            column = new Exam();
             
             String getExam = "SELECT * FROM exam WHERE exam_courseid = ? AND exam_type= ?;";
             PreparedStatement preparedStatement = con.prepareStatement(getExam);
-            preparedStatement.setString(1, courseId);
-            preparedStatement.setString(2, examType);
+            preparedStatement.setString(1, exam.getExamCourseId());
+            preparedStatement.setString(2, exam.getType());
             
             ResultSet resultSet = preparedStatement.executeQuery();
             
             if (resultSet.next()) {
-                dataRow[0] = resultSet.getString(1);
-                dataRow[1] = resultSet.getString(2);
-                dataRow[2] = resultSet.getString(3);
-                dataRow[3] = resultSet.getString(4);
+                column.setExamId(resultSet.getString(1));
+                column.setType(resultSet.getString(2));
+                column.setExamCourseId(resultSet.getString(4));
                 
-                System.out.println(dataRow[0] + ", " + dataRow[1] + ", " + dataRow[2] + ", " + dataRow[3]);
+                //System.out.println(column.getExamId() + ", " + column.getType()+ ", " + column.getExamCourseId());
             } else {
-                dataRow[1] = "";
-                dataRow[3] = "";
+                column.setType("");
+                column.setExamCourseId("");
             }
             
         } catch (ClassNotFoundException | SQLException ex) {
@@ -61,7 +60,7 @@ public class ExamDAO {
             }
         }
     
-        return dataRow;
+        return column;
     }
     
     //Get All Exam from exam table
@@ -136,7 +135,7 @@ public class ExamDAO {
             int rowCount = rs.getInt(1);
             dataRow = new String[rowCount][1];
             
-            String getExam = "SELECT DISTINCT exam_courseid FROM exam;";
+            String getExam = "SELECT DISTINCT exam_courseid FROM exam ORDER BY exam_courseid ASC;";
             PreparedStatement preparedStatement = con.prepareStatement(getExam);
             
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -186,7 +185,7 @@ public class ExamDAO {
             int rowCount = rs.getInt(1);
             dataRow = new String[rowCount][1];
             
-            String getExam = "SELECT DISTINCT exam_type FROM exam;";
+            String getExam = "SELECT DISTINCT exam_type FROM exam ORDER BY exam_type ASC;";
             PreparedStatement preparedStatement = con.prepareStatement(getExam);
             
             ResultSet resultSet = preparedStatement.executeQuery();

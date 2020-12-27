@@ -11,18 +11,44 @@ package com.sims.model;
  */
 public class Marks {
     private double marks;
+    private String marksStuId;
+    private String marksExamId;
 
-    public Marks(double marks) {
+    public Marks() {
+    }
+
+    public Marks(double marks, String marksStuId) {
         this.marks = marks;
+        this.marksStuId = marksStuId;
+    }
+
+    public Marks(double marks, String marksStuId, String marksExamId) {
+        this.marks = marks;
+        this.marksStuId = marksStuId;
+        this.marksExamId = marksExamId;
     }
 
     public double getMarks() {
         return marks;
     }
 
+    public String getMarksStuId() {
+        return marksStuId;
+    }
+
+    public String getMarksExamId() {
+        return marksExamId;
+    }
+
     public void setMarks(double marks) {
         this.marks = marks;
     }
-    
-    
+
+    public void setMarksStuId(String marksStuId) {
+        this.marksStuId = marksStuId;
+    }
+
+    public void setMarksExamId(String marksExamId) {
+        this.marksExamId = marksExamId;
+    }    
 }
