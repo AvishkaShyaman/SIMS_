@@ -26,7 +26,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -65,33 +67,38 @@ public class AdminDashboardController implements Initializable {
     private TableColumn<Notice, String> table_col_titel;
     @FXML
     private TableColumn<Notice, String> table_col_publisher;
-    
-    ObservableList<Notice> obslist = FXCollections.observableArrayList();
-    
+
+    private String userID;
+
     NoticeDOA dao = new NoticeDOA();
+    @FXML
+    private TextField txt_feild_search;
+    @FXML
+    private Button btn_search;
+    @FXML
+    private Button btn_delete;
+
+    Notice notice_ = null;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        ArrayList<Notice> notices = dao.getAllNotice();
-        
-        for(Notice notice : notices){
-            obslist.add(notice);
-            System.out.println(notice.getID()+" "+notice.getTitle()+" "+notice.getPublisher());
-        }
-        
+
+//        System.out.println(userID + " init");
         tale_col_date.setCellValueFactory(new PropertyValueFactory<>("ID"));
         table_col_titel.setCellValueFactory(new PropertyValueFactory<>("title"));
         table_col_publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        table_view.setItems(obslist);
+
+        settable();
+
     }
 
     @FXML
     private void btn_noticeActionHandel(ActionEvent event) {
         mainPane.setRight(notice_vbox);
+        settable();
     }
 
     @FXML
@@ -129,18 +136,73 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void btn_AddNoticeActionHandler(ActionEvent event) throws IOException {
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/AdminNoticeAdd.fxml"));
+        FXMLLoader loder = new FXMLLoader(getClass().getResource("/com/sims/view/AdminNoticeAdd.fxml"));
+        Parent root = loder.load();
+        AdminNoticeAddController adminoticeadd = loder.getController();
+        if (adminoticeadd != null) {
+            adminoticeadd.setAddScene(userID,this);
+        }
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     @FXML
-    private void btn_update_test(ActionEvent event) {
-        
-        CourseDAO doa = new CourseDAO();
-        
-        System.out.println(doa.getCoursegrade("ENG1222","Tg/2016/224"));
+    private void btn_update_test(ActionEvent event) throws IOException {
+        if (notice_ != null) {
+            Stage primaryStage = new Stage();
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/com/sims/view/AdminNoticeAdd.fxml"));
+            Parent root = loder.load();
+            AdminNoticeAddController adminoticeadd = loder.getController();
+            notice_.setPublisher(userID);
+            if (adminoticeadd != null) {
+                adminoticeadd.setUpdateScene(notice_,this);
+            }
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+    }
+
+    public void setUserID(String id) {
+        this.userID = id;
+        System.out.println(this.userID + "when set");
+    }
+
+    @FXML
+    private void btn_searchActionHandeler(ActionEvent event) {
+        System.out.println(userID + " when click");
+    }
+
+    @FXML
+    private void btn_deleteActionhandler(ActionEvent event) {
+        if (notice_ != null) {
+            if (dao.deleteNotice(notice_)) {
+                System.out.println(notice_.getID() + " Succesfully deleted");
+                settable();
+            } else {
+                System.out.println(notice_.getID() + " delete Error");
+            }
+        }
+    }
+
+    @FXML
+    private void table_viewClickhnadler(MouseEvent event) {
+
+        notice_ = table_view.getSelectionModel().getSelectedItem();
+
+    }
+
+    public void settable() {
+        ObservableList<Notice> obslist = FXCollections.observableArrayList();
+        ArrayList<Notice> notices = dao.getAllNotice();
+
+        for (Notice notice : notices) {
+            obslist.add(notice);
+//            System.out.println(notice.getID()+" "+notice.getTitle()+" "+notice.getPublisher());
+        }
+
+        table_view.setItems(obslist);
     }
 
 }

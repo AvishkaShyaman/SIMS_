@@ -125,4 +125,44 @@ public class StudentDAO extends UserDAO {
 
         return student;
     }
+    
+    public  ArrayList<Student> getAllStudent(int year,int sem) {
+        ArrayList<Student> studentlist = new ArrayList<Student>();
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select *  from user,student where userid=studentid and year=? and semester=?;", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            
+            pst.setInt(1, year);
+            pst.setInt(1, sem);
+            
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                Student student = new Student();
+                
+                student.setUserID(rs.getString(1));
+                student.setFirstName(rs.getString(2));
+                student.setLastname(rs.getString(3));
+                student.setUsernic(rs.getString(4));
+                student.setPhone(rs.getInt(5));
+                student.setEmail(rs.getString(6));
+                student.setAddress(rs.getString(7));
+                student.setDob(rs.getString(8));
+                student.setGender(rs.getString(9));
+                student.setYear(rs.getInt(11));
+                student.setSemester(rs.getInt(12));
+                student.setDepartment(rs.getString(13));
+                
+                
+                studentlist.add(student);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return studentlist;
+    }
 }

@@ -53,10 +53,10 @@ public class NoticeDOA {
             
             Connection con = DBConnectionUtil.getDBConnection();
 
-            pst = con.prepareStatement("update notice set noticeid=?,noticeContent=?, noticeTitle=?,noticeAdminid=? where noticeid=?;");
+            pst = con.prepareStatement("update notice set noticeTitle=?,noticeContent=?, noticeAdminid=? where noticeid=?;");
             pst.setString(4, notice.getID());
-            pst.setString(1, notice.getContent());
-            pst.setString(2, notice.getTitle());
+            pst.setString(1, notice.getTitle());
+            pst.setString(2, notice.getContent());
             pst.setString(3, notice.getPublisher());
 
             if (pst.executeUpdate() >= 1) {

@@ -16,6 +16,7 @@ public class Student extends User {
     private int year;
     private int semester;
     private String state;
+    private double gpa;
 
     public Student() {
         year = 0;
@@ -64,6 +65,14 @@ public class Student extends User {
 
     public double getCGPA(ArrayList<Course> courslist) {
         return getSGPA(courslist);
+    }
+
+    public void setGpa(ArrayList<Course> courslist) {
+        this.gpa = getSGPA(courslist);
+    }
+    
+    public double getGpa() {
+        return gpa;
     }
 
     private static double getGradePoint(String grade) {

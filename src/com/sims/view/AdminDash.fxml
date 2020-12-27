@@ -69,8 +69,8 @@
                      </VBox.margin>
                      <children>
                         <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="Notice" />
-                        <TextField layoutX="651.0" layoutY="16.0" prefWidth="215.0" styleClass="txtbox-search" />
-                        <Button layoutX="866.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" styleClass="btn-search" text="Search">
+                        <TextField fx:id="txt_feild_search" layoutX="651.0" layoutY="16.0" prefWidth="215.0" styleClass="txtbox-search" />
+                        <Button fx:id="btn_search" layoutX="866.0" layoutY="16.0" mnemonicParsing="false" onAction="#btn_searchActionHandeler" prefHeight="30.0" prefWidth="125.0" styleClass="btn-search" text="Search">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="SEARCH" />
                            </graphic></Button>
@@ -94,7 +94,7 @@
                               <Insets left="15.0" />
                            </HBox.margin>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" styleClass="btn-delete" text="Delete Notice">
+                        <Button fx:id="btn_delete" alignment="CENTER" mnemonicParsing="false" onAction="#btn_deleteActionhandler" styleClass="btn-delete" text="Delete Notice">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -114,7 +114,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TableView fx:id="table_view" prefHeight="497.0" prefWidth="1000.0">
+                  <TableView fx:id="table_view" onMouseClicked="#table_viewClickhnadler" prefHeight="497.0" prefWidth="1000.0">
                     <columns>
                       <TableColumn fx:id="tale_col_date" prefWidth="196.79998779296875" text="Date" />
                       <TableColumn fx:id="table_col_titel" minWidth="0.0" prefWidth="566.3999938964844" text="Titel" />

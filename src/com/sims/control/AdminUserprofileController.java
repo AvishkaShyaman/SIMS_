@@ -23,6 +23,8 @@ import com.sims.model.UserDAO;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -46,35 +48,46 @@ public class AdminUserprofileController implements Initializable {
     private TableColumn<User, String> table_cl_dpt;
     @FXML
     private TableColumn<User, String> table_cl_;
-    
-    ObservableList<User> obslist = FXCollections.observableArrayList();
-    
+
     UserDAO dao = new UserDAO();
+    @FXML
+    private Label lable_std_count;
+    @FXML
+    private Label lable_lec_count;
+    @FXML
+    private Label lable_to_count;
+    @FXML
+    private Label lable_admin_count;
+    @FXML
+    private ComboBox combo_sortuser;
+    
+    ObservableList<String> type = FXCollections.observableArrayList("Admin", "Lecturer", "Technical Officer","Student");
 
     /**
      * Initializes the controller class.
-     * 
+     *
      */
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        combo_sortuser.setItems(type);
+        setUserCount();
+        ObservableList<User> obslist = FXCollections.observableArrayList();
+
         ArrayList<User> users = dao.getAllUser();
-        
-        for(User user : users){
+
+        for (User user : users) {
             obslist.add(user);
-            System.out.println(" "+user.getUserID()+" "+user.getAddress()+" "+user.getEmail()+" "+user.getFirstName());
+            System.out.println(" " + user.getUserID() + " " + user.getAddress() + " " + user.getEmail() + " " + user.getFirstName());
         }
-        
+
         table_cl_id.setCellValueFactory(new PropertyValueFactory<>("UserID"));
         table_cl_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         table_cl_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         table_cl_dpt.setCellValueFactory(new PropertyValueFactory<>("gender"));
         table_cl_.setCellValueFactory(new PropertyValueFactory<>("usernic"));
-        
+
         table_view.setItems(obslist);
-    }    
+    }
 
     @FXML
     private void btn_addProfileActionHandel(ActionEvent event) throws IOException {
@@ -85,4 +98,15 @@ public class AdminUserprofileController implements Initializable {
         primaryStage.show();
     }
     
+    private void setUserCount(){
+        lable_std_count.setText(Integer.toString(dao.getUserCount("Student")));
+        lable_lec_count.setText(Integer.toString(dao.getUserCount("Lecturer")));
+        lable_admin_count.setText(Integer.toString(dao.getUserCount("TO")));
+        lable_admin_count.setText(Integer.toString(dao.getUserCount("Admin")));
+    }
+
+    @FXML
+    private void combo_sortuserActioonhandler(ActionEvent event) {
+    }
+
 }

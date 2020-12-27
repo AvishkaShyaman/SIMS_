@@ -234,6 +234,52 @@ public class UserDAO {
 
         return userlist;
     }
+    
+    public int getUserCount(String usertype) {
+        int user = 0;
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+            
+            String sql = null;
+            
+            switch(usertype){
+                case "Admin":
+                case "admin":
+                    sql = "select count(stfid) from staf where st_job_type='Admin';";
+                    break;
+                case "Lecturer":
+                case "lecturer":
+                    sql = "select count(stfid) from staf where st_job_type='Lecturer';";
+                    break;
+                case "to":
+                case "TO":
+                    sql = "select count(stfid) from staf where st_job_type='Technical Officer';";
+                    break;
+                case "Student":
+                case "stdent":
+                    sql = "select count(studentid) from student;";
+                    break;
+                default:
+                    sql = "select count(userid) from user;";
+                    
+            }
+            
+
+            pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            
+            rs=pst.executeQuery();
+
+            if (rs.first()) {
+                user = rs.getInt(1);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return user;
+    }
         
     
     private java.sql.Date getsqldate(String date) {

@@ -134,6 +134,40 @@ public class CourseDAO {
 
         return grade;
     }
+    
+    public ArrayList<Grade> getAllCoursegrade(String courseid) {
+        ArrayList<String> studentlist = new ArrayList<String>(); 
+        ArrayList<Grade> grades = new ArrayList<Grade>();
+        
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select sc_studentid from course_module,student_course where courseid=sc_courseid and courseid=?", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, courseid);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                studentlist.add(rs.getString(1));
+            }
+            
+            for(String student : studentlist){
+                Grade grade = new Grade();
+                
+                grade.setCourseid(courseid);
+                grade.setStudentid(student);
+                grade.setGrade(getCoursegrade(courseid,student));
+                
+                grades.add(grade);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        
+        return grades;
+    }
 
     public float getCAmaks(String courseid, String stdid, String examtype) {
         float mark = 0, min = 100, sum = 0;
