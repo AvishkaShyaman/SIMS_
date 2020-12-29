@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -119,8 +120,10 @@ public class AdminCourseController implements Initializable {
         if (course_ != null) {
             if (dao.deleteCourse(course_)) {
                 System.out.println(course_.getCourseid() + " Succesfully deleted");
+                alertINFORMATION(course_.getCourseid() + " Succesfully deleted");
                 settable(course_.getCourseyear(),course_.getCourseSemester());
             } else {
+                alertError(course_.getCourseid() + " delete Error");
                 System.out.println(course_.getCourseid() + " delete Error");
             }
         }
@@ -136,6 +139,22 @@ public class AdminCourseController implements Initializable {
         }
 
         tableview_course.setItems(obslist);
+    }
+    
+    private void alertINFORMATION(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+        a1.setTitle("Done");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
+    }
+    
+    private void alertError(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.ERROR);
+        a1.setTitle("Error");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
     }
 
 }

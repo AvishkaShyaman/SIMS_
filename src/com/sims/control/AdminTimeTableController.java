@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
@@ -118,8 +119,10 @@ public class AdminTimeTableController implements Initializable {
         fis = new FileInputStream(file);
 
         if (tdao.setTimeTable(1, 2, fis, (int) file.length())) {
+            alertINFORMATION("image succesfull Added");
             System.out.println("File Done");
         } else {
+            alertError("image Adding Error");
             System.out.println("File error");
         }
         fis.close();
@@ -134,7 +137,9 @@ public class AdminTimeTableController implements Initializable {
 
         if (tdao.updateTimeTable(1, 2, fis, (int) file.length())) {
             System.out.println("File Update Done");
+            alertINFORMATION("image succesfull Update");
         } else {
+            alertError("image updating Error");
             System.out.println("File update error");
         }
         
@@ -152,11 +157,29 @@ public class AdminTimeTableController implements Initializable {
     private void btn_deleteActionhandler(ActionEvent event) {
         if (tdao.delteTimeTable(1, 2)) {
                 System.out.println(" Succesfully deleted");
+                alertINFORMATION("image succesfull deleted");
                 Imageview.setImage(null);
                 Imageview_select.setImage(null);
             } else {
+                alertError("image deleting Error");
                 System.out.println(" delete Error");
             }
+    }
+    
+    private void alertINFORMATION(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+        a1.setTitle("Done");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
+    }
+    
+    private void alertError(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.ERROR);
+        a1.setTitle("Error");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
     }
 
 }

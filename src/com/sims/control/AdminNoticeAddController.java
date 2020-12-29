@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -66,16 +67,20 @@ public class AdminNoticeAddController implements Initializable {
             notice.setPublisher(publiser);
             if (noticedoa.saveNotice(notice)) {
                 System.out.println("Add");
+                alertINFORMATION("Succesfully added");
                 done();
             } else {
+                alertError("Adding Error");
                 System.out.println("Add Error");
             }
         } else {
             notice.setPublisher(notice_.getPublisher());
             if (noticedoa.updateNotice(notice)) {
+                alertINFORMATION("Succesfully Updated");
                 System.out.println("Updated");
                 done();
             } else {
+                alertError("Updating Error");
                 System.out.println("Update Error");
             }
         }
@@ -109,11 +114,27 @@ public class AdminNoticeAddController implements Initializable {
 //        Scene scene = new Scene(root);
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
-        
+
         admindash.settable();
-        
+
         Stage stage = (Stage) btn_notice_add.getScene().getWindow();
         stage.close();
+    }
+
+    private void alertINFORMATION(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+        a1.setTitle("Done");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
+    }
+    
+    private void alertError(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.ERROR);
+        a1.setTitle("Error");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
     }
 
 }

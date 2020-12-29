@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -113,13 +114,17 @@ public class AdminUserProfileAddController implements Initializable {
         if (user_ == null) {
             if (dao.saveStudent(st1)) {
                 System.out.println("Add");
+                alertINFORMATION("Successfully Added");
             } else {
+                alertError("Adding Error");
                 System.out.println("Add Error");
             }
         } else {
             if (dao.updateStudent(st1)) {
                 System.out.println("Updated");
+                alertINFORMATION("Successfully Updated");
             } else {
+                alertError("Updating Error");
                 System.out.println("Updated Error");
             }
         }
@@ -165,6 +170,22 @@ public class AdminUserProfileAddController implements Initializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(dateString, formatter);
         return localDate;
+    }
+    
+    private void alertINFORMATION(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+        a1.setTitle("Done");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
+    }
+    
+    private void alertError(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.ERROR);
+        a1.setTitle("Error");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
     }
 
 }

@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -71,18 +72,37 @@ public class AdminCourseAddController implements Initializable {
                 System.out.println("Course Added");
                 parent_.settable(course.getCourseyear(), course.getCourseSemester());
                 Stage stage = (Stage) btn.getScene().getWindow();
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText(course.getCourseid() + " Succesfully Added");
+                a1.setHeaderText(null);
+                a1.showAndWait();
                 stage.close();
             } else {
-                System.out.println("Course Adding Error");
+                Alert a1 = new Alert(Alert.AlertType.ERROR);
+                a1.setTitle("Error");
+                a1.setContentText(course.getCourseid() + "Adding Error");
+                a1.setHeaderText(null);
+                a1.showAndWait();
             }
         } else {
             if (dao.updateCourse(course)) {
                 System.out.println("Course Updated");
                 parent_.settable(course.getCourseyear(), course.getCourseSemester());
                 Stage stage = (Stage) btn.getScene().getWindow();
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText(course.getCourseid() + " Succesfully Updated");
+                a1.setHeaderText(null);
+                a1.showAndWait();
                 stage.close();
             } else {
-                System.out.println("Course Updating Error");
+                Alert a1 = new Alert(Alert.AlertType.ERROR);
+                a1.setTitle("Error");
+                a1.setContentText(course.getCourseid() + "Updating Error");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+//                System.out.println("Course Updating Error");
             }
         }
     }

@@ -23,6 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -180,8 +181,18 @@ public class AdminDashboardController implements Initializable {
             if (dao.deleteNotice(notice_)) {
                 System.out.println(notice_.getID() + " Succesfully deleted");
                 settable();
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText(notice_.getID() + " Succesfully deleted");
+                a1.setHeaderText(null);
+                a1.showAndWait();
             } else {
-                System.out.println(notice_.getID() + " delete Error");
+                Alert a1 = new Alert(Alert.AlertType.ERROR);
+                a1.setTitle("Error");
+                a1.setContentText("Delteing Error");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+//                System.out.println(notice_.getID() + " delete Error");
             }
         }
     }

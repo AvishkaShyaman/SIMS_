@@ -25,6 +25,7 @@ import com.sims.model.UserDAO;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -159,22 +160,42 @@ public class AdminUserprofileController implements Initializable {
                 StudentDAO sdao = new StudentDAO();
                 if (sdao.deleteStudentbyUser(user_)) {
                     System.out.println(user_.getUserID() + " Succesfully deleted");
+                    alertINFORMATION(user_.getUserID() + " Succesfully deleted");
                     setTable();
                     setUserCount();
                 } else {
+                    alertError(user_.getUserID() + " deleting Error");
                     System.out.println(user_.getUserID() + " delete Error");
                 }
             } else {
                 StaffDAO sdao = new StaffDAO();
                 if (sdao.deleteStaffbyuser(user_)) {
                     System.out.println(user_.getUserID() + " Succesfully deleted");
+                    alertINFORMATION(user_.getUserID() + " Succesfully deleted");
                     setTable();
                     setUserCount();
                 } else {
+                    alertError(user_.getUserID() + " deleting Error");
                     System.out.println(user_.getUserID() + " delete Error");
                 }
             }
         }
+    }
+    
+    private void alertINFORMATION(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+        a1.setTitle("Done");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
+    }
+    
+    private void alertError(String msg) {
+        Alert a1 = new Alert(Alert.AlertType.ERROR);
+        a1.setTitle("Error");
+        a1.setContentText(msg);
+        a1.setHeaderText(null);
+        a1.showAndWait();
     }
 
 }
