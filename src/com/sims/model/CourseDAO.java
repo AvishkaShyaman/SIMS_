@@ -47,6 +47,51 @@ public class CourseDAO {
 
         return value;
     }
+    
+    public boolean updateCourse(Course course) {
+        boolean value = false;
+
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("update course_module set course_name=?,credit=?,course_dpt=?,course_year=?,course_semester=? where courseid=?;");
+            pst.setString(6, course.getCourseid());
+            pst.setString(1, course.getCourseName());
+            pst.setInt(2, course.getCredit());
+            pst.setString(3, course.getCourse_dpt());
+            pst.setInt(4, course.getCourseyear());
+            pst.setInt(5, course.getCourseSemester());
+
+            if (pst.executeUpdate() >= 1) {
+                value = true;
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return value;
+    }
+    
+    public boolean deleteCourse(Course course) {
+        boolean value = false;
+
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("delete from course_module where courseid=?;");
+            pst.setString(1, course.getCourseid());
+
+            if (pst.executeUpdate() >= 1) {
+                value = true;
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return value;
+    }
 
     public ArrayList<Course> getStudentAllCourseList(String studenid, int year, int sem) {
         ArrayList<Course> courselist = new ArrayList<Course>();
@@ -58,6 +103,39 @@ public class CourseDAO {
             pst.setString(1, studenid);
             pst.setInt(2, year);
             pst.setInt(3, sem);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Course c1 = new Course();
+
+                c1.setCourseid(rs.getString(1));
+                c1.setCourseName(rs.getString(2));
+                c1.setCredit(rs.getInt(3));
+                c1.setCourse_dpt(rs.getString(4));
+                c1.setCourseyear(rs.getInt(5));
+                c1.setCourseSemester(rs.getInt(6));
+                c1.setGrade(getCoursegrade(rs.getString(1),studenid));
+
+                courselist.add(c1);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return courselist;
+    }
+    
+    public ArrayList<Course> getLveltAllCourseList( int year, int sem) {
+        ArrayList<Course> courselist = new ArrayList<Course>();
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select * from course_module where course_year=? and course_semester=?;", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            pst.setInt(1, year);
+            pst.setInt(2, sem);
 
             rs = pst.executeQuery();
 

@@ -39,7 +39,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ComboBox prefWidth="150.0" promptText="Select" />
+            <ComboBox fx:id="combo_year" prefWidth="150.0" promptText="Select" />
             <Label text="Semester">
                <HBox.margin>
                   <Insets left="50.0" right="10.0" />
@@ -48,22 +48,20 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ComboBox prefWidth="150.0" promptText="Select" />
-            <Button mnemonicParsing="false" styleClass="btn-search" text="Select">
+            <ComboBox fx:id="combo_level" prefWidth="150.0" promptText="Select" />
+            <Button fx:id="btn_select" mnemonicParsing="false" onAction="#btn_selectActionhandel" styleClass="btn-search" text="Select">
                <HBox.margin>
                   <Insets left="25.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <TableView prefHeight="538.0" prefWidth="1000.0">
+      <TableView fx:id="tableview_course" onMouseClicked="#tableviewOnMouseclicked" prefHeight="538.0" prefWidth="1000.0">
          <columns>
-            <TableColumn prefWidth="111.99999696016312" text="C1" />
-            <TableColumn prefWidth="254.40000915527344" text="Name" />
-            <TableColumn prefWidth="250.39996337890625" text="Email" />
-            <TableColumn prefWidth="118.39990234375" text="Department" />
-            <TableColumn prefWidth="106.4000244140625" text="User Type" />
-            <TableColumn prefWidth="165.60003662109375" text="View" />
+            <TableColumn fx:id="col_courseid" prefWidth="134.3999900817871" text="Courseid" />
+            <TableColumn fx:id="col_coursename" prefWidth="461.59999084472656" text="Course Name" />
+            <TableColumn fx:id="col_courseCredit" prefWidth="170.4000244140625" text="Credit" />
+            <TableColumn fx:id="col_dpt" prefWidth="193.60003662109375" text="Department" />
          </columns>
          <VBox.margin>
             <Insets left="20.0" right="20.0" />
@@ -71,26 +69,21 @@
       </TableView>
       <HBox alignment="CENTER" prefHeight="98.0" prefWidth="1000.0">
          <children>
-            <Button mnemonicParsing="false" styleClass="btn-add" text="Add Profile">
+            <Button fx:id="btn_add" mnemonicParsing="false" onAction="#btn_addActionhandler" styleClass="btn-add" text="Add Course">
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Button>
-            <Button layoutX="484.0" layoutY="47.0" mnemonicParsing="false" styleClass="btn-update" text="Update Profile">
+            <Button fx:id="btn_update" layoutX="484.0" layoutY="47.0" mnemonicParsing="false" onAction="#btn_updateActionhandler" styleClass="btn-update" text="Update Course">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
             </Button>
-            <Button layoutX="510.0" layoutY="47.0" mnemonicParsing="false" styleClass="btn-delete" text="Delete Profile">
+            <Button fx:id="btn_delete" layoutX="510.0" layoutY="47.0" mnemonicParsing="false" onAction="#btn_deleteActionhandler" styleClass="btn-delete" text="Delete Course">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
             </Button>
-            <ComboBox prefHeight="35.0" prefWidth="86.0" promptText="Sort" style="-fx-background-radius: 20px;" styleClass="btn-blue">
-               <HBox.margin>
-                  <Insets left="50.0" right="50.0" />
-               </HBox.margin>
-            </ComboBox>
          </children>
       </HBox>
    </children>

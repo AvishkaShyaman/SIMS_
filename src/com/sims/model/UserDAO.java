@@ -9,6 +9,8 @@ import com.sims.util.DBConnectionUtil;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -98,7 +100,7 @@ public class UserDAO {
         try {
             Connection con = DBConnectionUtil.getDBConnection();
 
-            //java.sql.Date sqlDate = getsqldate(user.getDob());
+            java.sql.Date sqlDate = getsqldate(user.getDob());
 
             pst = con.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?);");
             pst.setString(1, user.getUserID());
@@ -108,7 +110,7 @@ public class UserDAO {
             pst.setInt(5, user.getPhone());
             pst.setString(6, user.getEmail());
             pst.setString(7, user.getAddress());
-            pst.setDate(8, null);
+            pst.setDate(8, sqlDate);
             pst.setString(9, user.getGender());
 
             if (pst.executeUpdate() >= 1) {
@@ -283,19 +285,15 @@ public class UserDAO {
         
     
     private java.sql.Date getsqldate(String date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-
-        Date Date_;
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+//
+//        Date Date_;
         java.sql.Date sqlDate = null;
-        try {
-            Date_ = (Date) sdf.parse(date);
-
-            sqlDate = new java.sql.Date(Date_.getTime());
-
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        //Date_ = (Date) sdf.parse(date);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        sqlDate = java.sql.Date.valueOf(localDate);
 
         return sqlDate;
     }

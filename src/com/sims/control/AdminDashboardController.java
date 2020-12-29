@@ -166,7 +166,7 @@ public class AdminDashboardController implements Initializable {
 
     public void setUserID(String id) {
         this.userID = id;
-        System.out.println(this.userID + "when set");
+//        System.out.println(this.userID + "when set");
     }
 
     @FXML

@@ -71,6 +71,29 @@ public class StaffDAO extends UserDAO {
     public boolean deleteStaff(Staff user) {
         boolean value = false;
         try {
+            deleteUser(user);
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("delete from staf where stfid=?;");
+            pst.setString(1, user.getUserID());
+
+            if (pst.executeUpdate() >= 1) {
+
+                deleteUser(user);
+                value = true;
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return value;
+    }
+    
+    public boolean deleteStaffbyuser(User user) {
+        boolean value = false;
+        try {
+            deleteUser(user);
             Connection con = DBConnectionUtil.getDBConnection();
 
             pst = con.prepareStatement("delete from staf where stfid=?;");

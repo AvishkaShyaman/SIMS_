@@ -5,6 +5,8 @@
  */
 package com.sims.control;
 
+import com.sims.model.StaffDAO;
+import com.sims.model.StudentDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +28,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -60,8 +63,14 @@ public class AdminUserprofileController implements Initializable {
     private Label lable_admin_count;
     @FXML
     private ComboBox combo_sortuser;
-    
-    ObservableList<String> type = FXCollections.observableArrayList("Admin", "Lecturer", "Technical Officer","Student");
+
+    ObservableList<String> type = FXCollections.observableArrayList("Admin", "Lecturer", "Technical Officer", "Student");
+    @FXML
+    private Button btn_updateProfile;
+    @FXML
+    private Button btn_delteProfile;
+
+    User user_ = null;
 
     /**
      * Initializes the controller class.
@@ -70,14 +79,48 @@ public class AdminUserprofileController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         combo_sortuser.setItems(type);
+
         setUserCount();
+
+        setTable();
+
+    }
+
+    @FXML
+    private void btn_addProfileActionHandel(ActionEvent event) throws IOException {
+        Stage primaryStage = new Stage();
+//        Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/AdminUserProfileAdd.fxml"));
+        FXMLLoader loder = new FXMLLoader(getClass().getResource("/com/sims/view/AdminUserProfileAdd.fxml"));
+        Parent root = loder.load();
+        AdminUserProfileAddController apf = loder.getController();
+        apf.setAddScene(this);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    @FXML
+    private void btn_updateProfileActionhandler(ActionEvent event) throws IOException {
+        if (user_ != null) {
+            Stage primaryStage = new Stage();
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/com/sims/view/AdminUserProfileAdd.fxml"));
+            Parent root = loder.load();
+            AdminUserProfileAddController apf = loder.getController();
+            apf.setUpdateScene(user_, this);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+    }
+
+    public void setTable() {
         ObservableList<User> obslist = FXCollections.observableArrayList();
 
         ArrayList<User> users = dao.getAllUser();
 
         for (User user : users) {
             obslist.add(user);
-            System.out.println(" " + user.getUserID() + " " + user.getAddress() + " " + user.getEmail() + " " + user.getFirstName());
+            //System.out.println(" " + user.getUserID() + " " + user.getAddress() + " " + user.getEmail() + " " + user.getFirstName());
         }
 
         table_cl_id.setCellValueFactory(new PropertyValueFactory<>("UserID"));
@@ -89,16 +132,7 @@ public class AdminUserprofileController implements Initializable {
         table_view.setItems(obslist);
     }
 
-    @FXML
-    private void btn_addProfileActionHandel(ActionEvent event) throws IOException {
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/AdminUserProfileAdd.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-    
-    private void setUserCount(){
+    public void setUserCount() {
         lable_std_count.setText(Integer.toString(dao.getUserCount("Student")));
         lable_lec_count.setText(Integer.toString(dao.getUserCount("Lecturer")));
         lable_admin_count.setText(Integer.toString(dao.getUserCount("TO")));
@@ -106,7 +140,41 @@ public class AdminUserprofileController implements Initializable {
     }
 
     @FXML
+    private void tableonclickActioonhandler(MouseEvent event) {
+        user_ = table_view.getSelectionModel().getSelectedItem();
+        System.out.println("in tableckick " + user_.getUserID() + " " + user_.getAddress() + " " + user_.getEmail() + " " + user_.getDob());
+    }
+
+    @FXML
     private void combo_sortuserActioonhandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void btn_delteProfileActionHandler(ActionEvent event) {
+        if (user_ != null) {
+
+            String type = dao.getUserType(user_.getUserID());
+
+            if ("student".equals(type)) {
+                StudentDAO sdao = new StudentDAO();
+                if (sdao.deleteStudentbyUser(user_)) {
+                    System.out.println(user_.getUserID() + " Succesfully deleted");
+                    setTable();
+                    setUserCount();
+                } else {
+                    System.out.println(user_.getUserID() + " delete Error");
+                }
+            } else {
+                StaffDAO sdao = new StaffDAO();
+                if (sdao.deleteStaffbyuser(user_)) {
+                    System.out.println(user_.getUserID() + " Succesfully deleted");
+                    setTable();
+                    setUserCount();
+                } else {
+                    System.out.println(user_.getUserID() + " delete Error");
+                }
+            }
+        }
     }
 
 }
