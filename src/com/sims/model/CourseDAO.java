@@ -98,8 +98,7 @@ public class CourseDAO {
         try {
             Connection con = DBConnectionUtil.getDBConnection();
 
-            pst = con.prepareStatement("select courseid,course_name,credit,course_dpt,course_year,course_semester from course_module,student_course where courseid=sc_courseid and sc_studentid=? and course_year=? and course_semester=?;", ResultSet.TYPE_SCROLL_SENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY);
+            pst = con.prepareStatement("select courseid,course_name,credit,course_dpt,course_year,course_semester from course_module,student_course where courseid=sc_courseid and sc_studentid=? and course_year=? and course_semester=?;");
             pst.setString(1, studenid);
             pst.setInt(2, year);
             pst.setInt(3, sem);
@@ -253,7 +252,7 @@ public class CourseDAO {
             Connection con = DBConnectionUtil.getDBConnection();
 
             String sql = "select mark from exam,marks where examid=marks_examid and exam_courseid=? and marks_st_id=? and exam_type like '" + examtype + "%';";
-            System.out.println(sql);
+//            System.out.println(sql);
 
             pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -283,7 +282,7 @@ public class CourseDAO {
                         }
                         sum += rs.getFloat(1);
                     }
-                    System.out.println("sum " + sum + " min " + min);
+//                    System.out.println("sum " + sum + " min " + min);
                     mark = (sum - min) / 20;
                     break;
                 case 4:

@@ -5,6 +5,7 @@
  */
 package com.sims.control;
 
+import com.sims.model.Student;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -36,6 +37,7 @@ public class StudentAttendanceController implements Initializable {
     @FXML
     private TableColumn<?, ?> colstatus;
 
+    private Student student;
     /**
      * Initializes the controller class.
      */
@@ -43,5 +45,9 @@ public class StudentAttendanceController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setStudent(Student student) {
+        this.student = student;
+    }
     
 }

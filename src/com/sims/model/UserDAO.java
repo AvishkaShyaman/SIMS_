@@ -190,7 +190,7 @@ public class UserDAO {
                 user.setFirstName(rs.getString(2));
                 user.setLastname(rs.getString(3));
                 user.setUsernic(rs.getString(4));
-                user.setPhone(rs.getInt(4));
+                user.setPhone(rs.getInt(5));
                 user.setEmail(rs.getString(6));
                 user.setAddress(rs.getString(7));
                 user.setDob(rs.getString(8));

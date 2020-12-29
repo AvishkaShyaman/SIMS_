@@ -5,6 +5,7 @@
  */
 package com.sims.control;
 
+import com.sims.model.Student;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -15,7 +16,7 @@ import javafx.fxml.Initializable;
  * @author PC PLUS
  */
 public class StudentCourseDetailsController implements Initializable {
-
+    private Student student;
     /**
      * Initializes the controller class.
      */
@@ -23,5 +24,9 @@ public class StudentCourseDetailsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setStudent(Student student) {
+        this.student = student;
+    }
     
 }

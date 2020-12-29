@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,18 +50,32 @@ public class StudentGradeandGPAController implements Initializable {
     ObservableList<Course> obslist = FXCollections.observableArrayList();
     
     CourseDAO dao = new CourseDAO();
+    
+    private Student student;
+    @FXML
+    private Button btn_gnarate;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList<Course> courses = dao.getStudentAllCourseList("tg/2018/376", 1, 2);
+        
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    @FXML
+    private void btn_gnarateActionhandler(ActionEvent event) {
+        
+        ArrayList<Course> courses = dao.getStudentAllCourseList(student.getUserID(), 1, 2);
         
         for(Course course : courses){
-            course.setGrade(dao.getCoursegrade(course.getCourseid(), "tg/2018/376"));
+            course.setGrade(dao.getCoursegrade(course.getCourseid(), student.getUserID()));
             obslist.add(course);
-            //System.out.println(" "+user.getUserID()+" "+user.getAddress()+" "+user.getEmail()+" "+user.getFirstName());
+            System.out.println(course.getCourseid());
         }
         
         colcoursecode.setCellValueFactory(new PropertyValueFactory<>("courseid"));
@@ -68,23 +84,13 @@ public class StudentGradeandGPAController implements Initializable {
         
         tableview.setItems(obslist);
         
-        Student s1 = new Student();
-        s1.setUserID("tg/2018/376");
-        
-        double sgpa = s1.getSGPA(courses);
+        double sgpa = student.getSGPA(courses);
         
         DecimalFormat df = new DecimalFormat("####0.00");
         System.out.println("Value: " + df.format(sgpa));
         
         lable_sgpa.setText(df.format(sgpa));
         lable_cgpa.setText(df.format(sgpa));
-    }
-
-    private void setgpa(){
-        
-        
-        
-        
     }
     
 }

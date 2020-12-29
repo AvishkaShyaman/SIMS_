@@ -76,22 +76,28 @@ public class LoginController implements Initializable {
                     //seting fxml according to user type
                     switch (userType) {
                         case "student":
-                            loder = FXMLLoader.load(getClass().getResource("/com/sims/view/StudentDashboard.fxml"));
+                            loder = new FXMLLoader(getClass().getResource("/com/sims/view/StudentDashboard.fxml"));
+                            root = loder.load();
+                            StudentDashboardController controler = loder.getController();
+                            controler.setStudentid(userid);
                             break;
                         case "Lecturer":
-                            loder = FXMLLoader.load(getClass().getResource("/com/sims/view/LecturerDashboard.fxml"));
+                            loder = new FXMLLoader(getClass().getResource("/com/sims/view/LecturerDashboard.fxml"));
+                            root = loder.load();
+//                            LecturerDashboardController lecdashcontrolee = loder.getController();
+//                            lecdashcontrolee.setStudentid(userid);
                             break;
                         case "Technical Officer":
-                            loder = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerDashboard.fxml"));
+                            loder = new FXMLLoader(getClass().getResource("/com/sims/view/TechnicalOfficerDashboard.fxml"));
+                            root = loder.load();
+//                            TechnicalOfficerDashboardController todashcontrolee = loder.getController();
+//                            todashcontrolee.setStudentid(userid);
                             break;
                         case "Admin":
                             loder = new FXMLLoader(getClass().getResource("/com/sims/view/AdminDash.fxml"));
-                            //open new window
                             root = loder.load();
                             AdminDashboardController admindash = loder.getController();
-                            System.out.println(userid + " befor set");
                             admindash.setUserID(userid);
-                            System.out.println("after set");
                             break;
                         default:
                             System.out.println("Somthing wrong");

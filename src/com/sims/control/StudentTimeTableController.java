@@ -8,25 +8,39 @@ package com.sims.control;
 import com.sims.model.Student;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
  *
- * @author pragith
+ * @author acer
  */
-public class UserProfileController implements Initializable {
+public class StudentTimeTableController implements Initializable {
     private Student student;
+    @FXML
+    private VBox notice_vbox;
+    @FXML
+    private Button btn;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        
+    } 
+    
+    @FXML
+    private void btnhndl(ActionEvent event) {
+        System.out.println(student.getUserID());
+    }
     
     public void setStudent(Student student) {
         this.student = student;
     }
-    
+
 }
