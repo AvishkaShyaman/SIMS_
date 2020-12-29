@@ -99,22 +99,27 @@ public class CourseDAO {
             Connection con = DBConnectionUtil.getDBConnection();
 
             pst = con.prepareStatement("select courseid,course_name,credit,course_dpt,course_year,course_semester from course_module,student_course where courseid=sc_courseid and sc_studentid=? and course_year=? and course_semester=?;");
-            pst.setString(1, studenid);
+            pst.setString(1,studenid);
             pst.setInt(2, year);
             pst.setInt(3, sem);
 
-            rs = pst.executeQuery();
+            ResultSet resultSet = pst.executeQuery();
+            
+            System.out.println("in getStudentAllCourseList()");
 
-            while (rs.next()) {
-                Course c1 = new Course();
+            Course c1;
+            while (resultSet.next()) {
+                c1 = new Course();
 
-                c1.setCourseid(rs.getString(1));
-                c1.setCourseName(rs.getString(2));
-                c1.setCredit(rs.getInt(3));
-                c1.setCourse_dpt(rs.getString(4));
-                c1.setCourseyear(rs.getInt(5));
-                c1.setCourseSemester(rs.getInt(6));
-                c1.setGrade(getCoursegrade(rs.getString(1),studenid));
+                c1.setCourseid(resultSet.getString(1));
+                c1.setCourseName(resultSet.getString(2));
+                c1.setCredit(resultSet.getInt(3));
+                c1.setCourse_dpt(resultSet.getString(4));
+                c1.setCourseyear(resultSet.getInt(5));
+                c1.setCourseSemester(resultSet.getInt(6));
+                c1.setGrade(getCoursegrade(resultSet.getString(1),studenid));
+                
+                System.out.println(c1.getCourseid());
 
                 courselist.add(c1);
             }
@@ -137,6 +142,8 @@ public class CourseDAO {
             pst.setInt(2, sem);
 
             rs = pst.executeQuery();
+            
+//            System.out.println("in ");
 
             while (rs.next()) {
                 Course c1 = new Course();
@@ -147,6 +154,8 @@ public class CourseDAO {
                 c1.setCourse_dpt(rs.getString(4));
                 c1.setCourseyear(rs.getInt(5));
                 c1.setCourseSemester(rs.getInt(6));
+                
+//                System.out.println(c1.getCourseid());
 
                 courselist.add(c1);
             }
@@ -300,7 +309,7 @@ public class CourseDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(mark);
+//        System.out.println(mark);
         return mark;
     }
 

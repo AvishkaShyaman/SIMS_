@@ -62,14 +62,8 @@ public class StudentGradeandGPAController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    @FXML
-    private void btn_gnarateActionhandler(ActionEvent event) {
-        
+    
+    private void setdetails(String id,int year,int sem){
         ArrayList<Course> courses = dao.getStudentAllCourseList(student.getUserID(), 1, 2);
         
         for(Course course : courses){
@@ -91,6 +85,16 @@ public class StudentGradeandGPAController implements Initializable {
         
         lable_sgpa.setText(df.format(sgpa));
         lable_cgpa.setText(df.format(sgpa));
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+        setdetails(student.getUserID(),student.getYear(),student.getSemester());
+    }
+
+    @FXML
+    private void btn_gnarateActionhandler(ActionEvent event) {
+        setdetails(student.getUserID(),1,2);
     }
     
 }

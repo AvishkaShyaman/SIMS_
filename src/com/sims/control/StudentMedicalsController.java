@@ -54,29 +54,7 @@ public class StudentMedicalsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        try {
-//            TimeTableDAO tdao = new TimeTableDAO();
-//            
-//            InputStream is = tdao.getTimeTable(student.getYear(), student.getSemester());
-//
-//            OutputStream os = new FileOutputStream(new File("photo.jpg"));
-//
-//            byte[] content = new byte[5120];
-//
-//            int size = 0;
-//
-//            while ((size = is.read(content)) != -1) {
-//                os.write(content, 0, size);
-//            }
-//
-//            os.close();
-//            is.close();
-//
-//            Image image_ = new Image("file:photo.PNG");
-//            imageview.setImage(image_);
-//        } catch (IOException ex) {
-//            Logger.getLogger(AdminTimeTableController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
     }    
     
     public void setStudent(Student student) {

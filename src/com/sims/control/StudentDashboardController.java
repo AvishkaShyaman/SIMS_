@@ -104,9 +104,9 @@ public class StudentDashboardController implements Initializable {
     @FXML
     private void btn_userProfileActionHandel(ActionEvent event) throws IOException {
 //        pane = getpane("UserProfile.fxml");
-        loder = new FXMLLoader(getClass().getResource("/com/sims/view/UserProfile.fxml"));
+        loder = new FXMLLoader(getClass().getResource("/com/sims/view/StudentuserProfile.fxml"));
         pane = loder.load();
-        UserProfileController stt = loder.getController();
+        StudentuserProfileController stt = loder.getController();
         stt.setStudent(student);
         mainPane.setRight(pane);
     }
@@ -170,7 +170,7 @@ public class StudentDashboardController implements Initializable {
 //        pane = getpane("StudentMedicals.fxml");
         loder = new FXMLLoader(getClass().getResource("/com/sims/view/StudentMedicals.fxml"));
         pane = loder.load();
-        StudentTimeTableController stb = loder.getController();
+        StudentMedicalsController stb = loder.getController();
         stb.setStudent(student);
         mainPane.setRight(pane);
     }
