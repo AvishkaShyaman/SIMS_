@@ -31,25 +31,14 @@
             <Insets left="50.0" top="10.0" />
          </VBox.margin>
       </Button>
-      <TableView fx:id="table" prefHeight="413.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
-         <columns>
-            <TableColumn fx:id="tbl_CourseCode" prefWidth="229.6000121831894" resizable="false" text="Course Code" />
-            <TableColumn fx:id="tbl_ExamType" prefWidth="219.20001983642578" resizable="false" text="Exam Type" />
-            <TableColumn fx:id="tbl_StudentId" prefWidth="207.199951171875" resizable="false" text="Student ID" />
-            <TableColumn fx:id="tbl_Marks" prefWidth="242.39996337890625" resizable="false" text="Marks" />
-         </columns>
-         <VBox.margin>
-            <Insets left="50.0" right="50.0" top="15.0" />
-         </VBox.margin>
-      </TableView>
       <Pane prefHeight="234.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
          <VBox.margin>
-            <Insets bottom="20.0" left="50.0" right="50.0" top="5.0" />
+            <Insets left="50.0" right="50.0" top="10.0" />
          </VBox.margin>
          <children>
-            <HBox prefHeight="318.0" prefWidth="899.0">
+            <HBox prefHeight="235.0" prefWidth="899.0">
                <children>
-                  <VBox prefHeight="318.0" prefWidth="300.0">
+                  <VBox prefHeight="201.0" prefWidth="300.0">
                      <children>
                         <Label text="Course Code">
                            <font>
@@ -112,5 +101,16 @@
             </HBox>
          </children>
       </Pane>
+      <TableView fx:id="table" prefHeight="419.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
+         <columns>
+            <TableColumn fx:id="tbl_CourseCode" prefWidth="229.6000121831894" resizable="false" text="Course Code" />
+            <TableColumn fx:id="tbl_ExamType" prefWidth="219.20001983642578" resizable="false" text="Exam Type" />
+            <TableColumn fx:id="tbl_StudentId" prefWidth="207.199951171875" resizable="false" text="Student ID" />
+            <TableColumn fx:id="tbl_Marks" prefWidth="242.39996337890625" resizable="false" text="Marks" />
+         </columns>
+         <VBox.margin>
+            <Insets bottom="20.0" left="50.0" right="50.0" top="5.0" />
+         </VBox.margin>
+      </TableView>
    </children>
 </VBox>

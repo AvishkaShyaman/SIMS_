@@ -31,7 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author Helanka
  */
-public class LecturerExamController extends javax.swing.JFrame implements Initializable {
+public class LecturerExamController implements Initializable {
 
     @FXML
     private ComboBox<String> cmb_CourseCode;
@@ -83,12 +83,12 @@ public class LecturerExamController extends javax.swing.JFrame implements Initia
     
     //Table View
     ObservableList<ExamsMarks> obslist = FXCollections.observableArrayList();
-    public void tableView() {
+    private void tableView() {
         ArrayList<ExamsMarks> marksData = examsMarksDAO.getMarks();
         
         for(ExamsMarks mark : marksData){
             obslist.add(mark);
-            System.out.println(" "+mark.getExamCourseId()+" "+mark.getType()+" "+mark.getMarksStuId()+" "+mark.getMarks());
+            //System.out.println(" "+mark.getExamCourseId()+" "+mark.getType()+" "+mark.getMarksStuId()+" "+mark.getMarks());
         }
         
         tbl_CourseCode.setCellValueFactory(new PropertyValueFactory<>("examCourseId"));
@@ -103,8 +103,8 @@ public class LecturerExamController extends javax.swing.JFrame implements Initia
     private void clearField() {
         txt_StudentId.setText("");
         txt_Marks.setText("");
-        cmb_CourseCode.setValue("");
-        cmb_ExamType.setValue("");
+        cmb_CourseCode.setValue(null);
+        cmb_ExamType.setValue(null);
     }
 
     
@@ -132,7 +132,7 @@ public class LecturerExamController extends javax.swing.JFrame implements Initia
         } else {
             if (marksDAO.insertMarks(marks, exam)) {
                 //JOptionPane.showMessageDialog(this, "successfully inserted");
-                //setAllStudentTabale();
+                tableView();
                 clearField();
             } else {
                 //JOptionPane.showMessageDialog(this, "Error in inserting record", "Warning", JOptionPane.ERROR_MESSAGE);
@@ -156,7 +156,7 @@ public class LecturerExamController extends javax.swing.JFrame implements Initia
             switch (marksDAO.updateMarks(marks, exam)) {
                 case 1:
                     //JOptionPane.showMessageDialog(this, "successfully updated");
-                    //setAllStudentTabale();
+                    tableView();
                     clearField();
                     break;
                 case 0:
@@ -180,13 +180,13 @@ public class LecturerExamController extends javax.swing.JFrame implements Initia
         } else{
             //int select = JOptionPane.showConfirmDialog(this, "Are you sure that you want to delete?", "Alert", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             //if (select == JOptionPane.YES_OPTION) {
-                if (marksDAO.deleteMarks(marks, exam)) {
-                    //JOptionPane.showMessageDialog(this, "successfully deleted");
-                    //setAllStudentTabale();
-                    clearField();
-                } else {
-                    //JOptionPane.showMessageDialog(this, "Please check the student ID", "Warning", JOptionPane.ERROR_MESSAGE);
-                }
+            if (marksDAO.deleteMarks(marks, exam)) {
+                //JOptionPane.showMessageDialog(this, "successfully deleted");
+                tableView();
+                clearField();
+            } else {
+                //JOptionPane.showMessageDialog(this, "Please check the student ID", "Warning", JOptionPane.ERROR_MESSAGE);
+            }
             //}
         }
     }

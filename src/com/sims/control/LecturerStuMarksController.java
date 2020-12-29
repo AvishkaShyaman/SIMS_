@@ -78,7 +78,7 @@ public class LecturerStuMarksController implements Initializable {
     
     //Table View Default
     ObservableList<ExamsMarks> obslist = FXCollections.observableArrayList();
-    public void tableViewDefault() {
+    private void tableViewDefault() {
         ArrayList<ExamsMarks> marksData = examsMarksDAO.getMarks();
         
         for(ExamsMarks mark : marksData){
@@ -127,7 +127,7 @@ public class LecturerStuMarksController implements Initializable {
 
             for(ExamsMarks mark : marksData){
                 obslist.add(mark);
-                System.out.println(" "+mark.getExamCourseId()+" "+mark.getType()+" "+mark.getMarksStuId()+" "+mark.getMarks());
+                //System.out.println(" "+mark.getExamCourseId()+" "+mark.getType()+" "+mark.getMarksStuId()+" "+mark.getMarks());
             }
 
             tbl_CourseCode.setCellValueFactory(new PropertyValueFactory<>("examCourseId"));
@@ -145,7 +145,7 @@ public class LecturerStuMarksController implements Initializable {
             ExamsMarks marksData = examsMarksDAO.getMark(marks, exam);
 
             obslist.add(marksData);
-            System.out.println(" "+marksData.getExamCourseId()+" "+marksData.getType()+" "+marksData.getMarksStuId()+" "+marksData.getMarks());
+            //System.out.println(" "+marksData.getExamCourseId()+" "+marksData.getType()+" "+marksData.getMarksStuId()+" "+marksData.getMarks());
 
 
             tbl_CourseCode.setCellValueFactory(new PropertyValueFactory<>("examCourseId"));
@@ -163,7 +163,7 @@ public class LecturerStuMarksController implements Initializable {
 
             for(ExamsMarks mark : marksData){
                 obslist.add(mark);
-                System.out.println(" "+mark.getExamCourseId()+" "+mark.getType()+" "+mark.getMarksStuId()+" "+mark.getMarks());
+                //System.out.println(" "+mark.getExamCourseId()+" "+mark.getType()+" "+mark.getMarksStuId()+" "+mark.getMarks());
             }
 
             tbl_CourseCode.setCellValueFactory(new PropertyValueFactory<>("examCourseId"));

@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
 public class LecturerStuDetailsController implements Initializable {
 
     @FXML
-    private ComboBox<?> cmb_SearchBy;
+    private ComboBox<String> cmb_SearchBy;
     @FXML
     private TextField txt_SearchBy;
     @FXML
@@ -50,15 +50,38 @@ public class LecturerStuDetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        cmb_SearchBy.getItems().addAll("Student ID", "Department", "Location");
     }    
 
     @FXML
     private void btn_SearchActionPerformed(ActionEvent event) {
+        if (cmb_SearchBy.getValue().isEmpty() || txt_SearchBy.getText().isEmpty()) {
+        
+        } else {
+            if (null != cmb_SearchBy.getValue()) switch (cmb_SearchBy.getValue()) {
+                case "Student ID":
+                    clearField();
+                    break;
+                case "Department":
+                    clearField();
+                    break;
+                case "Location":
+                    clearField();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
     }
 
     @FXML
     private void btn_StuBackActionPerformed(ActionEvent event) {
+    }
+    
+    private void clearField() {
+        cmb_SearchBy.setValue(null);
+        txt_SearchBy.setText(null);
     }
     
 }

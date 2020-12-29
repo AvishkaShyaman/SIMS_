@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.LecturerDashboardController">
    <children>
@@ -59,6 +58,19 @@
                         <FontAwesomeIcon fill="WHITE" glyphName="USERS" size="1.5em" />
                      </graphic>
                   </Button>
+                  <Button fx:id="btn_Profile" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btn_ProfileActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Profile">
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" glyphName="GEAR" size="1.5em" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_SignOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btn_SignOutActionHandel" prefHeight="26.0" prefWidth="367.0" style="-fx-background-color: #006FBC;" styleClass="dashboard-left-btn" text="Sign Out">
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="1.5em" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </left>
@@ -82,29 +94,16 @@
                            </graphic></Button>
                      </children>
                   </Pane>
-                  <TableView prefHeight="342.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
-                    <columns>
-                      <TableColumn prefWidth="134.39999997615814" text="No." />
-                      <TableColumn prefWidth="259.9999694824219" text="Date" />
-                        <TableColumn prefWidth="504.7999267578125" text="Title" />
-                    </columns>
+                  <TableView fx:id="table_view" prefHeight="689.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
+                     <columns>
+                        <TableColumn fx:id="tale_col_date" prefWidth="202.40003049373627" text="Date" />
+                        <TableColumn fx:id="table_col_titel" minWidth="0.0" prefWidth="480.7999572753906" text="Title" />
+                        <TableColumn fx:id="table_col_publisher" prefWidth="216.800048828125" text="Publisher" />
+                     </columns>
                      <VBox.margin>
-                        <Insets left="50.0" right="50.0" top="50.0" />
+                        <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                      </VBox.margin>
                   </TableView>
-                  <Label text="Notice">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="50.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Pane prefHeight="302.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="50.0" right="50.0" />
-                     </VBox.margin>
-                  </Pane>
                </children>
             </VBox>
          </right>

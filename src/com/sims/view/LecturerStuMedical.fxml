@@ -31,34 +31,21 @@
             <Insets left="50.0" top="10.0" />
          </VBox.margin>
       </Button>
-      <TableView prefHeight="335.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
-         <columns>
-            <TableColumn fx:id="tbl_StudentId" prefWidth="145.60001230239868" text="Student ID" />
-            <TableColumn fx:id="tbl_StartDate" prefWidth="141.60000610351562" text="Start Date" />
-            <TableColumn fx:id="tbl_EndDate" prefWidth="140.0" text="End Date" />
-            <TableColumn fx:id="tbl_CourseCode" maxWidth="327.9999694824219" prefWidth="160.79995727539062" text="Course Code" />
-            <TableColumn fx:id="tbl_Type" prefWidth="139.20001220703125" text="Type" />
-            <TableColumn fx:id="tbl_Status" prefWidth="171.20001220703125" text="Status" />
-         </columns>
+      <Pane prefHeight="133.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
          <VBox.margin>
             <Insets left="50.0" right="50.0" top="15.0" />
          </VBox.margin>
-      </TableView>
-      <Pane prefHeight="318.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
-         <VBox.margin>
-            <Insets bottom="20.0" left="50.0" right="50.0" top="5.0" />
-         </VBox.margin>
          <children>
-            <HBox alignment="CENTER" prefHeight="318.0" prefWidth="899.0">
+            <HBox alignment="CENTER" prefHeight="133.0" prefWidth="899.0">
                <children>
-                  <VBox prefHeight="262.0" prefWidth="319.0">
+                  <VBox prefHeight="134.0" prefWidth="319.0">
                      <children>
                         <Label text="Search By">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="50.0" top="110.0" />
+                              <Insets left="50.0" top="20.0" />
                            </VBox.margin>
                         </Label>
                         <ComboBox fx:id="cmb_SearchBy" prefHeight="20.0" prefWidth="230.0" style="-fx-font-size: 14;" styleClass="txtbox-form">
@@ -85,5 +72,18 @@
             </HBox>
          </children>
       </Pane>
+      <TableView fx:id="table_medical" prefHeight="511.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
+         <columns>
+            <TableColumn fx:id="tbl_StudentId" prefWidth="145.60001230239868" text="Student ID" />
+            <TableColumn fx:id="tbl_StartDate" prefWidth="141.60000610351562" text="Start Date" />
+            <TableColumn fx:id="tbl_EndDate" prefWidth="140.0" text="End Date" />
+            <TableColumn fx:id="tbl_CourseCode" maxWidth="327.9999694824219" prefWidth="160.79995727539062" text="Course Code" />
+            <TableColumn fx:id="tbl_Type" prefWidth="139.20001220703125" text="Type" />
+            <TableColumn fx:id="tbl_Status" prefWidth="171.20001220703125" text="Status" />
+         </columns>
+         <VBox.margin>
+            <Insets bottom="20.0" left="50.0" right="50.0" top="5.0" />
+         </VBox.margin>
+      </TableView>
    </children>
 </VBox>
