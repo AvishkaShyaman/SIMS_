@@ -69,11 +69,12 @@
                      </VBox.margin>
                      <children>
                         <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="Notice" />
-                        <TextField fx:id="txt_feild_search" layoutX="651.0" layoutY="16.0" prefWidth="215.0" styleClass="txtbox-search" />
-                        <Button fx:id="btn_search" layoutX="866.0" layoutY="16.0" mnemonicParsing="false" onAction="#btn_searchActionHandeler" prefHeight="30.0" prefWidth="125.0" styleClass="btn-search" text="Search">
+                        <TextField fx:id="txt_feild_search" layoutX="521.0" layoutY="16.0" prefWidth="215.0" promptText="Title" styleClass="txtbox-search" />
+                        <Button fx:id="btn_search" layoutX="747.0" layoutY="16.0" mnemonicParsing="false" onAction="#btn_searchActionHandeler" prefHeight="30.0" prefWidth="125.0" styleClass="btn-search" text="Search">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="SEARCH" />
                            </graphic></Button>
+                        <Button fx:id="btn_All" layoutX="877.0" layoutY="16.0" mnemonicParsing="false" onAction="#btn_AllActionHandeler" prefHeight="30.0" prefWidth="125.0" styleClass="btn-search" text="All" />
                      </children>
                   </Pane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

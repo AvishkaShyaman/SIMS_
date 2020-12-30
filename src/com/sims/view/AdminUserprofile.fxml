@@ -22,12 +22,13 @@
          </VBox.margin>
          <children>
             <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="User Profile" />
-            <TextField layoutX="624.0" layoutY="17.0" styleClass="txtbox-search" />
-            <Button layoutX="854.0" layoutY="17.0" mnemonicParsing="false" styleClass="btn-search" text="Search">
+            <TextField fx:id="txt_field_search" layoutX="624.0" layoutY="17.0" promptText="User ID" styleClass="txtbox-search" />
+            <Button fx:id="btn_field_search" layoutX="858.0" layoutY="17.0" mnemonicParsing="false" onAction="#btn_field_searchActionhandel" styleClass="btn-search" text="Search">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SEARCH" />
                </graphic>
             </Button>
+            <ComboBox fx:id="combo_sortuser" layoutX="461.0" layoutY="17.0" onAction="#combo_sortuserActionhandler" prefWidth="150.0" promptText="Select User type" style="-fx-background-radius: 20px; -fx-background-color: #ffffff;" />
          </children>
       </Pane>
       <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1000.0">
@@ -37,7 +38,7 @@
                   <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                </HBox.margin>
                <children>
-                  <Label layoutX="20.0" layoutY="14.0" prefHeight="18.0" prefWidth="107.0" text="Number of Student" textFill="#3fbb20" />
+                  <Label alignment="CENTER" layoutX="20.0" layoutY="14.0" prefHeight="18.0" prefWidth="107.0" text="Student" textFill="#3fbb20" />
                   <Label fx:id="lable_std_count" layoutX="64.0" layoutY="38.0" text="10" textFill="#3fbb20">
                      <font>
                         <Font size="18.0" />
@@ -47,7 +48,7 @@
             </AnchorPane>
             <AnchorPane layoutX="448.0" layoutY="20.0" prefHeight="69.0" prefWidth="150.0" style="-fx-border-color: #BB6120; -fx-border-radius: 20px; -fx-background-color: #ffffff; -fx-background-radius: 20px;">
                <children>
-                  <Label layoutX="21.0" layoutY="14.0" prefHeight="18.0" prefWidth="107.0" text="Number of Lecturer" textFill="#bb6120" />
+                  <Label alignment="CENTER" layoutX="21.0" layoutY="14.0" prefHeight="18.0" prefWidth="107.0" text="Lecturer" textFill="#bb6120" />
                   <Label fx:id="lable_lec_count" layoutX="65.0" layoutY="32.0" text="10" textFill="#bb6120">
                      <font>
                         <Font size="18.0" />
@@ -60,7 +61,7 @@
             </AnchorPane>
             <AnchorPane layoutX="560.0" layoutY="10.0" prefHeight="69.0" prefWidth="150.0" style="-fx-border-color: #20BBA8; -fx-border-radius: 20px; -fx-background-color: #ffffff; -fx-background-radius: 20px;">
                <children>
-                  <Label layoutX="21.0" layoutY="14.0" prefHeight="18.0" prefWidth="107.0" text="Number of TO" textFill="#20bba8" />
+                  <Label alignment="CENTER" layoutX="9.0" layoutY="14.0" prefHeight="18.0" prefWidth="132.0" text="Technical Officer" textFill="#20bba8" />
                   <Label fx:id="lable_to_count" layoutX="65.0" layoutY="34.0" text="10" textFill="#20bba8">
                      <font>
                         <Font size="18.0" />
@@ -73,8 +74,8 @@
             </AnchorPane>
             <AnchorPane layoutX="622.0" layoutY="10.0" prefHeight="69.0" prefWidth="150.0" style="-fx-border-color: #2055BB; -fx-border-radius: 20px; -fx-background-color: #ffffff; -fx-background-radius: 20px;">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="107.0" text="Number of Admin" textFill="#2055bb" />
-                  <Label fx:id="lable_admin_count" layoutX="58.0" layoutY="32.0" text="10" textFill="#2055bb">
+                  <Label alignment="CENTER" layoutX="21.0" layoutY="14.0" prefHeight="18.0" prefWidth="107.0" text="Admin" textFill="#2055bb" />
+                  <Label fx:id="lable_admin_count" layoutX="65.0" layoutY="32.0" text="10" textFill="#2055bb">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -103,7 +104,7 @@
          <children>
             <Button fx:id="btn_addProfile" mnemonicParsing="false" onAction="#btn_addProfileActionHandel" styleClass="btn-add" text="Add Profile">
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets left="50.0" right="50.0" />
                </HBox.margin>
             </Button>
             <Button fx:id="btn_updateProfile" layoutX="484.0" layoutY="47.0" mnemonicParsing="false" onAction="#btn_updateProfileActionhandler" styleClass="btn-update" text="Update Profile">
@@ -116,11 +117,6 @@
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
             </Button>
-            <ComboBox fx:id="combo_sortuser" onAction="#combo_sortuserActioonhandler" prefHeight="35.0" prefWidth="86.0" promptText="Sort" style="-fx-background-radius: 20px;" styleClass="btn-blue">
-               <HBox.margin>
-                  <Insets left="50.0" right="50.0" />
-               </HBox.margin>
-            </ComboBox>
          </children>
       </HBox>
    </children>

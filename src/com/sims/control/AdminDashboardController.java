@@ -80,6 +80,8 @@ public class AdminDashboardController implements Initializable {
     private Button btn_delete;
 
     Notice notice_ = null;
+    @FXML
+    private Button btn_All;
 
     /**
      * Initializes the controller class.
@@ -172,7 +174,15 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private void btn_searchActionHandeler(ActionEvent event) {
-        System.out.println(userID + " when click");
+        ObservableList<Notice> obslist = FXCollections.observableArrayList();
+        ArrayList<Notice> notices = dao.searchNotice(txt_feild_search.getText());
+
+        for (Notice notice : notices) {
+            obslist.add(notice);
+//            System.out.println(notice.getID()+" "+notice.getTitle()+" "+notice.getPublisher());
+        }
+
+        table_view.setItems(obslist);
     }
 
     @FXML
@@ -214,6 +224,11 @@ public class AdminDashboardController implements Initializable {
         }
 
         table_view.setItems(obslist);
+    }
+
+    @FXML
+    private void btn_AllActionHandeler(ActionEvent event) {
+        settable();
     }
 
 }

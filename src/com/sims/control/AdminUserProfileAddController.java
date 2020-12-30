@@ -129,7 +129,7 @@ public class AdminUserProfileAddController implements Initializable {
             }
         }
         
-        parent.setTable();
+        parent.setTable(null);
         parent.setUserCount();
         
         Stage stage = (Stage) btn_add.getScene().getWindow();

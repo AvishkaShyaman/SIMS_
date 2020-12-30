@@ -50,7 +50,7 @@ public class NoticeDOA {
         boolean value = false;
 
         try {
-            
+
             Connection con = DBConnectionUtil.getDBConnection();
 
             pst = con.prepareStatement("update notice set noticeTitle=?,noticeContent=?, noticeAdminid=? where noticeid=?;");
@@ -115,25 +115,53 @@ public class NoticeDOA {
 
         return notice;
     }
-    
-    public  ArrayList<Notice> getAllNotice() {
+
+    public ArrayList<Notice> getAllNotice() {
         ArrayList<Notice> userlist = new ArrayList<Notice>();
         try {
             Connection con = DBConnectionUtil.getDBConnection();
 
             pst = con.prepareStatement("select * from notice;", ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
-            
-            rs=pst.executeQuery();
+
+            rs = pst.executeQuery();
 
             while (rs.next()) {
                 Notice user = new Notice();
-                
+
                 user.setID(rs.getString(1));
                 user.setContent(rs.getString(2));
                 user.setTitle(rs.getString(3));
                 user.setPublisher(rs.getString(4));
-                
+
+                userlist.add(user);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return userlist;
+    }
+
+    public ArrayList<Notice> searchNotice(String title) {
+        ArrayList<Notice> userlist = new ArrayList<Notice>();
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select * from notice where noticeid like '%" + title + "%';", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Notice user = new Notice();
+
+                user.setID(rs.getString(1));
+                user.setContent(rs.getString(2));
+                user.setTitle(rs.getString(3));
+                user.setPublisher(rs.getString(4));
+
                 userlist.add(user);
             }
 

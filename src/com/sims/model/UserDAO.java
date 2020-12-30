@@ -294,6 +294,39 @@ public class UserDAO {
         return userlist;
     }
     
+    public  ArrayList<User> searchUserbyID(String id) {
+        ArrayList<User> userlist = new ArrayList<User>();
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select * from user where userid like '%" + id + "%';", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                
+                user.setUserID(rs.getString(1));
+                user.setFirstName(rs.getString(2));
+                user.setLastname(rs.getString(3));
+                user.setUsernic(rs.getString(4));
+                user.setPhone(rs.getInt(5));
+                user.setEmail(rs.getString(6));
+                user.setAddress(rs.getString(7));
+                user.setDob(rs.getString(8));
+                user.setGender(rs.getString(9));
+                
+                userlist.add(user);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return userlist;
+    }
+    
     public int getUserCount(String usertype) {
         int user = 0;
         try {

@@ -28,6 +28,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -63,15 +64,19 @@ public class AdminUserprofileController implements Initializable {
     @FXML
     private Label lable_admin_count;
     @FXML
-    private ComboBox combo_sortuser;
+    private ComboBox<String> combo_sortuser;
 
-    ObservableList<String> type = FXCollections.observableArrayList("Admin", "Lecturer", "Technical Officer", "Student");
+//    ObservableList<String> type = FXCollections.observableArrayList();
     @FXML
     private Button btn_updateProfile;
     @FXML
     private Button btn_delteProfile;
 
     User user_ = null;
+    @FXML
+    private TextField txt_field_search;
+    @FXML
+    private Button btn_field_search;
 
     /**
      * Initializes the controller class.
@@ -79,11 +84,18 @@ public class AdminUserprofileController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        combo_sortuser.setItems(type);
+        combo_sortuser.getItems().addAll("All","Admin", "Lecturer", "Technical Officer", "Student");
+        
+        
+        table_cl_id.setCellValueFactory(new PropertyValueFactory<>("UserID"));
+        table_cl_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        table_cl_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        table_cl_dpt.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        table_cl_.setCellValueFactory(new PropertyValueFactory<>("usernic"));
 
         setUserCount();
 
-        setTable();
+        setTable(null);
 
     }
 
@@ -114,21 +126,19 @@ public class AdminUserprofileController implements Initializable {
         }
     }
 
-    public void setTable() {
+    public void setTable(String type) {
         ObservableList<User> obslist = FXCollections.observableArrayList();
-
-        ArrayList<User> users = dao.getAllUser();
+        ArrayList<User> users = null;
+        if (null == type) {
+            users = dao.getAllUser();
+        } else {
+            users = dao.getAllUser(type);
+        }
 
         for (User user : users) {
             obslist.add(user);
             //System.out.println(" " + user.getUserID() + " " + user.getAddress() + " " + user.getEmail() + " " + user.getFirstName());
         }
-
-        table_cl_id.setCellValueFactory(new PropertyValueFactory<>("UserID"));
-        table_cl_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        table_cl_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        table_cl_dpt.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        table_cl_.setCellValueFactory(new PropertyValueFactory<>("usernic"));
 
         table_view.setItems(obslist);
     }
@@ -143,11 +153,32 @@ public class AdminUserprofileController implements Initializable {
     @FXML
     private void tableonclickActioonhandler(MouseEvent event) {
         user_ = table_view.getSelectionModel().getSelectedItem();
-        System.out.println("in tableckick " + user_.getUserID() + " " + user_.getAddress() + " " + user_.getEmail() + " " + user_.getDob());
+//        System.out.println("in tableckick " + user_.getUserID() + " " + user_.getAddress() + " " + user_.getEmail() + " " + user_.getDob());
     }
 
     @FXML
-    private void combo_sortuserActioonhandler(ActionEvent event) {
+    private void combo_sortuserActionhandler(ActionEvent event) {
+        String type = combo_sortuser.getValue();
+
+        switch (type) {
+            case "Admin":
+                setTable(type);
+                break;
+            case "Lecturer":
+                setTable(type);
+                break;
+            case "Technical Officer":
+                setTable("TO");
+                break;
+            case "Student":
+                setTable(type);
+                break;
+            case "All":
+                setTable(null);
+                break;
+            default:
+                setTable(null);
+        }
     }
 
     @FXML
@@ -161,7 +192,7 @@ public class AdminUserprofileController implements Initializable {
                 if (sdao.deleteStudentbyUser(user_)) {
                     System.out.println(user_.getUserID() + " Succesfully deleted");
                     alertINFORMATION(user_.getUserID() + " Succesfully deleted");
-                    setTable();
+                    setTable(null);
                     setUserCount();
                 } else {
                     alertError(user_.getUserID() + " deleting Error");
@@ -172,7 +203,7 @@ public class AdminUserprofileController implements Initializable {
                 if (sdao.deleteStaffbyuser(user_)) {
                     System.out.println(user_.getUserID() + " Succesfully deleted");
                     alertINFORMATION(user_.getUserID() + " Succesfully deleted");
-                    setTable();
+                    setTable(null);
                     setUserCount();
                 } else {
                     alertError(user_.getUserID() + " deleting Error");
@@ -181,7 +212,7 @@ public class AdminUserprofileController implements Initializable {
             }
         }
     }
-    
+
     private void alertINFORMATION(String msg) {
         Alert a1 = new Alert(Alert.AlertType.INFORMATION);
         a1.setTitle("Done");
@@ -189,13 +220,28 @@ public class AdminUserprofileController implements Initializable {
         a1.setHeaderText(null);
         a1.showAndWait();
     }
-    
+
     private void alertError(String msg) {
         Alert a1 = new Alert(Alert.AlertType.ERROR);
         a1.setTitle("Error");
         a1.setContentText(msg);
         a1.setHeaderText(null);
         a1.showAndWait();
+    }
+
+    @FXML
+    private void btn_field_searchActionhandel(ActionEvent event) {
+        
+        ObservableList<User> obslist = FXCollections.observableArrayList();
+        ArrayList<User> users = dao.searchUserbyID(txt_field_search.getText());
+       
+        for (User user : users) {
+            obslist.add(user);
+            //System.out.println(" " + user.getUserID() + " " + user.getAddress() + " " + user.getEmail() + " " + user.getFirstName());
+        }
+
+        table_view.setItems(obslist);
+        
     }
 
 }
