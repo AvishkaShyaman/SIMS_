@@ -5,8 +5,13 @@
  */
 package com.sims.control;
 
+import com.sims.model.Medical;
+import com.sims.model.MedicalDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -31,22 +37,51 @@ public class TechnicalOfficerMedicalsUpdateController implements Initializable {
     @FXML
     private TextField txtRefNo;
     @FXML
-    private ComboBox<?> combStatus;
+    private ComboBox combStatus;
+    ObservableList<String> status=FXCollections.observableArrayList("Denied","Approved");
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        combStatus.setItems(status);
     }    
 
     @FXML
     private void updateActionController(ActionEvent event) {
+        
+        Medical medical = new Medical();
+        MedicalDAO medicalDAO = new MedicalDAO();
+    
+        
+        String status;
+        
+        status=(String) combStatus.getValue();
+        
+        medical.setMedicalRefNo(txtRefNo.getText());
+        medical.setStudentID(txtStudentID.getText());
+        medical.setMedicalStatus(status);
+        
+        medicalDAO.updateMedical(medical);
+        
+        
+        System.out.println(txtRefNo.getText());
+        System.out.println(txtStudentID.getText());
+        System.out.println(status);
+        
+        
     }
 
     @FXML
     private void okActionController(ActionEvent event) {
-    }
+        
+           
+            Stage stage = (Stage) btnOk.getScene().getWindow();
+         
+            stage.close();
+          }
+        
+    
     
 }

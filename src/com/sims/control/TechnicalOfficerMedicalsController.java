@@ -291,7 +291,7 @@ public class TechnicalOfficerMedicalsController implements Initializable {
     @FXML
     private void updateMedicalBtnActionController(ActionEvent event) throws IOException {
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerMedicalUpdate.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerMedicalsUpdate.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

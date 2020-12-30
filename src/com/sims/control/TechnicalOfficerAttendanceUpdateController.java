@@ -20,6 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -83,6 +84,10 @@ public class TechnicalOfficerAttendanceUpdateController implements Initializable
 
     @FXML
     private void closeWindowActionController(ActionEvent event) {
-    }
+        Stage stage = (Stage) btnOk.getScene().getWindow();
+         
+            stage.close();
+          }
+    
     
 }

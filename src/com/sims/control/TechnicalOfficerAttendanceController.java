@@ -119,10 +119,8 @@ public class TechnicalOfficerAttendanceController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         System.out.println("hello");
         String date, courseID, state, type, courseType = null, studentID;
-        ///state=(String) combStatus.getValue();
         courseID = (String) combCourseID.getValue();
         studentID=txtStuId.getText();
-        //courseID="se_01";
         
         
         if(null == (String) combStatus.getValue()){
@@ -161,36 +159,28 @@ public class TechnicalOfficerAttendanceController implements Initializable {
         
      
         
-            ObservableList<Attendance> AttendanceListbySession = FXCollections.observableArrayList();
-            AttendanceDAO attendanceDAO = new AttendanceDAO();
-            ArrayList<Attendance> students;
+        ObservableList<Attendance> AttendanceListbySession = FXCollections.observableArrayList();
+        AttendanceDAO attendanceDAO = new AttendanceDAO();
+        ArrayList<Attendance> students;
 
-//            if ((studentID.trim().isEmpty()) && (date == "0")) {
-//                students = medicalDAO.viewAllMedicalForm();
-//            } else if (studentID.trim().isEmpty()) {
-//                students = medicalDAO.viewMedicalFormFiltedBySubmitDate(date);
-//            } else if (date == "0") {
-//                students = medicalDAO.viewMedicalFormFiltedByStudentID(studentID);
-//            } else {
-//                students = medicalDAO.viewAllMedicalFormFilted(studentID, date);
-//            }
-
-
-
-            students=attendanceDAO.getAttendanceByStudent(courseID, studentID, courseType, state);
-             //students=attendanceDAO.getAllAttendanceByCourseAndStatus(courseID, courseType, state);
-
-            //students=attendanceDAO.getAllAttendanceByCourse(courseID, courseType);
-
-            for (Attendance student : students) {
-                AttendanceListbySession.add(student);
-                System.out.println(student.getStudentID()+" "+student.getAttendanceStatus());
+            if ((studentID.trim().isEmpty()) && (state.trim().isEmpty())) {
+                students=attendanceDAO.getAllAttendanceByCourse(courseID, courseType);
+            } else if (studentID.trim().isEmpty() ) {
+                students=attendanceDAO.getAllAttendanceByCourseAndStatus(courseID, courseType, state);
+            } else{
+                students=attendanceDAO.getAttendanceByStudent(courseID, studentID, courseType, state);
             }
+            
 
-            colStudent.setCellValueFactory(new PropertyValueFactory<>("StudentID"));
-            colStatus.setCellValueFactory(new PropertyValueFactory<>("AttendanceStatus"));
+        for (Attendance student : students) {
+            AttendanceListbySession.add(student);
+            System.out.println(student.getStudentID()+" "+student.getAttendanceStatus());
+        }
 
-            tableAttendance.setItems(AttendanceListbySession);
+        colStudent.setCellValueFactory(new PropertyValueFactory<>("StudentID"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("AttendanceStatus"));
+
+        tableAttendance.setItems(AttendanceListbySession);
         
         
         
