@@ -87,8 +87,9 @@
                   </TabPane>
                   <Pane prefHeight="64.0" prefWidth="1306.0" style="-fx-background-color: white;">
                      <children>
-                        <Button fx:id="btnAdd" layoutX="767.0" layoutY="12.0" mnemonicParsing="false" onAction="#addMedicalBtnActionController" styleClass="btn-add" text="Add" />
+                        <Button fx:id="btnAdd" layoutX="537.0" layoutY="12.0" mnemonicParsing="false" onAction="#addMedicalBtnActionController" styleClass="btn-add" text="Add" />
                         <Button fx:id="btnDelete" layoutX="1010.0" layoutY="12.0" mnemonicParsing="false" onAction="#deleteMedicalBtnActionController" styleClass="btn-delete" text="Delete" />
+                        <Button fx:id="btnUpdate" layoutX="774.0" layoutY="12.0" mnemonicParsing="false" onAction="#updateMedicalBtnActionController" styleClass="btn-update" text="Update" />
                      </children>
                   </Pane>
                </children>

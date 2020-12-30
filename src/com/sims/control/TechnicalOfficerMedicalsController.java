@@ -106,6 +106,8 @@ public class TechnicalOfficerMedicalsController implements Initializable {
     private Medical medical_ = null;
 
     boolean tab1, tab2; //-----------tabs-----
+    @FXML
+    private Button btnUpdate;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -284,6 +286,10 @@ public class TechnicalOfficerMedicalsController implements Initializable {
         
         
 
+    }
+
+    @FXML
+    private void updateMedicalBtnActionController(ActionEvent event) {
     }
 
 }
