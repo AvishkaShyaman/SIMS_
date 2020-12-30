@@ -48,7 +48,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ComboBox fx:id="combo_level" prefWidth="150.0" promptText="Select" />
+            <ComboBox fx:id="combo_sem" prefWidth="150.0" promptText="Select" />
             <Button fx:id="btn_select" mnemonicParsing="false" onAction="#btn_selectActionhandel" styleClass="btn-search" text="Select">
                <HBox.margin>
                   <Insets left="25.0" />

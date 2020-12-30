@@ -237,6 +237,63 @@ public class UserDAO {
         return userlist;
     }
     
+    public  ArrayList<User> getAllUser(String usertype) {
+        ArrayList<User> userlist = new ArrayList<User>();
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+            
+            String sql = null;
+            
+            switch(usertype){
+                case "Admin":
+                case "admin":
+                    sql = "select * from user,staf where userid=stfid and st_job_type = 'Admin';";
+                    break;
+                case "Lecturer":
+                case "lecturer":
+                    sql = "select * from user,staf where userid=stfid and st_job_type = 'Lecturer';";
+                    break;
+                case "to":
+                case "TO":
+                    sql = "select * from user,staf where userid=stfid and st_job_type = 'Technical Officer';";
+                    break;
+                case "Student":
+                case "stdent":
+                    sql = "select * from user,student where userid=studentid;";
+                    break;
+                default:
+                    sql = "select * from user;";
+                    
+            }
+
+            pst = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                
+                user.setUserID(rs.getString(1));
+                user.setFirstName(rs.getString(2));
+                user.setLastname(rs.getString(3));
+                user.setUsernic(rs.getString(4));
+                user.setPhone(rs.getInt(5));
+                user.setEmail(rs.getString(6));
+                user.setAddress(rs.getString(7));
+                user.setDob(rs.getString(8));
+                user.setGender(rs.getString(9));
+                
+                userlist.add(user);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return userlist;
+    }
+    
     public int getUserCount(String usertype) {
         int user = 0;
         try {

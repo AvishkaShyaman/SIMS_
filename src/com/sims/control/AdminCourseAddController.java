@@ -28,7 +28,7 @@ public class AdminCourseAddController implements Initializable {
 
     private TextField txt_field_;
     @FXML
-    private ComboBox combo_dpt;
+    private ComboBox<String> combo_dpt;
     @FXML
     private TextField txt_field_name;
     @FXML
@@ -42,9 +42,9 @@ public class AdminCourseAddController implements Initializable {
     @FXML
     private Label Coodinator;
     @FXML
-    private ComboBox combo_year;
+    private ComboBox<Integer> combo_year;
     @FXML
-    private ComboBox combo_sem;
+    private ComboBox<Integer> combo_sem;
     @FXML
     private TextField txt_field_crdit;
 
@@ -53,6 +53,10 @@ public class AdminCourseAddController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        combo_year.getItems().addAll(1, 2,3, 4);
+        combo_sem.getItems().addAll(1, 2);
+        combo_dpt.getItems().addAll("dpt01","dpt02","dpt03","dpt04");
+        
     }
 
     @FXML
@@ -63,9 +67,9 @@ public class AdminCourseAddController implements Initializable {
         course.setCourseid(txt_field_id.getText());
         course.setCourseName(txt_field_name.getText());
         course.setCredit(Integer.parseInt(txt_field_crdit.getText()));
-        course.setCourseyear(Integer.parseInt("1"));
-        course.setCourseSemester(Integer.parseInt("2"));
-        course.setCourse_dpt("dpt01");
+        course.setCourseyear(combo_year.getValue());
+        course.setCourseSemester(combo_sem.getValue());
+        course.setCourse_dpt(combo_dpt.getValue());
 
         if (course_ == null) {
             if (dao.saveCourse(course)) {

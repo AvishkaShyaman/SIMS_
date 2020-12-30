@@ -37,9 +37,9 @@ import javafx.stage.Stage;
 public class AdminCourseController implements Initializable {
 
     @FXML
-    private ComboBox<?> combo_year;
+    private ComboBox<Integer> combo_year;
     @FXML
-    private ComboBox<?> combo_level;
+    private ComboBox<Integer> combo_sem;
     @FXML
     private Button btn_select;
     @FXML
@@ -68,19 +68,22 @@ public class AdminCourseController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        combo_year.getItems().addAll(1, 2,3, 4);
+        combo_sem.getItems().addAll(1, 2);
 
         col_courseid.setCellValueFactory(new PropertyValueFactory<>("courseid"));
         col_coursename.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         col_dpt.setCellValueFactory(new PropertyValueFactory<>("course_dpt"));
         col_courseCredit.setCellValueFactory(new PropertyValueFactory<>("credit"));
 
-        settable(1, 2);
+        
 
     }
 
     @FXML
     private void btn_selectActionhandel(ActionEvent event) {
-
+        settable(combo_year.getValue(), combo_sem.getValue());
     }
 
     @FXML

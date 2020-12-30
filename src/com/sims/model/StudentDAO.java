@@ -189,4 +189,96 @@ public class StudentDAO extends UserDAO {
 
         return studentlist;
     }
+    
+    public ArrayList<Student> getAllStudent(int year) {
+        ArrayList<Student> studentlist = new ArrayList<Student>();
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select *  from user,student where userid=studentid and year=?;", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+
+            pst.setInt(1, year);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Student student = new Student();
+
+                student.setUserID(rs.getString(1));
+                student.setFirstName(rs.getString(2));
+                student.setLastname(rs.getString(3));
+                student.setUsernic(rs.getString(4));
+                student.setPhone(rs.getInt(5));
+                student.setEmail(rs.getString(6));
+                student.setAddress(rs.getString(7));
+                student.setDob(rs.getString(8));
+                student.setGender(rs.getString(9));
+                student.setYear(rs.getInt(11));
+                student.setSemester(rs.getInt(12));
+                student.setDepartment(rs.getString(13));
+
+                studentlist.add(student);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return studentlist;
+    }
+    
+    
+    
+    // pageeth added part
+    
+   
+     public ArrayList<Student> getStudentByDepartment(String year,String department){
+        ArrayList<Student> studentIDlist=new ArrayList<Student>();
+         try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select studentid from student where stnd_dpt=? and year=?;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, department);
+            pst.setString(2, year);
+            
+            rs=pst.executeQuery();
+
+            while(rs.next()) {
+         
+                Student student = new Student();
+                
+                student.setUserID(rs.getString(1));
+                studentIDlist.add(student);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return studentIDlist;
+        
+    } 
+    
+    
+    public  ArrayList<Student> studentYear() throws SQLException {
+        ArrayList<Student> yearList = new ArrayList<Student>();
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select DISTINCT year from student;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                Student student = new Student();
+                student.setYear(rs.getInt(1));
+                yearList.add(student);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return yearList;
+    }
+    
+   
 }

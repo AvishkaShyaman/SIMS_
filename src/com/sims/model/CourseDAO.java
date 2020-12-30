@@ -22,7 +22,7 @@ public class CourseDAO {
 
     PreparedStatement pst;
     ResultSet rs;
-    
+
     public boolean saveCourse(Course course) {
         boolean value = false;
 
@@ -47,7 +47,7 @@ public class CourseDAO {
 
         return value;
     }
-    
+
     public boolean updateCourse(Course course) {
         boolean value = false;
 
@@ -72,7 +72,7 @@ public class CourseDAO {
 
         return value;
     }
-    
+
     public boolean deleteCourse(Course course) {
         boolean value = false;
 
@@ -99,12 +99,12 @@ public class CourseDAO {
             Connection con = DBConnectionUtil.getDBConnection();
 
             pst = con.prepareStatement("select courseid,course_name,credit,course_dpt,course_year,course_semester from course_module,student_course where courseid=sc_courseid and sc_studentid=? and course_year=? and course_semester=?;");
-            pst.setString(1,studenid);
+            pst.setString(1, studenid);
             pst.setInt(2, year);
             pst.setInt(3, sem);
 
             ResultSet resultSet = pst.executeQuery();
-            
+
             System.out.println("in getStudentAllCourseList()");
 
             Course c1;
@@ -117,8 +117,8 @@ public class CourseDAO {
                 c1.setCourse_dpt(resultSet.getString(4));
                 c1.setCourseyear(resultSet.getInt(5));
                 c1.setCourseSemester(resultSet.getInt(6));
-                c1.setGrade(getCoursegrade(resultSet.getString(1),studenid));
-                
+                c1.setGrade(getCoursegrade(resultSet.getString(1), studenid));
+
                 System.out.println(c1.getCourseid());
 
                 courselist.add(c1);
@@ -130,8 +130,8 @@ public class CourseDAO {
 
         return courselist;
     }
-    
-    public ArrayList<Course> getLveltAllCourseList( int year, int sem) {
+
+    public ArrayList<Course> getLveltAllCourseList(int year, int sem) {
         ArrayList<Course> courselist = new ArrayList<Course>();
         try {
             Connection con = DBConnectionUtil.getDBConnection();
@@ -142,9 +142,8 @@ public class CourseDAO {
             pst.setInt(2, sem);
 
             rs = pst.executeQuery();
-            
-//            System.out.println("in ");
 
+//            System.out.println("in ");
             while (rs.next()) {
                 Course c1 = new Course();
 
@@ -154,9 +153,8 @@ public class CourseDAO {
                 c1.setCourse_dpt(rs.getString(4));
                 c1.setCourseyear(rs.getInt(5));
                 c1.setCourseSemester(rs.getInt(6));
-                
-//                System.out.println(c1.getCourseid());
 
+//                System.out.println(c1.getCourseid());
                 courselist.add(c1);
             }
 
@@ -220,11 +218,11 @@ public class CourseDAO {
 
         return grade;
     }
-    
+
     public ArrayList<Grade> getAllCoursegrade(String courseid) {
-        ArrayList<String> studentlist = new ArrayList<String>(); 
+        ArrayList<String> studentlist = new ArrayList<String>();
         ArrayList<Grade> grades = new ArrayList<Grade>();
-        
+
         try {
             Connection con = DBConnectionUtil.getDBConnection();
 
@@ -237,21 +235,38 @@ public class CourseDAO {
             while (rs.next()) {
                 studentlist.add(rs.getString(1));
             }
-            
-            for(String student : studentlist){
+
+            for (String student : studentlist) {
                 Grade grade = new Grade();
-                
+
                 grade.setCourseid(courseid);
                 grade.setStudentid(student);
-                grade.setGrade(getCoursegrade(courseid,student));
-                
+                grade.setGrade(getCoursegrade(courseid, student));
+
                 grades.add(grade);
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }   
-        
+        }
+
+        return grades;
+    }
+
+    public ArrayList<Grade> getStudentCoursegrade(String studenid, int year, int sem) {
+        ArrayList<Course> courselist = getStudentAllCourseList(studenid,year,sem);
+        ArrayList<Grade> grades = new ArrayList<Grade>();
+
+        for (Course course : courselist) {
+            Grade grade = new Grade();
+
+            grade.setCourseid(course.getCourseid());
+            grade.setStudentid(studenid);
+            grade.setGrade(getCoursegrade(course.getCourseid(), studenid));
+
+            grades.add(grade);
+        }
+
         return grades;
     }
 

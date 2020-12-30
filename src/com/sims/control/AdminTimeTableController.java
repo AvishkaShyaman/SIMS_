@@ -57,15 +57,15 @@ public class AdminTimeTableController implements Initializable {
     @FXML
     private Button btn_select;
     @FXML
-    private ComboBox<?> combo_select_sem;
+    private ComboBox<Integer> combo_select_sem;
     @FXML
-    private ComboBox<?> combo_select_level;
+    private ComboBox<Integer> combo_select_level;
     @FXML
     private Button btn_update;
     @FXML
-    private ComboBox<?> combo_manage_sem;
+    private ComboBox<Integer> combo_manage_sem;
     @FXML
-    private ComboBox<?> comobo_manage_level;
+    private ComboBox<Integer> comobo_manage_level;
     @FXML
     private Button btn_delete;
 
@@ -74,6 +74,11 @@ public class AdminTimeTableController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        combo_select_sem.getItems().addAll(1, 2);
+        combo_manage_sem.getItems().addAll(1, 2);
+        combo_select_level.getItems().addAll(1, 2,3, 4);
+        comobo_manage_level.getItems().addAll(1, 2,3, 4);
 
 
     }
@@ -118,7 +123,7 @@ public class AdminTimeTableController implements Initializable {
         
         fis = new FileInputStream(file);
 
-        if (tdao.setTimeTable(1, 2, fis, (int) file.length())) {
+        if (tdao.setTimeTable(combo_select_level.getValue(), combo_manage_sem.getValue(), fis, (int) file.length())) {
             alertINFORMATION("image succesfull Added");
             System.out.println("File Done");
         } else {
@@ -135,7 +140,7 @@ public class AdminTimeTableController implements Initializable {
     private void btn_updateActionhandler(ActionEvent event) throws FileNotFoundException {
         fis = new FileInputStream(file);
 
-        if (tdao.updateTimeTable(1, 2, fis, (int) file.length())) {
+        if (tdao.updateTimeTable(combo_select_level.getValue(), combo_manage_sem.getValue(), fis, (int) file.length())) {
             System.out.println("File Update Done");
             alertINFORMATION("image succesfull Update");
         } else {
@@ -150,12 +155,12 @@ public class AdminTimeTableController implements Initializable {
 
     @FXML
     private void btn_selectActionhandler(ActionEvent event) {
-        gettimetable(1,2);
+        gettimetable(combo_select_level.getValue(),combo_select_sem.getValue());
     }
 
     @FXML
     private void btn_deleteActionhandler(ActionEvent event) {
-        if (tdao.delteTimeTable(1, 2)) {
+        if (tdao.delteTimeTable(combo_select_level.getValue(), combo_manage_sem.getValue())) {
                 System.out.println(" Succesfully deleted");
                 alertINFORMATION("image succesfull deleted");
                 Imageview.setImage(null);
