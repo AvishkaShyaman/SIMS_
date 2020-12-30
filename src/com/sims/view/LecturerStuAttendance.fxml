@@ -46,7 +46,7 @@
                         <Insets left="50.0" top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox fx:id="cmb_SearchBy" prefHeight="20.0" prefWidth="230.0" style="-fx-font-size: 14;" styleClass="txtbox-form">
+                  <ComboBox fx:id="cmb_SearchBy" maxHeight="0.0" prefHeight="22.0" prefWidth="230.0" style="-fx-font-size: 14;" styleClass="txtbox-form">
                      <VBox.margin>
                         <Insets bottom="20.0" left="60.0" />
                      </VBox.margin>
@@ -56,14 +56,14 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <TextField fx:id="txt_SearchBy" prefWidth="218.0" style="-fx-font-size: 16;" styleClass="txtbox-form">
+            <TextField fx:id="txt_SearchBy" maxHeight="33.0" prefWidth="218.0" style="-fx-font-size: 16;" styleClass="txtbox-form">
                <HBox.margin>
-                  <Insets left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </TextField>
             <Button fx:id="btn_Search" mnemonicParsing="false" onAction="#btn_SearchActionPerformed" prefHeight="0.0" prefWidth="32.0" styleClass="btn-search" text="Search">
                <HBox.margin>
-                  <Insets left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
                <graphic>
                   <FontAwesomeIcon fill="#e5dddd" glyphName="SEARCH" />

@@ -5,6 +5,8 @@
  */
 package com.sims.control;
 
+import com.sims.model.LecturerDAO;
+import com.sims.model.Staff;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -53,12 +55,16 @@ public class LecturerProfileUpdateController implements Initializable {
     private TextArea txa_Qualifications;
     @FXML
     private DatePicker datePicker_DOB;
+    
+    Staff staff = new Staff();
+    LecturerDAO lecturerDAO = new LecturerDAO();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setfieldsView();
         setfieldsView();
         
         btn_Update.setVisible(false);
@@ -96,21 +102,34 @@ public class LecturerProfileUpdateController implements Initializable {
 
     @FXML
     private void btn_UpdateActionPerformed(ActionEvent event) {
+        staff.setUserID("st002");
+        staff.setFirstName(txt_Fname.getText());
+        staff.setLastname(txt_Lname.getText());
+        staff.setDob(datePicker_DOB.getValue().toString());
+        staff.setGender(rad_Male.isSelected() ? "M" : "F");
+        staff.setUsernic(txt_NIC.getText());
+        staff.setPhone(Integer.parseInt(txt_Contact.getText()));
+        staff.setEmail(txt_Email.getText());
+        staff.setAddress(txa_Address.getText());
+        staff.setQualification(txa_Qualifications.getText());
+        
+        
         if (isFieldsEmpty()) {
             //JOptionPane.showMessageDialog(this, "Some fields are missing", "Alert", JOptionPane.WARNING_MESSAGE);
         } else {
-            //if () {
+            if (lecturerDAO.updateLeturer(staff)) {
                 //JOptionPane.showMessageDialog(this, "successfully updated");
                 setfieldsView();
                 setFieldsDisable();
-            //} else {
+            } else {
                 //JOptionPane.showMessageDialog(this, "Error in Updating data", "Warning", JOptionPane.ERROR_MESSAGE);
-            //}
+            }
         }
     }
 
     @FXML
     private void btn_CancelActionPerformed(ActionEvent event) {
+        setfieldsView();
         txt_Fname.setDisable(true);
         txt_Lname.setDisable(true);
         datePicker_DOB.setDisable(true);
@@ -128,19 +147,21 @@ public class LecturerProfileUpdateController implements Initializable {
     }
     
     private void setfieldsView() {
-        txt_Fname.setText("a");
-        txt_Lname.setText("a");
-        //datePicker_DOB.setValue();
-        //if ("M".equals()) {
+       staff = lecturerDAO.getLecturer("st002");
+        
+        txt_Fname.setText(staff.getFirstName());
+        txt_Lname.setText(staff.getLastname());
+        datePicker_DOB.setValue(LocalDate.parse(staff.getDob()));
+        if ("M".equals(staff.getGender())) {
             rad_Male.setSelected(true);
-        //} else if ("F".equals()) {
+        } else if ("F".equals(staff.getGender())) {
             rad_Female.setSelected(true);
-        //}
-        txt_NIC.setText("a");
-        txt_Contact.setText("a");
-        txt_Email.setText("a");
-        txa_Address.setText("a");
-        txa_Qualifications.setText("a");
+        }
+        txt_NIC.setText(staff.getUsernic());
+        txt_Contact.setText(String.valueOf(staff.getPhone()));
+        txt_Email.setText(staff.getEmail());
+        txa_Address.setText(staff.getAddress());
+        txa_Qualifications.setText(staff.getQualification());
     }
     
     private boolean isFieldsEmpty() {

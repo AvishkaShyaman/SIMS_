@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 /**
@@ -46,6 +47,8 @@ public class LecturerStuAttendanceController implements Initializable {
     private TableColumn<?, ?> tbl_Status;
     @FXML
     private Button btn_StuBack;
+    @FXML
+    private TableView<?> table_Attendance;
 
     /**
      * Initializes the controller class.

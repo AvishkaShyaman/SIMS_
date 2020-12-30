@@ -66,6 +66,10 @@ public class LecturerStuGradeAndGPAController implements Initializable {
     private Button btn_SearchStuID;
     @FXML
     private TextField txt_StuID;
+    @FXML
+    private ComboBox<String> cmb_GradeLevel;
+    @FXML
+    private ComboBox<String> cmb_GradeSemester;
     
 
     /**
@@ -75,6 +79,8 @@ public class LecturerStuGradeAndGPAController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cmb_Level.getItems().addAll("1", "2", "3", "4");
         cmb_Semester.getItems().addAll("1", "2");
+        cmb_GradeLevel.getItems().addAll("1", "2", "3", "4");
+        cmb_GradeSemester.getItems().addAll("1", "2");
         cmb_CourseCode.setItems(courseId);
 
     }    
@@ -91,6 +97,12 @@ public class LecturerStuGradeAndGPAController implements Initializable {
 
     @FXML
     private void btn_SearchStuIDActionPerformed(ActionEvent event) {
+        if (isFieldsEmpty()) {
+        
+        } else {
+            SetTabaleGarde(txt_StuID.getText(),Integer.parseInt(cmb_GradeLevel.getValue()) ,Integer.parseInt(cmb_GradeSemester.getValue()));
+            clearField();
+        }
     }
 
 
@@ -146,10 +158,36 @@ public class LecturerStuGradeAndGPAController implements Initializable {
         tableGrade.setItems(gobslist);
     }
     
+    private void SetTabaleGarde(String studentId, int level, int sem) {
+        ObservableList<Grade> gobslist = FXCollections.observableArrayList();
+        CourseDAO cdoa = new CourseDAO();
+        ArrayList<Grade> grades = cdoa.getStudentCoursegrade(studentId, level, sem);
+        
+        for (Grade grade : grades) {
+            gobslist.add(grade);
+        }
+        
+        tbl_CourseCode.setCellValueFactory(new PropertyValueFactory<>("courseid"));
+        tbl_StudentId.setCellValueFactory(new PropertyValueFactory<>("studentid"));
+        tbl_Garde.setCellValueFactory(new PropertyValueFactory<>("grade"));
+        
+        tableGrade.setItems(gobslist);
+    }
+    
+    
     private void clearField() {
-        cmb_Level.setValue("Level");
-        cmb_Semester.setValue("Semester");
-        cmb_CourseCode.setValue("Course Code");
+        cmb_Level.setValue(null);
+        cmb_Level.setPromptText("Level");
+        cmb_Semester.setValue(null);
+        cmb_Semester.setPromptText("Semester");
+        cmb_CourseCode.setValue(null);
+        cmb_CourseCode.setPromptText("Course Code");
+        cmb_GradeLevel.setValue(null);
+        cmb_GradeLevel.setPromptText("Level");
+        cmb_GradeSemester.setValue(null);
+        cmb_GradeSemester.setPromptText("Semester");
+        txt_StuID.setText(null);
+        txt_StuID.setPromptText("Student ID");
     }
     
     //ComboBox CourseID froms database
@@ -162,5 +200,9 @@ public class LecturerStuGradeAndGPAController implements Initializable {
     }
     ObservableList<String> courseId = FXCollections.observableArrayList(courseid());
 
-    
+    private boolean isFieldsEmpty() {
+     return (cmb_GradeLevel.getValue().isEmpty() || "Level".equals(cmb_GradeLevel.getValue()) || 
+             cmb_GradeSemester.getValue().isEmpty() || "Semester".equals(cmb_GradeSemester.getValue()) || 
+             txt_StuID.getText().isEmpty() || "Student ID".equals(txt_StuID.getText()) );
+    }
 }

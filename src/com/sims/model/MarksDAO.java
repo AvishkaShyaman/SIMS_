@@ -62,9 +62,9 @@ public class MarksDAO {
     }
 
     //Update Marks in marks table(LecturerExam)
-    public  int updateMarks(Marks marks, Exam exam) {
+    public boolean updateMarks(Marks marks, Exam exam) {
     
-        int status = 0;
+        boolean status = false;
         
         Connection con = null;
         
@@ -82,9 +82,10 @@ public class MarksDAO {
             
             if (i == 1) {
                 System.out.println("A Marks record has updated successfully");
-                status = 1;
+                status = true;
             } else {
                 System.out.println("Error in updating record");
+                status = false;
             }
             
             
