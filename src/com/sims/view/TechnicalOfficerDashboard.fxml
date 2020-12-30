@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane id="AnchorPane" prefHeight="799.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.TechnicalOfficerDashboardController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1583.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.TechnicalOfficerDashboardController">
    <children>
       <BorderPane fx:id="mainPane" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../resource/common.css">
          <left>
@@ -45,21 +45,21 @@
                         <FontAwesomeIcon fill="WHITE" glyphName="HISTORY" size="1.5em" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_attendance" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="265.0" mnemonicParsing="false" onAction="#btn_userProfileActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Attendance">
+                  <Button fx:id="btn_attendance" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="265.0" mnemonicParsing="false" onAction="#btn_AttendanceActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Attendance">
                      <graphic>
                         <FontAwesomeIcon fill="WHITE" glyphName="CHECK" size="1.5em" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_medical" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_courseActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Course">
+                  <Button fx:id="btn_medical" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_MedicalActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Medicals">
                      <graphic>
-                        <FontAwesomeIcon fill="WHITE" glyphName="BOOK" size="1.5em" />
+                        <FontAwesomeIcon fill="WHITE" glyphName="PLUS_SQUARE" size="1.5em" wrappingWidth="26.81429100036621" />
                      </graphic>
                   </Button>
                </children>
             </VBox>
          </left>
          <right>
-            <VBox fx:id="notice_vbox" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="notice_vbox" prefHeight="800.0" prefWidth="1306.0" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashbord-right-titlebar">
                      <VBox.margin>

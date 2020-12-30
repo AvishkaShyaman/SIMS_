@@ -13,16 +13,27 @@ public class Attendance {
     
     private String attendanceStatus;
     private int hours;
-    private String sessionType;
+    private String sessionID;
     private String dateTime;
     private String studentID;
     private String courseID;
     private float totalHours;
+    private String sessionType;
     
-    
+    public int getHours(){
+        return hours;
+    }
+
+    public float getTotalHours() {
+        return totalHours;
+    }
+
 //----------getters-----------
-    
-    public String getStudentID(){
+    public String getSessionType() {
+        return sessionType;
+    }
+
+    public String getStudentID() {
         return studentID;
     }
     
@@ -34,8 +45,8 @@ public class Attendance {
         return attendanceStatus;
     }
     
-    public String getSessionType(){
-        return sessionType;
+    public String getSessionID(){
+        return sessionID;
     }
     
     public String getDateTime(){
@@ -43,6 +54,10 @@ public class Attendance {
     }
 
     //----------setters-------------------
+
+    public void setSessionType(String sessionType) {
+        this.sessionType = sessionType;
+    }
     
     
     public void setAttendanceStatus(String attendanceStatus){
@@ -53,8 +68,8 @@ public class Attendance {
         this.hours = hours;
     }
         
-    public void setSessionType(String sessionType){
-        this.sessionType = sessionType;
+    public void setSessionID(String sessionType){
+        this.sessionID = sessionType;
     }
         
     public void setDateTime(String dateTime){

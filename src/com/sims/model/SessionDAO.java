@@ -10,6 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -120,6 +123,34 @@ public class SessionDAO {
  
     }
     
+    
+    
+    public String viewSessionID(String dateTime,String courseID){
+        
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select sessionid from session where date_time=? and courseid=?;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, dateTime);
+            pst.setString(2, courseID);
+            
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                //session = new Session();
+               String id=rs.getString(1);
+               return id; 
+                
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+        return null;
+        
+    }
     
     
     

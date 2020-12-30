@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sims.control;
+
+import com.sims.model.Attendance;
+import com.sims.model.AttendanceDAO;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
+/**
+ * FXML Controller class
+ *
+ * @author pragith
+ */
+public class TechnicalOfficerAttendanceDeleteController implements Initializable {
+
+    @FXML
+    private TextField txtStudentID;
+    @FXML
+    private TextField txtSessionID;
+    @FXML
+    private Button btnDelete;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+
+    @FXML
+    private void DeleteActionController(ActionEvent event) {
+        Attendance attendance = new Attendance();
+        AttendanceDAO attendanceDAO = new AttendanceDAO();
+        
+  
+        attendance.setStudentID(txtStudentID.getText());
+        attendance.setSessionID(txtSessionID.getText());
+        
+        
+        attendanceDAO.deleteAttendance(attendance);
+        
+        System.out.println(txtStudentID.getText());
+        System.out.println(txtSessionID.getText());
+        
+        
+    }
+    
+}
