@@ -153,18 +153,12 @@ public class LecturerExamController implements Initializable {
         if (isFieldsEmpty()) {
             //JOptionPane.showMessageDialog(this, "Some fields are missing", "Alert", JOptionPane.WARNING_MESSAGE);
         } else {
-            switch (marksDAO.updateMarks(marks, exam)) {
-                case 1:
-                    //JOptionPane.showMessageDialog(this, "successfully updated");
-                    tableView();
-                    clearField();
-                    break;
-                case 0:
-                    //JOptionPane.showMessageDialog(this, "Please check the student ID", "Warning", JOptionPane.ERROR_MESSAGE);
-                    break;
-                case -1:
-                    //JOptionPane.showMessageDialog(this, "Data too long for Name or Address", "Warning", JOptionPane.ERROR_MESSAGE);
-                    break;
+            if (marksDAO.updateMarks(marks, exam)) {
+                //JOptionPane.showMessageDialog(this, "successfully updated");
+                tableView();
+                clearField();
+            } else {
+                //JOptionPane.showMessageDialog(this, "Please check the student ID", "Warning", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

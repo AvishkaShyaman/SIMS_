@@ -41,22 +41,32 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="69.0" prefWidth="888.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;" AnchorPane.bottomAnchor="540.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <children>
-                              <ComboBox fx:id="cmb_CourseCode" prefHeight="25.0" prefWidth="156.0" promptText="Course Code" style="-fx-background-radius: 22; -fx-border-radius: 22;">
+                              <ComboBox fx:id="cmb_CourseCode" prefHeight="26.0" prefWidth="147.0" promptText="Course Code" style="-fx-background-radius: 22; -fx-border-radius: 22;">
                                  <HBox.margin>
-                                    <Insets bottom="20.0" left="50.0" right="30.0" top="20.0" />
+                                    <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
                                  </HBox.margin>
                               </ComboBox>
                               <Button fx:id="btn_SearchCourse" mnemonicParsing="false" onAction="#btn_SearchCourseActionPerformed" prefHeight="26.0" prefWidth="118.0" styleClass="btn-search" text="Search">
                                  <HBox.margin>
-                                    <Insets bottom="20.0" right="30.0" top="20.0" />
+                                    <Insets bottom="20.0" right="20.0" top="20.0" />
                                  </HBox.margin>
                                  <graphic>
                                     <FontAwesomeIcon fill="#f2ecec" glyphName="SEARCH" />
                                  </graphic>
                               </Button>
-                              <TextField fx:id="txt_StuID" promptText="Student ID" style="-fx-background-radius: 22; -fx-border-radius: 22;">
+                              <ComboBox fx:id="cmb_GradeLevel" prefHeight="26.0" prefWidth="97.0" promptText="Level" style="-fx-background-radius: 22; -fx-border-radius: 22;">
                                  <HBox.margin>
-                                    <Insets bottom="20.0" left="150.0" right="30.0" top="20.0" />
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                              <ComboBox fx:id="cmb_GradeSemester" prefHeight="26.0" prefWidth="127.0" promptText="Semester" style="-fx-background-radius: 22; -fx-border-radius: 22;">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                              <TextField fx:id="txt_StuID" prefHeight="26.0" prefWidth="136.0" promptText="Student ID" style="-fx-background-radius: 22; -fx-border-radius: 22;">
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
                                  </HBox.margin>
                               </TextField>
                               <Button fx:id="btn_SearchStuID" layoutX="221.0" layoutY="40.0" mnemonicParsing="false" onAction="#btn_SearchStuIDActionPerformed" prefHeight="26.0" prefWidth="118.0" styleClass="btn-search" text="Search">
@@ -64,7 +74,7 @@
                                     <FontAwesomeIcon fill="#f0ebeb" glyphName="SEARCH" />
                                  </graphic>
                                  <HBox.margin>
-                                    <Insets bottom="20.0" right="50.0" top="20.0" />
+                                    <Insets bottom="20.0" right="10.0" top="20.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
