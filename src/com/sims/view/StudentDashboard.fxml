@@ -72,11 +72,16 @@
                         <FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.5em" text="" />
                      </graphic>
                   </Button>
+                  <Button fx:id="btn_SignOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btn_SignOutActionHandel" prefHeight="26.0" prefWidth="367.0" style="-fx-background-color: #006FBC;" styleClass="dashboard-left-btn" text="Sign Out">
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="1.5em" />
+                     </graphic>
+                  </Button>
                </children>
             </VBox>
          </left>
          <right>
-            <VBox fx:id="notice_vbox" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="notice_vbox" alignment="TOP_RIGHT" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashbord-right-titlebar">
                      <VBox.margin>
@@ -84,9 +89,10 @@
                      </VBox.margin>
                      <children>
                         <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="Notice" />
+                        <Button fx:id="btn_notice_view" layoutX="937.0" layoutY="11.0" mnemonicParsing="false" onAction="#btn_notice_viewActionhandel" styleClass="btn-blue" text="View" />
                      </children>
                   </Pane>
-                  <TableView fx:id="table_view" prefHeight="622.0" prefWidth="1000.0">
+                  <TableView fx:id="table_view" onMouseClicked="#table_viewOnMouseCicked" prefHeight="622.0" prefWidth="1000.0">
                      <columns>
                         <TableColumn fx:id="tale_col_date" prefWidth="196.79998779296875" text="Date" />
                         <TableColumn fx:id="table_col_titel" minWidth="0.0" prefWidth="566.3999938964844" text="Titel" />

@@ -18,18 +18,22 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -38,6 +42,9 @@ import javafx.stage.Stage;
  */
 public class StudentDashboardController implements Initializable {
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+    
     @FXML
     private BorderPane mainPane;
     @FXML
@@ -71,11 +78,17 @@ public class StudentDashboardController implements Initializable {
 
     NoticeDOA dao = new NoticeDOA();
 
+    Notice notice = null;
+
     private Student student;
 
     private Stage primaryStage = new Stage();
     private FXMLLoader loder = null;
     private Parent root = null;
+    @FXML
+    private Button btn_notice_view;
+    @FXML
+    private Button btn_SignOut;
 
     /**
      * Initializes the controller class.
@@ -178,6 +191,60 @@ public class StudentDashboardController implements Initializable {
     public void setStudentid(String studentid) {
         StudentDAO dao = new StudentDAO();
         this.student = dao.getStudent(studentid);
+    }
+
+    @FXML
+    private void btn_notice_viewActionhandel(ActionEvent event) throws IOException {
+        if (notice != null) {
+            Stage primaryStage = new Stage();
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/com/sims/view/NoticeView.fxml"));
+            Parent root = loder.load();
+            NoticeViewController child = loder.getController();
+            child.setNotice(notice);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+    }
+
+    @FXML
+    private void table_viewOnMouseCicked(MouseEvent event) {
+        notice = table_view.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    private void btn_SignOutActionHandel(ActionEvent event) throws IOException {
+        Stage stage_ = (Stage) btn_SignOut.getScene().getWindow();
+        stage_.close();
+
+        Stage stage = new Stage();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/Login.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+        root.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+                
+            }
+            
+        });
+        
+        root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+            
+        });
+        
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

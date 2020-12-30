@@ -57,6 +57,11 @@
                         <FontAwesomeIcon fill="WHITE" glyphName="HISTORY" size="1.5em" />
                      </graphic>
                   </Button>
+                  <Button fx:id="btn_SignOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btn_SignOutActionHandel" prefHeight="26.0" prefWidth="367.0" style="-fx-background-color: #006FBC;" styleClass="dashboard-left-btn" text="Sign Out">
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="1.5em" />
+                     </graphic>
+                  </Button>
                </children>
             </VBox>
          </left>

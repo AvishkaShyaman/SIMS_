@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,6 +35,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -42,6 +44,9 @@ import javafx.stage.Stage;
  */
 public class AdminDashboardController implements Initializable {
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+    
     @FXML
     private Button btn_notice;
     @FXML
@@ -82,6 +87,9 @@ public class AdminDashboardController implements Initializable {
     Notice notice_ = null;
     @FXML
     private Button btn_All;
+
+    @FXML
+    private Button btn_SignOut;
 
     /**
      * Initializes the controller class.
@@ -143,7 +151,7 @@ public class AdminDashboardController implements Initializable {
         Parent root = loder.load();
         AdminNoticeAddController adminoticeadd = loder.getController();
         if (adminoticeadd != null) {
-            adminoticeadd.setAddScene(userID,this);
+            adminoticeadd.setAddScene(userID, this);
         }
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -159,7 +167,7 @@ public class AdminDashboardController implements Initializable {
             AdminNoticeAddController adminoticeadd = loder.getController();
             notice_.setPublisher(userID);
             if (adminoticeadd != null) {
-                adminoticeadd.setUpdateScene(notice_,this);
+                adminoticeadd.setUpdateScene(notice_, this);
             }
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
@@ -229,6 +237,42 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void btn_AllActionHandeler(ActionEvent event) {
         settable();
+    }
+
+    @FXML
+    private void btn_SignOutActionHandel(ActionEvent event) throws IOException {
+        Stage stage_ = (Stage) btn_SignOut.getScene().getWindow();
+        stage_.close();
+
+        Stage stage = new Stage();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/Login.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+        root.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+                
+            }
+            
+        });
+        
+        root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+            
+        });
+        
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 }
