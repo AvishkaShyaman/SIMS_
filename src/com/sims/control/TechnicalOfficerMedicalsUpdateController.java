@@ -7,6 +7,7 @@ package com.sims.control;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,17 +25,13 @@ public class TechnicalOfficerMedicalsUpdateController implements Initializable {
     @FXML
     private TextField txtStudentID;
     @FXML
-    private DatePicker txtDateStart;
-    @FXML
-    private DatePicker txtDateEnd;
-    @FXML
-    private ComboBox<?> combCourseType;
-    @FXML
-    private ComboBox<?> combCourseID;
-    @FXML
     private Button btnUpdate;
     @FXML
     private Button btnOk;
+    @FXML
+    private TextField txtRefNo;
+    @FXML
+    private ComboBox<?> combStatus;
 
     /**
      * Initializes the controller class.
@@ -43,5 +40,13 @@ public class TechnicalOfficerMedicalsUpdateController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void updateActionController(ActionEvent event) {
+    }
+
+    @FXML
+    private void okActionController(ActionEvent event) {
+    }
     
 }
