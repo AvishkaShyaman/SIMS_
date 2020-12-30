@@ -198,16 +198,7 @@ public class TechnicalOfficerMedicalsAddController implements Initializable {
 //        
 //        
         medicalDAO.addMedicalCourseModule(medical);
-//        
-//       System.out.println(studentID);
-//       System.out.println(refNo);
-//       System.out.println(courseID);
-//        System.out.println(dateTime);
-//       System.out.println(type);
-////        System.out.println(dateTime);
-//        minutes=String.valueOf(minute.getValue());
-//        System.out.println(minutes);
-//        System.out.println((String)minute.getValue());
+
         
         
     }

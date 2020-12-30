@@ -53,7 +53,6 @@ public class TechnicalOfficerAttendanceController implements Initializable {
     private VBox notice_vbox;
     @FXML
     private TextField txtStuId;
-    @FXML
     private DatePicker txtDate;
     @FXML
     private Button btnSearch;
@@ -63,6 +62,10 @@ public class TechnicalOfficerAttendanceController implements Initializable {
     private TableColumn<Attendance,String> colStudent;
     @FXML
     private TableColumn<Attendance,String> colStatus;
+    @FXML
+    private TableColumn<Attendance,String> colDateTime;
+    @FXML
+    private TableColumn<Attendance,String> colSessionID;
     @FXML
     private Button btnAdd;
     @FXML
@@ -87,6 +90,8 @@ public class TechnicalOfficerAttendanceController implements Initializable {
     @FXML
     private ComboBox combType;
     ObservableList<String> type=FXCollections.observableArrayList("Theory","Practical");
+    
+    
 
     /**
      * Initializes the controller class.
@@ -177,9 +182,11 @@ public class TechnicalOfficerAttendanceController implements Initializable {
             System.out.println(student.getStudentID()+" "+student.getAttendanceStatus());
         }
 
+        colSessionID.setCellValueFactory(new PropertyValueFactory<>("SessionID"));
         colStudent.setCellValueFactory(new PropertyValueFactory<>("StudentID"));
+        colDateTime.setCellValueFactory(new PropertyValueFactory<>("DateTime"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("AttendanceStatus"));
-
+        
         tableAttendance.setItems(AttendanceListbySession);
         
         
@@ -205,6 +212,7 @@ public class TechnicalOfficerAttendanceController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerAttendanceAdd.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -214,6 +222,7 @@ public class TechnicalOfficerAttendanceController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerAttendanceDelete.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -223,6 +232,7 @@ public class TechnicalOfficerAttendanceController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerAttendanceUpdate.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
     

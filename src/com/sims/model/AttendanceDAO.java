@@ -81,7 +81,7 @@ public class AttendanceDAO {
     
 
     
-      //public Attendance getAttendance(String studentID,String courseID,String courseType,String dateTime,int attendanceState){
+      
       
     public boolean deleteAttendance(Attendance attendance){
         boolean value = false;
@@ -103,51 +103,7 @@ public class AttendanceDAO {
         return value;
     }
     
-    
-    
-
-    public Attendance getAttendanceOld(String studentID,String courseID,String state,String type){
-        String query;
-        float totalhours=0;
-        Attendance attendance=null;
-    
-        try {
-            Connection con = DBConnectionUtil.getDBConnection();
-            //query1="select sessionid from session where courseid=?  and type=?;";
-            query="select attendance.at_st_id, attendance.state, session.courseid, session.hours from session FULL OUTER JOIN attendance ON attendance.at_sessionid=session.sessionid  where session.courseid=?  and session.type=? and attendance.state=? and attendance.at_st_id=?;";
-            
-            pst = con.prepareStatement(query, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
-                    
-            pst.setString(1, courseID);
-            pst.setString(2, type);
-            pst.setString(3, state);
-            pst.setString(4, studentID);
-            
-            rs=pst.executeQuery();
-
-            
-            while(rs.next()){
-                 attendance = new Attendance();
-        
-                 
-                 attendance.setStudentID(rs.getString(1));
-                 attendance.setAttendanceStatus(rs.getString(2));
-                 attendance.setSessionType(rs.getString(3));
-                 totalhours+=rs.getFloat(4);
-            }
-            attendance.setTotalHours(totalhours);
-            
-            
-    
-     } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return attendance;
-    }
-      
-    
-   
+           
     public ArrayList<Attendance>getAllAttendanceByCourse(String courseID,String type){
         ArrayList<Attendance> allAttendanceList=new ArrayList<Attendance>();
         String sessionid = null;
@@ -155,7 +111,7 @@ public class AttendanceDAO {
             Connection con = DBConnectionUtil.getDBConnection();
             
             
-            pst = con.prepareStatement("select at_st_id,state from attendance_with_session where courseid=? and type=?;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst = con.prepareStatement("select at_sessionid,at_st_id,date_time,state from attendance_with_session where courseid=? and type=?;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             pst.setString(1, courseID);
             pst.setString(2, type);
             
@@ -164,8 +120,11 @@ public class AttendanceDAO {
             while (rs.next()) {
                 Attendance attendance = new Attendance();
                 
-                attendance.setStudentID(rs.getString(1));
-                if("1".equals(rs.getString(2))){
+                
+                attendance.setSessionID(rs.getString(1));
+                attendance.setStudentID(rs.getString(2));
+                attendance.setDateTime(rs.getString(3));
+                if("1".equals(rs.getString(4))){
                     attendance.setAttendanceStatus("Present");
                 }else{
                     attendance.setAttendanceStatus("Absent");
@@ -193,12 +152,12 @@ public class AttendanceDAO {
             
             
             if("All".equals(status)){
-            pst = con.prepareStatement("select at_st_id,state from attendance_with_session where courseid=? and type=?", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst = con.prepareStatement("select at_sessionid,at_st_id,date_time,state from attendance_with_session where courseid=? and type=?", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             pst.setString(1, courseID);
             pst.setString(2, type);
 
             }else{
-            pst = con.prepareStatement("select at_st_id,state from attendance_with_session where courseid=? and type=? and state=?;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst = con.prepareStatement("select at_sessionid,at_st_id,date_time,state from attendance_with_session where courseid=? and type=? and state=?;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             pst.setString(1, courseID);
             pst.setString(2, type);
             pst.setString(3, status);
@@ -210,8 +169,11 @@ public class AttendanceDAO {
             while (rs.next()) {
                 Attendance attendance = new Attendance();
                 
-                attendance.setStudentID(rs.getString(1));
-                if("1".equals(rs.getString(2))){
+                
+                attendance.setSessionID(rs.getString(1));
+                attendance.setStudentID(rs.getString(2));
+                attendance.setDateTime(rs.getString(3));
+                if("1".equals(rs.getString(4))){
                     attendance.setAttendanceStatus("Present");
                 }else{
                     attendance.setAttendanceStatus("Absent");
@@ -239,13 +201,13 @@ public class AttendanceDAO {
             
             
             if("All".equals(status)){
-            pst = con.prepareStatement("select at_st_id,state from attendance_with_session where courseid=? and type=? and at_st_id=?", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst = con.prepareStatement("select at_sessionid,at_st_id,date_time,state from attendance_with_session where courseid=? and type=? and at_st_id=?", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             pst.setString(1, courseID);
             pst.setString(2, type);
             pst.setString(3, studentID);
 
             }else{
-            pst = con.prepareStatement("select at_st_id,state from attendance_with_session where courseid=? and type=? and state=? and at_st_id=?;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst = con.prepareStatement("select at_sessionid,at_st_id,date_time,state from attendance_with_session where courseid=? and type=? and state=? and at_st_id=?;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             pst.setString(1, courseID);
             pst.setString(2, type);
             pst.setString(3, status);
@@ -258,8 +220,10 @@ public class AttendanceDAO {
             while (rs.next()) {
                 Attendance attendance = new Attendance();
                 
-                attendance.setStudentID(rs.getString(1));
-                if("1".equals(rs.getString(2))){
+                attendance.setSessionID(rs.getString(1));
+                attendance.setStudentID(rs.getString(2));
+                attendance.setDateTime(rs.getString(3));
+                if("1".equals(rs.getString(4))){
                     attendance.setAttendanceStatus("Present");
                 }else{
                     attendance.setAttendanceStatus("Absent");

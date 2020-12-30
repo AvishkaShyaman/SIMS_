@@ -44,24 +44,15 @@ public class TechnicalOfficerAttendanceAddBoxController implements Initializable
 
     @FXML
     private TextField txtStudent;
-    @FXML
-    private DatePicker date;
-    @FXML
-    private ComboBox combCourseID;
-    ObservableList<String> courselist=FXCollections.observableArrayList();
+   
     
     @FXML
     private Button btnAdd;
     @FXML
-    private Button btnOk;
-    @FXML
     private Pane pan2;
     @FXML
     private Pane pan1;
-    @FXML
-    private Spinner hours;
-    @FXML
-    private Spinner mins;
+
     @FXML
     private Button btnReset;
 
@@ -85,69 +76,16 @@ public class TechnicalOfficerAttendanceAddBoxController implements Initializable
         
         
         
-        ArrayList<TechnicalOfficer> cours;
-        try {
-            cours = technicalOfficerDAO.getCourseList("dpt02");
-            for(TechnicalOfficer technicalOfficer : cours){
-                courselist.add(technicalOfficer.getCourse());
-            }
-            combCourseID.setItems(courselist);
-        } catch (SQLException ex) {
-            Logger.getLogger(TechnicalOfficerMedicalsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         
         combStatus.setItems(status);
         
-        
-        SpinnerValueFactory<Integer> hours=new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24,8);
-        this.hours.setValueFactory(hours);
-        //time spinter minute
-        SpinnerValueFactory<Integer> minutes=new SpinnerValueFactory.IntegerSpinnerValueFactory(0,59,0);
-        mins.setValueFactory(minutes);
         
         
         
         
     }    
 
-    @FXML
-    private void getSessionIDActionController(ActionEvent event) {
-       
-        String dateTime, courseID,hour,min,dateNtime,id;
-
-        courseID = (String) combCourseID.getValue();
-        
-        try {
-            dateTime = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        } catch (NullPointerException x) {
-            dateTime = "0";
-        }
-        
-        if(((int) hours.getValue()<10)){
-            hour="0"+String.valueOf(hours.getValue());
-        }else{
-            hour=String.valueOf(hours.getValue());
-        }
-        if(((int) mins.getValue()<10)){
-            min="0"+String.valueOf(mins.getValue());
-        }else{
-            min=String.valueOf(mins.getValue());
-        }
-        dateNtime=dateTime+" "+hour+":"+min+":00";
-        
-        SessionDAO sessionDAO = new SessionDAO();
-        System.out.println(dateNtime + courseID);
-        //sessionDAO.viewSessionID(dateNtime, courseID);
-        
-        //Session session = new Session();
-        id=sessionDAO.viewSessionID(dateTime, courseID);
-        System.out.println(id);
-//        String id=session.getSessionID();
-//        lblSessionID.setText(id);
-//        System.out.println(id);
-        
-        
+    private void getSessionIDActionController(ActionEvent event) { 
     }
 
     @FXML
@@ -178,6 +116,9 @@ public class TechnicalOfficerAttendanceAddBoxController implements Initializable
 
     @FXML
     private void resetFormActionController(ActionEvent event) {
+        txtStudent.setText("");
+        txtSessionid.setText("");
+        combStatus.setValue(null);
     }
     
 }
