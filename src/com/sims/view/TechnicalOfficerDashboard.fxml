@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1583.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.TechnicalOfficerDashboardController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1267.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.TechnicalOfficerDashboardController">
    <children>
-      <BorderPane fx:id="mainPane" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../resource/common.css">
+      <BorderPane fx:id="mainPane" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resource/common.css">
          <left>
             <VBox prefHeight="800.0" prefWidth="280.0" styleClass="main-background" BorderPane.alignment="CENTER">
                <children>
@@ -59,9 +59,9 @@
             </VBox>
          </left>
          <right>
-            <VBox fx:id="notice_vbox" prefHeight="800.0" prefWidth="1306.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="notice_vbox" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashbord-right-titlebar">
+                  <Pane prefHeight="200.0" prefWidth="945.0" styleClass="dashbord-right-titlebar">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>

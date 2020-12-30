@@ -164,6 +164,7 @@ public class TechnicalOfficerMedicalsController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerMedicalsAdd.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -294,6 +295,7 @@ public class TechnicalOfficerMedicalsController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerMedicalsUpdate.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

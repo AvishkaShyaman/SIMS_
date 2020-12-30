@@ -6,10 +6,13 @@
 package com.sims.control;
 
 import com.sims.model.Attendance;
+import com.sims.model.Session;
+import com.sims.model.SessionDAO;
 import com.sims.model.Student;
 import com.sims.model.StudentDAO;
 import com.sims.model.TechnicalOfficer;
 import com.sims.model.TechnicalOfficerDAO;
+import com.sims.model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -59,8 +62,17 @@ public class TechnicalOfficerAttendanceAddController implements Initializable {
     @FXML
     private ComboBox combStudentYear;
     ObservableList<String> yearlist=FXCollections.observableArrayList();
+    
     Student student = new Student();
     StudentDAO studentDAO = new StudentDAO();
+    @FXML
+    private TableView<Session> tableSession;
+    @FXML
+    private TableColumn<Session, String> colSessionID;
+    @FXML
+    private TableColumn<Session, String> colDateTime;
+    @FXML
+    private TableColumn<Session, String> colCourseID;
 
     /**
      * Initializes the controller class.
@@ -68,18 +80,39 @@ public class TechnicalOfficerAttendanceAddController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-         //---------- year list pass to combobox-----------------
-//        ArrayList<Student> year;
-//        try {
-//            year= studentDAO.studentYear();
-//            for(Student student : year){
-//                yearlist.add(String.valueOf(student.getYear()));
-//            }
-//            combStudentYear.setItems(yearlist);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(TechnicalOfficerMedicalsController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        // ---------- year list pass to combobox-----------------
+        ArrayList<Student> year;
+        try {
+            year= studentDAO.studentYear();
+            for(Student student : year){
+                yearlist.add(String.valueOf(student.getYear()));
+            }
+            combStudentYear.setItems(yearlist);
+        } catch (SQLException ex) {
+            Logger.getLogger(TechnicalOfficerMedicalsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+
+
+
+
+//---------------------------session table----------------------
+        SessionDAO sessionDAO = new SessionDAO();
+        ObservableList<Session> sessionList = FXCollections.observableArrayList();
+        ArrayList<Session> sessions = sessionDAO.viewAllSessions();
+
+        for(Session session : sessions){
+            sessionList.add(session);
+        }
+        colSessionID.setCellValueFactory(new PropertyValueFactory<>("SessionID"));
+        colDateTime.setCellValueFactory(new PropertyValueFactory<>("DateTime"));
+        colCourseID.setCellValueFactory(new PropertyValueFactory<>("CourseID"));
+
+        tableSession.setItems(sessionList);
+
+
+
+
         
     }    
 
@@ -89,31 +122,32 @@ public class TechnicalOfficerAttendanceAddController implements Initializable {
 
         year=(String) combStudentYear.getValue();
 
-        
         ObservableList<Student> studentList = FXCollections.observableArrayList();
         
-
+        User user = new User();
     
-//        ArrayList<Student> students = studentDAO.getStudentByDepartment(year, "dpt02");
-//
-//        System.out.println(year);
-//        System.out.println(student.getCourseID());
-//        for(Student student : students){
-//            studentList.add(student);
-//        }
+        ArrayList<Student> students = studentDAO.getStudentByDepartment(year, "dpt02");
+
+        System.out.println(year);
+        System.out.println(user.getUserID());
+        for(Student student : students){
+            studentList.add(student);
+        }
 
         
         colStudentID.setCellValueFactory(new PropertyValueFactory<>("StudentID"));
 
         tableAttendance.setItems(studentList);
-        
-        
-        
+    
     }
 
 
     @FXML
     private void resetMedicalAction(ActionEvent event) {
+        Stage stage = (Stage) btnOk.getScene().getWindow();
+         
+        stage.close();
+        
     }
 
     @FXML
@@ -122,6 +156,7 @@ public class TechnicalOfficerAttendanceAddController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/TechnicalOfficerAttendanceAddBox.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
         
     }

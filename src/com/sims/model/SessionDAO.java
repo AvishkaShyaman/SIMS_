@@ -152,9 +152,45 @@ public class SessionDAO {
         
     }
     
-    
-    
-    
-    
-    
+        
+    public ArrayList<Session>viewAllSessions(){
+        ArrayList<Session> sessionList=new ArrayList<Session>();
+        
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("select sessionid,date_time,courseid from session ORDER BY sessionid DESC;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+           
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                Session session = new Session();
+                
+                session.setSessionID(rs.getString(1));
+                session.setDateTime(rs.getString(2));
+                session.setCourseID(rs.getString(3));
+                
+                
+                sessionList.add(session);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return sessionList;
+        
+    } 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 }

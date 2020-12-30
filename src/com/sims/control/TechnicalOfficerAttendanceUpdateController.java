@@ -87,7 +87,7 @@ public class TechnicalOfficerAttendanceUpdateController implements Initializable
         Stage stage = (Stage) btnOk.getScene().getWindow();
          
             stage.close();
-          }
+        }
     
     
 }
