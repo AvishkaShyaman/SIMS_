@@ -101,7 +101,8 @@ public class TechnicalOfficerDashboardController implements Initializable {
 
     @FXML
     private void btn_timetableActionHandel(ActionEvent event) {
-       // mainPane.setRight(notice_vbox);
+       pane = getpane("TechnicalOfficerTimeTable.fxml");
+       mainPane.setRight(pane);
     }
 
     @FXML
