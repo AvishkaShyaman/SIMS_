@@ -28,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -174,9 +175,19 @@ public class TechnicalOfficerMedicalsController implements Initializable {
         if (medical_ != null) {
             if (medicalDAO.deleteMedical(medical_)) {
                 System.out.println("Delete successfull");
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText("Succesfully Deleted!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
                 
-            } else {
+            }else{
                 System.out.println("Delete Error");
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText("Error!");
+                a1.setHeaderText(null);
+                a1.showAndWait();  
             }
         }
 
@@ -197,7 +208,8 @@ public class TechnicalOfficerMedicalsController implements Initializable {
 
         if (tab1 == true) {
             //-------------------------tab 1---------------------------------------
-
+            
+            
             ObservableList<Medical> medicalFormListFilted = FXCollections.observableArrayList();
 
             MedicalDAO medicalDAO = new MedicalDAO();

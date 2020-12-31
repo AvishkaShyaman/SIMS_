@@ -25,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -65,23 +66,15 @@ public class TechnicalOfficerAttendanceAddBoxController implements Initializable
     @FXML
     private ComboBox combStatus;
     ObservableList<String> status=FXCollections.observableArrayList("Present","Absent");
-    /**
-     * 
-     * 
-     * 
-     * Initializes the controller class.
-     */
+    
+    //private Attendance atendanceAdd = null;
+    
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        
-        
         combStatus.setItems(status);
-        
-        
-        
-        
         
     }    
 
@@ -103,15 +96,37 @@ public class TechnicalOfficerAttendanceAddBoxController implements Initializable
             courseStatus="0";
         }
         
-        attendance.setStudentID(txtStudent.getText());
-        attendance.setSessionID(txtSessionid.getText());
-        attendance.setAttendanceStatus(courseStatus);
         
-        attendanceDAO.addAttendance(attendance);
+        if((txtStudent.getText().trim().isEmpty()) || (txtSessionid.getText().trim().isEmpty())){
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Error");
+                a1.setContentText("Please fill this form...!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+        }else{
+            attendance.setStudentID(txtStudent.getText());
+            attendance.setSessionID(txtSessionid.getText());
+            attendance.setAttendanceStatus(courseStatus);
         
-        System.out.println(txtStudent.getText());
-        System.out.println(txtSessionid.getText());
-        System.out.println(courseStatus);
+            System.out.println(txtStudent.getText());
+            System.out.println(txtSessionid.getText());
+            System.out.println(courseStatus);
+        
+            if (attendanceDAO.addAttendance(attendance)== true) {
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText(txtStudent.getText() + " Succesfully added");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+            }else{
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText("Details Are Wrong! / Error in Operation!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+            }
+        }
+        
     }
 
     @FXML

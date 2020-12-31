@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -58,17 +59,41 @@ public class TechnicalOfficerMedicalsUpdateController implements Initializable {
         String status;
         
         status=(String) combStatus.getValue();
+
         
-        medical.setMedicalRefNo(txtRefNo.getText());
-        medical.setStudentID(txtStudentID.getText());
-        medical.setMedicalStatus(status);
+        if((txtRefNo.getText().trim().isEmpty()) || (txtStudentID.getText().trim().isEmpty())){
+            Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+            a1.setTitle("Error");
+            a1.setContentText("Please fill this form...!");
+            a1.setHeaderText(null);
+            a1.showAndWait();
         
-        medicalDAO.updateMedical(medical);
+        }else{
+            medical.setMedicalRefNo(txtRefNo.getText());
+            medical.setStudentID(txtStudentID.getText());
+            medical.setMedicalStatus(status);
+
+            System.out.println(txtRefNo.getText());
+            System.out.println(txtStudentID.getText());
+            System.out.println(status);
+            
+            if (medicalDAO.updateMedical(medical)== true) {
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText(txtStudentID.getText() + " Succesfully Updated!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+            }else{
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Error");
+                a1.setContentText("Details Are Wrong!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+            }
+        }
         
         
-        System.out.println(txtRefNo.getText());
-        System.out.println(txtStudentID.getText());
-        System.out.println(status);
+        
         
         
     }

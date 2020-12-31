@@ -26,7 +26,7 @@ public class MedicalDAO {
     
     
     public boolean addMedical(Medical medical){
-        boolean value=true;
+        boolean value=false;
         
         try{
             Connection con = DBConnectionUtil.getDBConnection();
@@ -79,7 +79,7 @@ public class MedicalDAO {
     
     
     public boolean addMedicalCourseModule(Medical medical){
-        boolean value=true;
+        boolean value=false;
         try{
             Connection con = DBConnectionUtil.getDBConnection();
             
@@ -104,7 +104,7 @@ public class MedicalDAO {
     
     
     public boolean updateMedical(Medical medical){
-        boolean value=true;
+        boolean value=false;
         
         try{
             Connection con = DBConnectionUtil.getDBConnection();

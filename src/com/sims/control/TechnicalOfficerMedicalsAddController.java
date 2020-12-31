@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -139,25 +140,67 @@ public class TechnicalOfficerMedicalsAddController implements Initializable {
     private void addMedicalActionController(ActionEvent event) {
        
         String refNo, studentID, SubmitDate, StartDate, EndDate, status;
-        refNo=txtRefNomf.getText();
-        studentID=txtStudentIDmf.getText();
-        SubmitDate=combSubmitDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        StartDate=combStartDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        EndDate=combEndDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        status=(String)combMedicalStarusmf.getValue();
+//        refNo=txtRefNomf.getText();
+//        studentID=txtStudentIDmf.getText();
+//        SubmitDate=combSubmitDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        StartDate=combStartDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        EndDate=combEndDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        status=(String)combMedicalStarusmf.getValue();
         
         
-        medical.setMedicalRefNo(refNo);
-        medical.setStudentID(studentID);
-        medical.setMedicalSubmitDate(SubmitDate);
-        medical.setMedicalStartDate(StartDate);
-        medical.setMedicalEndDate(EndDate);
-        medical.setMedicalStatus(status);
+//        medical.setMedicalRefNo(refNo);
+//        medical.setStudentID(studentID);
+//        medical.setMedicalSubmitDate(SubmitDate);
+//        medical.setMedicalStartDate(StartDate);
+//        medical.setMedicalEndDate(EndDate);
+//        medical.setMedicalStatus(status);
+//        
+//        medicalDAO.addMedical(medical);
+//        
+//        System.out.println(refNo + studentID + SubmitDate + StartDate + EndDate + status);
         
-        medicalDAO.addMedical(medical);
+        if((txtRefNomf.getText().trim().isEmpty()) || (txtStudentIDmf.getText().trim().isEmpty()) || combSubmitDatemf.getValue()==null || combStartDatemf.getValue()==null || combEndDatemf.getValue()==null || combMedicalStarusmf.getValue()==null){
+            Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+            a1.setTitle("Error");
+            a1.setContentText("Please fill this form...!");
+            a1.setHeaderText(null);
+            a1.showAndWait();
         
-        System.out.println(refNo + studentID + SubmitDate + StartDate + EndDate + status);
+        }else{
+            refNo=txtRefNomf.getText();
+            studentID=txtStudentIDmf.getText();
+            SubmitDate=combSubmitDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            StartDate=combStartDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            EndDate=combEndDatemf.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            status=(String)combMedicalStarusmf.getValue();
+            
+            
+            
+            medical.setMedicalRefNo(refNo);
+            medical.setStudentID(studentID);
+            medical.setMedicalSubmitDate(SubmitDate);
+            medical.setMedicalStartDate(StartDate);
+            medical.setMedicalEndDate(EndDate);
+            medical.setMedicalStatus(status);
+
+            if (medicalDAO.addMedical(medical)== true) {
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText(studentID + " Succesfully Added!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+            }else{
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Error");
+                a1.setContentText("Check Details!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+            }
+        }
+    
     }
+    
+    
 
     @FXML
     private void resetMedicalActionController(ActionEvent event) {
@@ -172,34 +215,83 @@ public class TechnicalOfficerMedicalsAddController implements Initializable {
     @FXML
     private void addMedicalCourseModuleActionController(ActionEvent event) {
         String studentID,refNo,date,courseID,type,hours,minutes,dateTime;
-        studentID=txtStudentIDcm.getText();
-        refNo=(String) combRefNocm.getValue();
-        date=combDatecm.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        courseID=(String) combCourseIDcm.getValue();
-        type=(String) combTypeIDcm.getValue();
+//        studentID=txtStudentIDcm.getText();
+//        refNo=(String) combRefNocm.getValue();
+//        date=combDatecm.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        courseID=(String) combCourseIDcm.getValue();
+//        type=(String) combTypeIDcm.getValue();
         
-        if(((int) hour.getValue()<10)){
+//        if(((int) hour.getValue()<10)){
+//            hours="0"+String.valueOf(hour.getValue());
+//        }else{
+//            hours=String.valueOf(hour.getValue());
+//        }
+//        if(((int) minute.getValue()<10)){
+//            minutes="0"+String.valueOf(minute.getValue());
+//        }else{
+//            minutes=String.valueOf(minute.getValue());
+//        }
+//        dateTime=date+" "+hours+":"+minutes+":00";
+
+//        medical.setStudentID(studentID);
+//        medical.setMedicalRefNo(refNo);
+//        medical.setCourseID(courseID);
+//        medical.setDate(dateTime);
+//        medical.setType(type);
+////        
+////        
+//        medicalDAO.addMedicalCourseModule(medical);
+
+        
+        
+        if((txtStudentIDcm.getText().trim().isEmpty()) || (combRefNocm.getValue()==null) || combDatecm.getValue()==null || combCourseIDcm.getValue()==null || combTypeIDcm.getValue()==null){
+            Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+            a1.setTitle("Error");
+            a1.setContentText("Please fill this form...!");
+            a1.setHeaderText(null);
+            a1.showAndWait();
+        
+        }else{
+            studentID=txtStudentIDcm.getText();
+            refNo=(String) combRefNocm.getValue();
+            date=combDatecm.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            courseID=(String) combCourseIDcm.getValue();
+            type=(String) combTypeIDcm.getValue();
+            
+            
+            if(((int) hour.getValue()<10)){
             hours="0"+String.valueOf(hour.getValue());
-        }else{
-            hours=String.valueOf(hour.getValue());
-        }
-        if(((int) minute.getValue()<10)){
-            minutes="0"+String.valueOf(minute.getValue());
-        }else{
-            minutes=String.valueOf(minute.getValue());
-        }
-        dateTime=date+" "+hours+":"+minutes+":00";
+            }else{
+                hours=String.valueOf(hour.getValue());
+            }
+            if(((int) minute.getValue()<10)){
+                minutes="0"+String.valueOf(minute.getValue());
+            }else{
+                minutes=String.valueOf(minute.getValue());
+            }
+            dateTime=date+" "+hours+":"+minutes+":00";
+            
+            
+            medical.setStudentID(studentID);
+            medical.setMedicalRefNo(refNo);
+            medical.setCourseID(courseID);
+            medical.setDate(dateTime);
+            medical.setType(type);
 
-        medical.setStudentID(studentID);
-        medical.setMedicalRefNo(refNo);
-        medical.setCourseID(courseID);
-        medical.setDate(dateTime);
-        medical.setType(type);
-//        
-//        
-        medicalDAO.addMedicalCourseModule(medical);
-
-        
+            if (medicalDAO.addMedicalCourseModule(medical)== true) {
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Done");
+                a1.setContentText(studentID + " Succesfully Added!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+            }else{
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("Error");
+                a1.setContentText("Check Details!");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+            }
+        }
         
     }
 

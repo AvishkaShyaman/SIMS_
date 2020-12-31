@@ -95,12 +95,13 @@ public class TechnicalOfficerDashboardController implements Initializable {
 
     @FXML
     private void btn_noticeActionHandel(ActionEvent event) {
+        mainPane.setRight(notice_vbox);
     }
 
 
     @FXML
     private void btn_timetableActionHandel(ActionEvent event) {
-        mainPane.setRight(notice_vbox);
+       // mainPane.setRight(notice_vbox);
     }
 
     @FXML
