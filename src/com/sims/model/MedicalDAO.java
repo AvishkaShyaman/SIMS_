@@ -530,6 +530,116 @@ public class MedicalDAO {
     
     
     
+    //--------------------------------For lecrurer use (Created by Helanka)------------------------------------
+    public ArrayList<Medical> viewStudentMedicalByCourseID(String courseID,String type){
+        ArrayList<Medical> medicallist=new ArrayList<Medical>();
+        
+         try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("SELECT mcm_courseid, med_st_id, med_start_date, med_end_date, mcm_at_type, "
+                    + "med_status FROM medical, medical_course_module "
+                    + "WHERE mcm_courseid =  ? AND mcm_at_type = ? AND medical.med_refno = medical_course_module.mcm_med_refno;", 
+                    ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, courseID);
+            pst.setString(2, type);
+            
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                Medical medical=new Medical();
+                
+                medical.setStudentID(rs.getString(1));
+                medical.setCourseID(rs.getString(2));
+                medical.setMedicalStartDate(rs.getString(3).toString());
+                medical.setMedicalEndDate(rs.getString(4).toString());
+                medical.setType(rs.getString(5));
+                medical.setMedicalStatus(rs.getString(6));
+                
+                medicallist.add(medical);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicallist;
+        
+    }
+    
+    public ArrayList<Medical> viewStudentMedicalByStudentID(String studentID,String type){
+        ArrayList<Medical> medicallist=new ArrayList<Medical>();
+        
+         try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("SELECT mcm_courseid, med_st_id, med_start_date, med_end_date, mcm_at_type, "
+                    + "med_status FROM medical, medical_course_module "
+                    + "WHERE mcm_st_id =  ? AND mcm_at_type = ? AND medical.med_refno = medical_course_module.mcm_med_refno", 
+                    ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, studentID);
+            pst.setString(2, type);
+            
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                Medical medical=new Medical();
+                
+                medical.setStudentID(rs.getString(1));
+                medical.setCourseID(rs.getString(2));
+                medical.setMedicalStartDate(rs.getString(3).toString());
+                medical.setMedicalEndDate(rs.getString(4).toString());
+                medical.setType(rs.getString(5));
+                medical.setMedicalStatus(rs.getString(6));
+                
+                medicallist.add(medical);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicallist;
+        
+    }
+    
+    
+    //For Student use
+    public ArrayList<Medical> viewStuMedicalByCourseID(String courseID,String studentID){
+        ArrayList<Medical> medicallist=new ArrayList<Medical>();
+        
+         try {
+            Connection con = DBConnectionUtil.getDBConnection();
+
+            pst = con.prepareStatement("SELECT med_refno, mcm_courseid, med_submit_date, mcm_at_type, med_status "
+                    + "FROM medical, medical_course_module WHERE mcm_courseid =  ? AND med_st_id = ? "
+                    + "AND medical.med_refno = medical_course_module.mcm_med_refno;", ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, courseID.toUpperCase());
+            pst.setString(2, studentID);
+            
+            rs=pst.executeQuery();
+
+            while (rs.next()) {
+                Medical medical=new Medical();
+                
+                medical.setMedicalRefNo(rs.getString(1));
+                medical.setCourseID(rs.getString(2));
+                medical.setMedicalSubmitDate(rs.getString(3).toString());
+                medical.setType(rs.getString(4));
+                medical.setMedicalStatus(rs.getString(5));
+                
+                medicallist.add(medical);
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicallist;
+        
+    }
+    
+    
     
     
 }

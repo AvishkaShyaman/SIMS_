@@ -293,9 +293,145 @@ public class AttendanceDAO {
    
    
       
+    
+    
+    
       
+    //----------------------For Lecturer use(Created by Helanka)------------------------------  
+    public ArrayList<Attendance> getAttendanceByCourse(String courseID,String type){
+        ArrayList<Attendance> AttendanceList = new ArrayList<Attendance>();
+        
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+            
+            
+            pst = con.prepareStatement("SELECT courseid, at_st_id, date_time, hours, type, state FROM attendance, "
+                    + "session WHERE courseid = ? AND type = ? AND attendance.at_sessionid =  session.sessionid;", 
+                    ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, courseID);
+            pst.setString(2, type);
+            
+           
+            rs=pst.executeQuery();
+            while (rs.next()) {
+                Attendance attendance = new Attendance();
+
+                attendance.setCourseID(rs.getString(1));
+                attendance.setStudentID(rs.getString(2));
+                attendance.setDateTime(rs.getString(3).toString());
+                attendance.setHours(rs.getInt(4));
+                attendance.setSessionType(rs.getString(5));
+                if("1".equals(rs.getString(6))){
+                    attendance.setAttendanceStatus("Present");
+                } else {
+                    attendance.setAttendanceStatus("Absent");
+                }
+                
+                AttendanceList.add(attendance);
+            }
+            
+            
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return AttendanceList;
+        
+    }
+    
+    public ArrayList<Attendance> getAttendanceByStudentID(String studentID,String type){
+        ArrayList<Attendance> AttendanceList = new ArrayList<Attendance>();
+        
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+            
+            
+            pst = con.prepareStatement("SELECT courseid, at_st_id, date_time, hours, type, state FROM attendance, "
+                    + "session WHERE at_st_id = ? AND type = ? AND attendance.at_sessionid =  session.sessionid;", 
+                    ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, studentID);
+            pst.setString(2, type);
+            
+           
+            rs=pst.executeQuery();
+            while (rs.next()) {
+                Attendance attendance = new Attendance();
+
+                attendance.setCourseID(rs.getString(1));
+                attendance.setStudentID(rs.getString(2));
+                attendance.setDateTime(rs.getString(3).toString());
+                attendance.setHours(rs.getInt(4));
+                attendance.setSessionType(rs.getString(5));
+                if("1".equals(rs.getString(6))){
+                    attendance.setAttendanceStatus("Present");
+                } else {
+                    attendance.setAttendanceStatus("Absent");
+                }
+                
+                AttendanceList.add(attendance);
+            }
+            
+            
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return AttendanceList;
+        
+    }
+    
+    
+    //For Student use  
+    public ArrayList<Attendance> getStuAttendanceByCourse(String courseID,String studentID){
+        ArrayList<Attendance> AttendanceList = new ArrayList<Attendance>();
+        
+        try {
+            Connection con = DBConnectionUtil.getDBConnection();
+            
+            
+            pst = con.prepareStatement("SELECT courseid, date_time, type, hours, state FROM attendance, "
+                    + "session WHERE courseid = ? AND at_st_id = ? AND attendance.at_sessionid =  session.sessionid;", 
+                    ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            pst.setString(1, courseID.toUpperCase());
+            pst.setString(2, studentID);
+            
+           
+            rs=pst.executeQuery();
+            while (rs.next()) {
+                Attendance attendance = new Attendance();
+
+                attendance.setCourseID(rs.getString(1));
+                attendance.setDateTime(rs.getString(2).toString());
+                attendance.setSessionType(rs.getString(3));
+                attendance.setHours(rs.getInt(4));
+                if("1".equals(rs.getString(5))){
+                    attendance.setAttendanceStatus("Present");
+                } else {
+                    attendance.setAttendanceStatus("Absent");
+                }
+                
+                AttendanceList.add(attendance);
+            }
+            
+            
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return AttendanceList;
+        
+    }
       
-      
-      
+ 
+    
+    
+    
+    
+    
+    
+    
     
 }
