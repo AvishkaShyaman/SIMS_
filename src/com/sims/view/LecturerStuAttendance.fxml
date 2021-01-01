@@ -10,10 +10,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resource/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.LecturerStuAttendanceController">
+<VBox fx:id="vbox_stuAttendance" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resource/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.LecturerStuAttendanceController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashbord-right-titlebar">
          <VBox.margin>
@@ -46,24 +47,40 @@
                         <Insets left="50.0" top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox fx:id="cmb_SearchBy" maxHeight="0.0" prefHeight="22.0" prefWidth="230.0" style="-fx-font-size: 14;" styleClass="txtbox-form">
+                  <ComboBox fx:id="cmb_SearchBy" maxHeight="0.0" onAction="#cmb_SearchByActionPerformed" prefHeight="22.0" prefWidth="230.0" style="-fx-font-size: 14;" styleClass="txtbox-form">
                      <VBox.margin>
                         <Insets bottom="20.0" left="60.0" />
                      </VBox.margin>
                   </ComboBox>
                </children>
                <HBox.margin>
-                  <Insets />
+                  <Insets left="-40.0" />
                </HBox.margin>
             </VBox>
-            <TextField fx:id="txt_SearchBy" maxHeight="33.0" prefWidth="218.0" style="-fx-font-size: 16;" styleClass="txtbox-form">
+            <StackPane>
+               <children>
+                  <ComboBox fx:id="cmb_CourseCode" maxHeight="34.0" prefHeight="34.0" prefWidth="202.0" style="-fx-font-size: 14;" styleClass="txtbox-form">
+                     <StackPane.margin>
+                        <Insets top="5.0" />
+                     </StackPane.margin>
+                  </ComboBox>
+                  <TextField fx:id="txt_SearchBy" maxHeight="33.0" prefWidth="218.0" style="-fx-font-size: 16;" styleClass="txtbox-form">
+                     <StackPane.margin>
+                        <Insets top="5.0" />
+                     </StackPane.margin></TextField>
+               </children>
                <HBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets left="30.0" />
                </HBox.margin>
-            </TextField>
+            </StackPane>
+            <ComboBox fx:id="cmb_type" maxHeight="33.0" prefHeight="18.0" prefWidth="150.0" style="-fx-font-size: 14;" styleClass="txtbox-form">
+               <HBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </HBox.margin>
+            </ComboBox>
             <Button fx:id="btn_Search" mnemonicParsing="false" onAction="#btn_SearchActionPerformed" prefHeight="0.0" prefWidth="32.0" styleClass="btn-search" text="Search">
                <HBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="15.0" left="20.0" top="20.0" />
                </HBox.margin>
                <graphic>
                   <FontAwesomeIcon fill="#e5dddd" glyphName="SEARCH" />
@@ -73,14 +90,12 @@
       </HBox>
       <TableView fx:id="table_Attendance" prefHeight="547.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
          <columns>
-            <TableColumn fx:id="tbl_CourseCode" prefWidth="95.99999475479126" resizable="false" text="Course Code" />
-            <TableColumn fx:id="tbl_CourseName" prefWidth="199.20001983642578" resizable="false" text="Course Name" />
-            <TableColumn fx:id="tbl_StudentId" prefWidth="143.19998168945312" resizable="false" text="Student ID" />
-            <TableColumn fx:id="tbl_Date" maxWidth="148.79995727539062" prefWidth="123.99996948242188" resizable="false" text="Date" />
-            <TableColumn fx:id="tbl_Time" prefWidth="89.60003662109375" resizable="false" text="Time" />
-            <TableColumn fx:id="tbl_Hours" prefWidth="80.00006103515625" resizable="false" text="Hours" />
-            <TableColumn fx:id="tbl_Type" prefWidth="73.5999755859375" resizable="false" text="Type" />
-            <TableColumn fx:id="tbl_Status" prefWidth="99.199951171875" resizable="false" text="Status" />
+            <TableColumn fx:id="tbl_CourseCode" prefWidth="169.59997415542603" resizable="false" text="Course Code" />
+            <TableColumn fx:id="tbl_StudentId" prefWidth="170.4000244140625" resizable="false" text="Student ID" />
+            <TableColumn fx:id="tbl_DateTime" maxWidth="206.4000244140625" prefWidth="188.0" resizable="false" text="Date Time" />
+            <TableColumn fx:id="tbl_Hours" prefWidth="108.79998779296875" resizable="false" text="Hours" />
+            <TableColumn fx:id="tbl_Type" minWidth="0.79998779296875" prefWidth="131.9998779296875" resizable="false" text="Type" />
+            <TableColumn fx:id="tbl_Status" prefWidth="123.199951171875" resizable="false" text="Status" />
          </columns>
          <VBox.margin>
             <Insets bottom="20.0" left="50.0" right="50.0" top="5.0" />

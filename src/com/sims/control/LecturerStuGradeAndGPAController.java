@@ -10,6 +10,7 @@ import com.sims.model.ExamDAO;
 import com.sims.model.Grade;
 import com.sims.model.Student;
 import com.sims.model.StudentDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -34,8 +36,6 @@ import javafx.scene.layout.VBox;
  */
 public class LecturerStuGradeAndGPAController implements Initializable {
 
-    @FXML
-    private VBox notice_vbox;
     @FXML
     private ComboBox<String> cmb_Level;
     @FXML
@@ -70,6 +70,11 @@ public class LecturerStuGradeAndGPAController implements Initializable {
     private ComboBox<String> cmb_GradeLevel;
     @FXML
     private ComboBox<String> cmb_GradeSemester;
+    @FXML
+    private VBox vbox_StuGradeAndGPA;
+    
+    VBox vBox;
+    private FXMLLoader loder = null;
     
 
     /**
@@ -107,7 +112,10 @@ public class LecturerStuGradeAndGPAController implements Initializable {
 
 
     @FXML
-    private void btn_StuBackActionPerformed(ActionEvent event) {
+    private void btn_StuBackActionPerformed(ActionEvent event) throws IOException {
+        loder = new FXMLLoader(getClass().getResource("/com/sims/view/LecturerStudent.fxml"));
+        vBox = loder.load();
+        vbox_StuGradeAndGPA.getChildren().setAll(vBox);
     }
     
 

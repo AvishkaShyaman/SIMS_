@@ -5,23 +5,36 @@
  */
 package com.sims.control;
 
+import com.sims.model.Lecturer;
+import com.sims.model.LecturerDAO;
 import com.sims.model.Notice;
 import com.sims.model.NoticeDOA;
+import com.sims.model.Staff;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -30,6 +43,9 @@ import javafx.scene.layout.VBox;
  */
 public class LecturerDashboardController implements Initializable {
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+    
     @FXML
     private BorderPane mainPane;
     @FXML
@@ -58,6 +74,15 @@ public class LecturerDashboardController implements Initializable {
     private Button btn_Profile;
     @FXML
     private Button btn_SignOut;
+    @FXML
+    private Label lbl_name;
+    
+    Staff staff = new Staff();
+    LecturerDAO lecturerDAO = new LecturerDAO();    
+    private FXMLLoader loder = null;   
+    Pane pane;
+    String lecturerid = null;
+    
 
     /**
      * Initializes the controller class.
@@ -69,24 +94,80 @@ public class LecturerDashboardController implements Initializable {
 
     @FXML
     private void btn_noticeActionHandel(ActionEvent event) {
+        mainPane.setRight(notice_vbox);
     }
 
     @FXML
     private void btn_courseActionHandel(ActionEvent event) {
+//        loder = new FXMLLoader(getClass().getResource("/com/sims/view/StudentuserProfile.fxml"));
+//        pane = loder.load();
+//        StudentuserProfileController stt = loder.getController();
+//        mainPane.setRight(pane);
     }
 
     @FXML
-    private void btn_examActionHandel(ActionEvent event) {
+    private void btn_examActionHandel(ActionEvent event) throws IOException {
+        loder = new FXMLLoader(getClass().getResource("/com/sims/view/LecturerExam.fxml"));
+        pane = loder.load();
+        mainPane.setRight(pane);
     }
 
     @FXML
-    private void btn_studentActionHandel(ActionEvent event) {
+    private void btn_studentActionHandel(ActionEvent event) throws IOException {
+        loder = new FXMLLoader(getClass().getResource("/com/sims/view/LecturerStudent.fxml"));
+        pane = loder.load();
+        mainPane.setRight(pane);
     }
 
     @FXML
     private void btn_SearchActionPerformed(ActionEvent event) {
     }
 
+    @FXML
+    private void btn_ProfileActionHandel(ActionEvent event) throws IOException {
+        loder = new FXMLLoader(getClass().getResource("/com/sims/view/LecturerProfileUpdate.fxml"));
+        pane = loder.load();
+        LecturerProfileUpdateController lec = loder.getController();
+        lec.setUser(lecturerid);
+        mainPane.setRight(pane);
+        
+    }
+
+    @FXML
+    private void btn_SignOutActionHandel(ActionEvent event) throws IOException {
+        Stage stage_ = (Stage) btn_SignOut.getScene().getWindow();
+        stage_.close();
+        
+        Stage stage = new Stage();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/com/sims/view/Login.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+        root.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+                
+            }
+            
+        });
+        
+        root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+            
+        });
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     private void setNoticeTable() {
         ObservableList<Notice> obslist = FXCollections.observableArrayList();
 
@@ -103,12 +184,10 @@ public class LecturerDashboardController implements Initializable {
         table_col_publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         table_view.setItems(obslist);
     }
-
-    @FXML
-    private void btn_ProfileActionHandel(ActionEvent event) {
-    }
-
-    @FXML
-    private void btn_SignOutActionHandel(ActionEvent event) {
+    
+    public void setUser(String userid){
+        this.lecturerid = userid;
+        staff = lecturerDAO.getLecturer(lecturerid);
+        lbl_name.setText(staff.getFirstName());
     }
 }

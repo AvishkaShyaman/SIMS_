@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="notice_vbox" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resource/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.LecturerStuGradeAndGPAController">
+<VBox fx:id="vbox_StuGradeAndGPA" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resource/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.LecturerStuGradeAndGPAController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashbord-right-titlebar">
          <VBox.margin>

@@ -11,6 +11,7 @@ import com.sims.model.ExamsMarks;
 import com.sims.model.ExamsMarksDAO;
 import com.sims.model.Marks;
 import com.sims.model.MarksDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -25,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -54,11 +57,18 @@ public class LecturerStuMarksController implements Initializable {
     @FXML
     private TableView<ExamsMarks> table;
     
+    @FXML
+    private VBox vbox_StuMarks;
+    
+    VBox vBox;
+    private FXMLLoader loder = null;
+    
     ExamsMarksDAO examsMarksDAO = new ExamsMarksDAO();
     ExamDAO examDAO = new ExamDAO();
     MarksDAO marksDAO = new MarksDAO();
     Exam exam = new Exam();
     Marks marks = new Marks();
+    
     
      //ComboBox database
     private ArrayList<String> courseid() {
@@ -182,7 +192,10 @@ public class LecturerStuMarksController implements Initializable {
     }
 
     @FXML
-    private void btn_StuBackActionPerformed(ActionEvent event) {
+    private void btn_StuBackActionPerformed(ActionEvent event) throws IOException {
+        loder = new FXMLLoader(getClass().getResource("/com/sims/view/LecturerStudent.fxml"));
+        vBox = loder.load();
+        vbox_StuMarks.getChildren().setAll(vBox);
     }
     
 }

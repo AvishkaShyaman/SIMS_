@@ -7,6 +7,7 @@ package com.sims.control;
 
 import com.sims.model.Student;
 import com.sims.model.StudentDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -14,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -55,6 +58,12 @@ public class LecturerStuDetailsController implements Initializable {
     private TableView<Student> tableStuDetails;
     @FXML
     private ComboBox<String> cmb_Level;
+    @FXML
+    private VBox vbox_StuDetails;
+    
+    
+    VBox vBox;
+    private FXMLLoader loder = null;
     
 
     /**
@@ -91,7 +100,10 @@ public class LecturerStuDetailsController implements Initializable {
     }
 
     @FXML
-    private void btn_StuBackActionPerformed(ActionEvent event) {
+    private void btn_StuBackActionPerformed(ActionEvent event) throws IOException {
+        loder = new FXMLLoader(getClass().getResource("/com/sims/view/LecturerStudent.fxml"));
+        vBox = loder.load();
+        vbox_StuDetails.getChildren().setAll(vBox);
     }
     
     @FXML

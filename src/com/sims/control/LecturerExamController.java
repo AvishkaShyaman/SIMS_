@@ -19,12 +19,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -63,6 +65,7 @@ public class LecturerExamController implements Initializable {
     Exam exam = new Exam();
     Marks marks = new Marks();
     ExamsMarksDAO examsMarksDAO = new ExamsMarksDAO();
+    ExamsMarks examsMarks = null;
     
     
     //ComboBox database
@@ -133,7 +136,7 @@ public class LecturerExamController implements Initializable {
             if (marksDAO.insertMarks(marks, exam)) {
                 //JOptionPane.showMessageDialog(this, "successfully inserted");
                 tableView();
-                clearField();
+                 
             } else {
                 //JOptionPane.showMessageDialog(this, "Error in inserting record", "Warning", JOptionPane.ERROR_MESSAGE);
             }
@@ -185,9 +188,21 @@ public class LecturerExamController implements Initializable {
         }
     }
     
+    @FXML
+    private void tableviewOnMouseclicked(MouseEvent event) {
+        examsMarks = table.getSelectionModel().getSelectedItem();
+        cmb_CourseCode.setValue(examsMarks.getExamCourseId());
+        cmb_ExamType.setValue(examsMarks.getType());
+        txt_StudentId.setText(examsMarks.getMarksStuId());
+        txt_Marks.setText(String.valueOf(examsMarks.getMarks()));
+    }
+    
+    
     private boolean isFieldsEmpty() {
         return exam.getExamCourseId().isEmpty() || exam.getType().isEmpty() || txt_Marks.getText().isEmpty() || txt_StudentId.getText().isEmpty();
     }
+
+    
     
     
     

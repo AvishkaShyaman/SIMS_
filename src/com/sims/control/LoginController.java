@@ -84,8 +84,8 @@ public class LoginController implements Initializable {
                         case "Lecturer":
                             loder = new FXMLLoader(getClass().getResource("/com/sims/view/LecturerDashboard.fxml"));
                             root = loder.load();
-//                            LecturerDashboardController lecdashcontrolee = loder.getController();
-//                            lecdashcontrolee.setStudentid(userid);
+                            LecturerDashboardController lecdashcontrolee = loder.getController();
+                            lecdashcontrolee.setUser(userid);
                             break;
                         case "Technical Officer":
                             loder = new FXMLLoader(getClass().getResource("/com/sims/view/TechnicalOfficerDashboard.fxml"));

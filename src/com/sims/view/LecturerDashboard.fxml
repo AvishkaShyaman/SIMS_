@@ -26,14 +26,15 @@
                      </VBox.margin>
                      <children>
                         <Circle fill="DODGERBLUE" layoutX="128.0" layoutY="80.0" radius="78.0" stroke="BLACK" strokeType="INSIDE" />
+                        <FontAwesomeIcon fill="#fffdfd" glyphName="USER" size="9em" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="10.0" />
                      </children>
                   </AnchorPane>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="298.0" text="helanka@gmali.com" textFill="WHITE">
+                  <Label fx:id="lbl_name" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="298.0" text="Helanka" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="228.0" prefHeight="18.0" prefWidth="298.0" text="Admin">
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="228.0" prefHeight="18.0" prefWidth="298.0" text="Lecturer">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -45,7 +46,7 @@
                   </Button>
                   <Button fx:id="btn_course" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="265.0" mnemonicParsing="false" onAction="#btn_courseActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Course">
                      <graphic>
-                        <FontAwesomeIcon fill="WHITE" glyphName="" size="1.5em" />
+                        <FontAwesomeIcon fill="WHITE" glyphName="FOLDER_OPEN" size="1.5em" />
                      </graphic>
                   </Button>
                   <Button fx:id="btn_exam" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#btn_examActionHandel" prefHeight="26.0" prefWidth="367.0" styleClass="dashboard-left-btn" text="Exam">
@@ -77,7 +78,7 @@
          <right>
             <VBox fx:id="notice_vbox" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="54.0" prefWidth="1018.0" styleClass="dashbord-right-titlebar">
+                  <Pane prefHeight="66.0" prefWidth="1000.0" styleClass="dashbord-right-titlebar">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -94,7 +95,7 @@
                            </graphic></Button>
                      </children>
                   </Pane>
-                  <TableView fx:id="table_view" prefHeight="689.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
+                  <TableView fx:id="table_view" prefHeight="681.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
                      <columns>
                         <TableColumn fx:id="tale_col_date" prefWidth="202.40003049373627" text="Date" />
                         <TableColumn fx:id="table_col_titel" minWidth="0.0" prefWidth="480.7999572753906" text="Title" />

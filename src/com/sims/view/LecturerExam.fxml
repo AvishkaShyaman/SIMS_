@@ -22,7 +22,7 @@
             <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="Exam/Marks" />
          </children>
       </Pane>
-      <TableView fx:id="table" prefHeight="335.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
+      <TableView fx:id="table" onMouseClicked="#tableviewOnMouseclicked" prefHeight="335.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
         <columns>
           <TableColumn fx:id="tbl_CourseCode" prefWidth="229.6000121831894" resizable="false" text="Course Code" />
           <TableColumn fx:id="tbl_ExamType" prefWidth="219.20001983642578" resizable="false" text="Exam Type" />

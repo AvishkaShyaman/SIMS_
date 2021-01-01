@@ -58,28 +58,14 @@ public class LecturerProfileUpdateController implements Initializable {
     
     Staff staff = new Staff();
     LecturerDAO lecturerDAO = new LecturerDAO();
+    String lecturerid = null;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setfieldsView();
-        setfieldsView();
-        
-        btn_Update.setVisible(false);
-        btn_Cancel.setVisible(false);
-        
-        txt_Fname.setDisable(true);
-        txt_Lname.setDisable(true);
-        datePicker_DOB.setDisable(true);
-        rad_Male.setDisable(true);
-        rad_Female.setDisable(true);
-        txt_NIC.setDisable(true);
-        txt_Contact.setDisable(true);
-        txt_Email.setDisable(true);
-        txa_Address.setDisable(true);
-        txa_Qualifications.setDisable(true);
+        setFieldsDisable();
     }    
 
     @FXML
@@ -102,7 +88,7 @@ public class LecturerProfileUpdateController implements Initializable {
 
     @FXML
     private void btn_UpdateActionPerformed(ActionEvent event) {
-        staff.setUserID("st002");
+        staff.setUserID(lecturerid);
         staff.setFirstName(txt_Fname.getText());
         staff.setLastname(txt_Lname.getText());
         staff.setDob(datePicker_DOB.getValue().toString());
@@ -130,24 +116,11 @@ public class LecturerProfileUpdateController implements Initializable {
     @FXML
     private void btn_CancelActionPerformed(ActionEvent event) {
         setfieldsView();
-        txt_Fname.setDisable(true);
-        txt_Lname.setDisable(true);
-        datePicker_DOB.setDisable(true);
-        rad_Male.setDisable(true);
-        rad_Female.setDisable(true);
-        txt_NIC.setDisable(true);
-        txt_Contact.setDisable(true);
-        txt_Email.setDisable(true);
-        txa_Address.setDisable(true);
-        txa_Qualifications.setDisable(true);
-        
-        btn_Edit.setVisible(true);
-        btn_Update.setVisible(false);
-        btn_Cancel.setVisible(false);
+        setFieldsDisable();
     }
     
     private void setfieldsView() {
-       staff = lecturerDAO.getLecturer("st002");
+       staff = lecturerDAO.getLecturer(lecturerid);
         
         txt_Fname.setText(staff.getFirstName());
         txt_Lname.setText(staff.getLastname());
@@ -185,6 +158,11 @@ public class LecturerProfileUpdateController implements Initializable {
         btn_Edit.setVisible(true);
         btn_Update.setVisible(false);
         btn_Cancel.setVisible(false);
+    }
+    
+    public void setUser(String userid){
+        this.lecturerid = userid;
+        setfieldsView();
     }
 
     

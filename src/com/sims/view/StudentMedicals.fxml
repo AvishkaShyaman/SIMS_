@@ -18,8 +18,8 @@
          </VBox.margin>
          <children>
             <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="Medical" />
-            <TextField layoutX="259.0" layoutY="17.0" prefWidth="193.0" promptText="Course Code" styleClass="txtbox-search" />
-            <Button layoutX="452.0" layoutY="17.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" styleClass="btn-search" text="Search">
+            <TextField fx:id="txt_course" layoutX="259.0" layoutY="17.0" prefWidth="193.0" promptText="Course Code" styleClass="txtbox-search" />
+            <Button fx:id="btn_Search" layoutX="452.0" layoutY="17.0" mnemonicParsing="false" onAction="#btn_SearchActionPerformed" prefHeight="26.0" prefWidth="122.0" styleClass="btn-search" text="Search">
                <graphic>
                   <FontAwesomeIcon fill="#e2dede" glyphName="SEARCH" />
                </graphic>
@@ -38,7 +38,7 @@
             <TableColumn fx:id="colcoursecode" prefWidth="224.7999725341797" text="Course Code" />
             <TableColumn fx:id="coldate" prefWidth="176.0" text="Date" />
             <TableColumn fx:id="coltype" prefWidth="191.20001220703125" text="Type" />
-            <TableColumn fx:id="colhours" prefWidth="207.99993896484375" text="Hours" />
+            <TableColumn fx:id="colStatus" prefWidth="207.99993896484375" text="Status" />
          </columns>
          <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

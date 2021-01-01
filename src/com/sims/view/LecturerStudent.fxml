@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resource/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.LecturerStudentController">
+<VBox fx:id="vbox_Student" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resource/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.LecturerStudentController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashbord-right-titlebar">
          <VBox.margin>
