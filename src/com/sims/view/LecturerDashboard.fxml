@@ -76,7 +76,7 @@
             </VBox>
          </left>
          <right>
-            <VBox fx:id="notice_vbox" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="notice_vbox" alignment="CENTER_RIGHT" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="66.0" prefWidth="1000.0" styleClass="dashbord-right-titlebar">
                      <VBox.margin>
@@ -84,18 +84,23 @@
                      </VBox.margin>
                      <children>
                         <Label layoutX="14.0" layoutY="13.0" styleClass="dashbord-right-titlebar-lable" text="Notice" />
-                        <DatePicker fx:id="cmb_date" layoutX="549.0" layoutY="14.0" style="-fx-border-style: solid; -fx-border-radius: 22; -fx-background-radius: 22; -fx-border-color: #014778; -fx-background-color: #f2f2f2;">
+                        <DatePicker fx:id="cmb_date" layoutX="600.0" layoutY="7.0" style="-fx-border-style: solid; -fx-border-radius: 22; -fx-background-radius: 22; -fx-border-color: #014778; -fx-background-color: #f2f2f2;">
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
                         </DatePicker>
-                        <Button fx:id="btn_Search" layoutX="795.0" layoutY="14.0" mnemonicParsing="false" onAction="#btn_SearchActionPerformed" styleClass="btn-search" text="Search">
+                        <Button fx:id="btn_Search" layoutX="851.0" layoutY="8.0" mnemonicParsing="false" onAction="#btn_SearchActionPerformed" styleClass="btn-search" text="Search">
                            <graphic>
                               <FontAwesomeIcon fill="#e5dddd" glyphName="SEARCH" />
                            </graphic></Button>
                      </children>
                   </Pane>
-                  <TableView fx:id="table_view" prefHeight="681.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
+                  <Button fx:id="btn_notice_view" mnemonicParsing="false" onAction="#btn_notice_viewActionhandel" styleClass="btn-blue" text="View">
+                     <VBox.margin>
+                        <Insets right="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <TableView fx:id="table_view" onMouseClicked="#table_viewOnMouseCicked" prefHeight="681.0" prefWidth="899.0" style="-fx-border-style: solid; -fx-border-color: #00ccff;">
                      <columns>
                         <TableColumn fx:id="tale_col_date" prefWidth="202.40003049373627" text="Date" />
                         <TableColumn fx:id="table_col_titel" minWidth="0.0" prefWidth="480.7999572753906" text="Title" />

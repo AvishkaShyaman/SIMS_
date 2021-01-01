@@ -82,7 +82,10 @@ public class LecturerDashboardController implements Initializable {
     private FXMLLoader loder = null;   
     Pane pane;
     String lecturerid = null;
+    @FXML
+    private Button btn_notice_view;
     
+    Notice notice = null;
 
     /**
      * Initializes the controller class.
@@ -189,5 +192,24 @@ public class LecturerDashboardController implements Initializable {
         this.lecturerid = userid;
         staff = lecturerDAO.getLecturer(lecturerid);
         lbl_name.setText(staff.getFirstName());
+    }
+
+    @FXML
+    private void btn_notice_viewActionhandel(ActionEvent event) throws IOException {
+        if (notice != null) {
+            Stage primaryStage = new Stage();
+            FXMLLoader loder = new FXMLLoader(getClass().getResource("/com/sims/view/NoticeView.fxml"));
+            Parent root = loder.load();
+            NoticeViewController child = loder.getController();
+            child.setNotice(notice);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+    }
+
+    @FXML
+    private void table_viewOnMouseCicked(MouseEvent event) throws IOException {
+        notice = table_view.getSelectionModel().getSelectedItem();
     }
 }

@@ -68,7 +68,8 @@ public class Student extends User {
     }
 
     public void setGpa(ArrayList<Course> courslist) {
-        this.gpa = getSGPA(courslist);
+        double input = getSGPA(courslist);
+        this.gpa = Math.round(input * 100.0) / 100.0;
     }
     
     public double getGpa() {
