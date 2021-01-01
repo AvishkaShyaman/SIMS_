@@ -7,6 +7,7 @@ package com.sims.control;
 
 import com.sims.model.Notice;
 import com.sims.model.NoticeDOA;
+import com.sims.model.Staff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -67,11 +69,14 @@ public class TechnicalOfficerDashboardController implements Initializable {
     @FXML
     private TableColumn<Notice, String> table_col_publisher;
     
+    
     Notice notice = null;
     
     NoticeDOA dao = new NoticeDOA();
     @FXML
     private Button btn_SignOut;
+    @FXML
+    private Label lbl_userName;
 
     /**
      * Initializes the controller class.
@@ -186,7 +191,7 @@ public class TechnicalOfficerDashboardController implements Initializable {
     }
     
     
-    
+  
     
     
     

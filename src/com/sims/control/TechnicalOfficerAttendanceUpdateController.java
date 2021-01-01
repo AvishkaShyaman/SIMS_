@@ -40,7 +40,7 @@ public class TechnicalOfficerAttendanceUpdateController implements Initializable
     private TextField txtSessionID;
     @FXML
     private ComboBox combStatus;
-    ObservableList<String> status=FXCollections.observableArrayList("Present","Absent");
+    ObservableList<String> status=FXCollections.observableArrayList("Present","Absent","Medical");
     
 
     /**
@@ -62,6 +62,8 @@ public class TechnicalOfficerAttendanceUpdateController implements Initializable
         status=(String) combStatus.getValue();
         if (status=="Present"){
             courseStatus="1";
+        }else if (status=="Medical"){
+            courseStatus="2";
         }else{
             courseStatus="0";
         }

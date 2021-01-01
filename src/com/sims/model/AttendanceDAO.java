@@ -124,11 +124,14 @@ public class AttendanceDAO {
                 attendance.setSessionID(rs.getString(1));
                 attendance.setStudentID(rs.getString(2));
                 attendance.setDateTime(rs.getString(3));
-                if("1".equals(rs.getString(4))){
-                    attendance.setAttendanceStatus("Present");
-                }else{
+                if("0".equals(rs.getString(4))){
                     attendance.setAttendanceStatus("Absent");
+                } else if ("1".equals(rs.getString(4))) {
+                    attendance.setAttendanceStatus("Present");
+                } else if ("2".equals(rs.getString(4))) {
+                    attendance.setAttendanceStatus("medical");
                 }
+                
                 
                 allAttendanceList.add(attendance);
             }
@@ -173,10 +176,12 @@ public class AttendanceDAO {
                 attendance.setSessionID(rs.getString(1));
                 attendance.setStudentID(rs.getString(2));
                 attendance.setDateTime(rs.getString(3));
-                if("1".equals(rs.getString(4))){
-                    attendance.setAttendanceStatus("Present");
-                }else{
+                if("0".equals(rs.getString(4))){
                     attendance.setAttendanceStatus("Absent");
+                } else if ("1".equals(rs.getString(4))) {
+                    attendance.setAttendanceStatus("Present");
+                } else if ("2".equals(rs.getString(4))) {
+                    attendance.setAttendanceStatus("medical");
                 }
                 
                 allAttendanceList.add(attendance);
@@ -223,10 +228,12 @@ public class AttendanceDAO {
                 attendance.setSessionID(rs.getString(1));
                 attendance.setStudentID(rs.getString(2));
                 attendance.setDateTime(rs.getString(3));
-                if("1".equals(rs.getString(4))){
-                    attendance.setAttendanceStatus("Present");
-                }else{
+                if("0".equals(rs.getString(4))){
                     attendance.setAttendanceStatus("Absent");
+                } else if ("1".equals(rs.getString(4))) {
+                    attendance.setAttendanceStatus("Present");
+                } else if ("2".equals(rs.getString(4))) {
+                    attendance.setAttendanceStatus("medical");
                 }
                 
                 allAttendanceList.add(attendance);
@@ -321,10 +328,12 @@ public class AttendanceDAO {
                 attendance.setDateTime(rs.getString(3).toString());
                 attendance.setHours(rs.getInt(4));
                 attendance.setSessionType(rs.getString(5));
-                if("1".equals(rs.getString(6))){
-                    attendance.setAttendanceStatus("Present");
-                } else {
+                if("0".equals(rs.getString(6))){
                     attendance.setAttendanceStatus("Absent");
+                } else if ("1".equals(rs.getString(6))) {
+                    attendance.setAttendanceStatus("Present");
+                } else if ("2".equals(rs.getString(6))) {
+                    attendance.setAttendanceStatus("medical");
                 }
                 
                 AttendanceList.add(attendance);
@@ -363,10 +372,12 @@ public class AttendanceDAO {
                 attendance.setDateTime(rs.getString(3).toString());
                 attendance.setHours(rs.getInt(4));
                 attendance.setSessionType(rs.getString(5));
-                if("1".equals(rs.getString(6))){
-                    attendance.setAttendanceStatus("Present");
-                } else {
+                if("0".equals(rs.getString(6))){
                     attendance.setAttendanceStatus("Absent");
+                } else if ("1".equals(rs.getString(6))) {
+                    attendance.setAttendanceStatus("Present");
+                } else if ("2".equals(rs.getString(6))) {
+                    attendance.setAttendanceStatus("medical");
                 }
                 
                 AttendanceList.add(attendance);
@@ -406,10 +417,12 @@ public class AttendanceDAO {
                 attendance.setDateTime(rs.getString(2).toString());
                 attendance.setSessionType(rs.getString(3));
                 attendance.setHours(rs.getInt(4));
-                if("1".equals(rs.getString(5))){
-                    attendance.setAttendanceStatus("Present");
-                } else {
+                if("0".equals(rs.getString(5))){
                     attendance.setAttendanceStatus("Absent");
+                } else if ("1".equals(rs.getString(5))) {
+                    attendance.setAttendanceStatus("Present");
+                } else if ("2".equals(rs.getString(5))) {
+                    attendance.setAttendanceStatus("medical");
                 }
                 
                 AttendanceList.add(attendance);

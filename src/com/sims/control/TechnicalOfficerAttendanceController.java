@@ -74,7 +74,7 @@ public class TechnicalOfficerAttendanceController implements Initializable {
     
     @FXML
     private ComboBox combStatus;
-    ObservableList<String> Status=FXCollections.observableArrayList("All","Present","Absent");
+    ObservableList<String> Status=FXCollections.observableArrayList("All","Present","Absent","Medical");
     
     
     @FXML
@@ -122,7 +122,6 @@ public class TechnicalOfficerAttendanceController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("hello");
         String date, courseID, state, type, courseType = null, studentID;
         courseID = (String) combCourseID.getValue();
         studentID=txtStuId.getText();
@@ -136,6 +135,9 @@ public class TechnicalOfficerAttendanceController implements Initializable {
                 break;
             case "Absent":
                 state="0";
+                break;
+            case "Medical":
+                state="2";
                 break;
             default:
                 state="All";

@@ -135,7 +135,7 @@ public class TechnicalOfficerAttendanceAddController implements Initializable {
         }
 
         
-        colStudentID.setCellValueFactory(new PropertyValueFactory<>("StudentID"));
+        colStudentID.setCellValueFactory(new PropertyValueFactory<>("UserID"));
 
         tableAttendance.setItems(studentList);
     

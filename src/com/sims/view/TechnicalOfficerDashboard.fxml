@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
@@ -24,10 +25,15 @@
                         <Insets right="70.0" />
                      </VBox.margin>
                      <children>
-                        <Circle fill="DODGERBLUE" layoutX="128.0" layoutY="80.0" radius="78.0" stroke="BLACK" strokeType="INSIDE" />
+                        <StackPane layoutX="50.0" layoutY="2.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" radius="78.0" stroke="BLACK" strokeType="INSIDE" />
+                              <FontAwesomeIcon fill="WHITE" glyphName="USER" size="9em" wrappingWidth="103.82860374450684" />
+                           </children>
+                        </StackPane>
                      </children>
                   </AnchorPane>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="298.0" text="helanka@gmali.com" textFill="WHITE">
+                  <Label fx:id="lbl_userName" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="298.0" text="prageeth@gmali.com" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
