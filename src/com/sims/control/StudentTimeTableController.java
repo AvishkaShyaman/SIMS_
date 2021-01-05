@@ -50,25 +50,31 @@ public class StudentTimeTableController implements Initializable {
         
         TimeTableDAO tdao = new TimeTableDAO();
 
+        String imagename = Integer.toString(year) + Integer.toString(year);
         try {
-
             InputStream is = tdao.getTimeTable(year, sem);
 
-            OutputStream os = new FileOutputStream(new File("photo.jpg"));
+            if (is != null) {
 
-            byte[] content = new byte[5120];
+                OutputStream os = new FileOutputStream(new File("photo" + imagename + ".png"));
 
-            int size = 0;
+                byte[] content = new byte[5120];
 
-            while ((size = is.read(content)) != -1) {
-                os.write(content, 0, size);
+                int size = 0;
+
+                while ((size = is.read(content)) != -1) {
+                    os.write(content, 0, size);
+                }
+
+                os.close();
+                is.close();
+
+                Image image_ = new Image("file:photo" + imagename + ".png");
+                imageView.setImage(image_);
+
+            } else {
+                imageView.setImage(null);
             }
-
-            os.close();
-            is.close();
-
-            Image image_ = new Image("file:photo.PNG");
-            imageView.setImage(image_);
         } catch (IOException ex) {
             Logger.getLogger(AdminTimeTableController.class.getName()).log(Level.SEVERE, null, ex);
         }
