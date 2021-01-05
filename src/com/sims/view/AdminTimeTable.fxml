@@ -53,8 +53,8 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <ComboBox fx:id="combo_manage_sem" layoutX="98.0" layoutY="45.0" prefHeight="35.0" prefWidth="78.0" promptText="Select" />
-                        <ComboBox fx:id="comobo_manage_level" layoutX="14.0" layoutY="45.0" prefHeight="35.0" prefWidth="74.0" promptText="Select" />
+                        <ComboBox fx:id="combo_manage_sem" layoutX="98.0" layoutY="45.0" prefHeight="35.0" prefWidth="78.0" />
+                        <ComboBox fx:id="comobo_manage_level" layoutX="14.0" layoutY="45.0" prefHeight="35.0" prefWidth="74.0" />
                         <Label layoutX="20.0" layoutY="22.0" text="Level" />
                         <Label layoutX="98.0" layoutY="22.0" text="Semester" />
                         <Label layoutX="193.0" layoutY="22.0" text="Timge Table image" />

@@ -35,14 +35,14 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="69.0" prefWidth="1000.0">
          <children>
             <ImageView fitHeight="42.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true" />
-            <ComboBox prefHeight="25.0" prefWidth="156.0" promptText="Level">
+            <ComboBox fx:id="combo_level" prefHeight="25.0" prefWidth="156.0" promptText="Level">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
                   <Insets right="50.0" />
                </HBox.margin></ComboBox>
-            <ComboBox prefHeight="25.0" prefWidth="156.0" promptText="Semester">
+            <ComboBox fx:id="comobo_sem" prefHeight="25.0" prefWidth="156.0" promptText="Semester">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

@@ -47,7 +47,7 @@ public class AdminTimeTableController implements Initializable {
     @FXML
     private ImageView Imageview;
 
-    private File file =null;
+    private File file = null;
     private Image image = null;
     private FileInputStream fis = null;
 
@@ -74,34 +74,41 @@ public class AdminTimeTableController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         combo_select_sem.getItems().addAll(1, 2);
         combo_manage_sem.getItems().addAll(1, 2);
-        combo_select_level.getItems().addAll(1, 2,3, 4);
-        comobo_manage_level.getItems().addAll(1, 2,3, 4);
-
+        combo_select_level.getItems().addAll(1, 2, 3, 4);
+        comobo_manage_level.getItems().addAll(1, 2, 3, 4);
 
     }
-    
-    private void gettimetable(int year,int sem){
+
+    private void gettimetable(int year, int sem) {
+        String imagename = Integer.toString(year) + Integer.toString(year);
         try {
             InputStream is = tdao.getTimeTable(year, sem);
 
-            OutputStream os = new FileOutputStream(new File("photo.jpg"));
+            if (is != null) {
 
-            byte[] content = new byte[5120];
+                OutputStream os = new FileOutputStream(new File("photo" + imagename + ".png"));
 
-            int size = 0;
+                byte[] content = new byte[5120];
 
-            while ((size = is.read(content)) != -1) {
-                os.write(content, 0, size);
+                int size = 0;
+
+                while ((size = is.read(content)) != -1) {
+                    os.write(content, 0, size);
+                }
+
+                os.close();
+                is.close();
+
+                Image image_ = new Image("file:photo" + imagename + ".png");
+                Imageview_select.setImage(image_);
+
+            } else {
+                Imageview_select.setImage(null);
             }
 
-            os.close();
-            is.close();
-
-            Image image_ = new Image("file:photo.PNG");
-            Imageview_select.setImage(image_);
         } catch (IOException ex) {
             Logger.getLogger(AdminTimeTableController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -120,10 +127,10 @@ public class AdminTimeTableController implements Initializable {
 
     @FXML
     private void btn_addActionhandler(ActionEvent event) throws FileNotFoundException, IOException {
-        
+
         fis = new FileInputStream(file);
 
-        if (tdao.setTimeTable(combo_select_level.getValue(), combo_manage_sem.getValue(), fis, (int) file.length())) {
+        if (tdao.setTimeTable(comobo_manage_level.getValue(), combo_manage_sem.getValue(), fis, (int) file.length())) {
             alertINFORMATION("image succesfull Added");
             System.out.println("File Done");
         } else {
@@ -132,7 +139,7 @@ public class AdminTimeTableController implements Initializable {
         }
         fis.close();
         file = null;
-        gettimetable(1,2);
+        gettimetable(comobo_manage_level.getValue(), combo_manage_sem.getValue());
 
     }
 
@@ -140,14 +147,19 @@ public class AdminTimeTableController implements Initializable {
     private void btn_updateActionhandler(ActionEvent event) throws FileNotFoundException {
         fis = new FileInputStream(file);
 
-        if (tdao.updateTimeTable(combo_select_level.getValue(), combo_manage_sem.getValue(), fis, (int) file.length())) {
-            System.out.println("File Update Done");
-            alertINFORMATION("image succesfull Update");
+        if (tdao.updateTimeTable(comobo_manage_level.getValue(), combo_manage_sem.getValue(), fis, (int) file.length())) {
+            String imagename = Integer.toString(comobo_manage_level.getValue()) + Integer.toString(combo_manage_sem.getValue());
+            File dfile = new File("photo" + imagename + ".png");
+
+            if (dfile.delete()) {
+                System.out.println("File Update Done");
+                alertINFORMATION("image succesfull Update");
+            }
         } else {
             alertError("image updating Error");
             System.out.println("File update error");
         }
-        
+
         image = new Image(file.toURI().toString());
 
         Imageview_select.setImage(image);
@@ -155,22 +167,30 @@ public class AdminTimeTableController implements Initializable {
 
     @FXML
     private void btn_selectActionhandler(ActionEvent event) {
-        gettimetable(combo_select_level.getValue(),combo_select_sem.getValue());
+        gettimetable(combo_select_level.getValue(), combo_select_sem.getValue());
     }
 
     @FXML
     private void btn_deleteActionhandler(ActionEvent event) {
-        if (tdao.delteTimeTable(combo_select_level.getValue(), combo_manage_sem.getValue())) {
+        if (tdao.delteTimeTable(comobo_manage_level.getValue(), combo_manage_sem.getValue())) {
+            String imagename = Integer.toString(comobo_manage_level.getValue()) + Integer.toString(combo_manage_sem.getValue());
+            File dfile = new File("photo" + imagename + ".png");
+
+            if (dfile.delete()) {
                 System.out.println(" Succesfully deleted");
                 alertINFORMATION("image succesfull deleted");
-                Imageview.setImage(null);
-                Imageview_select.setImage(null);
             } else {
-                alertError("image deleting Error");
+                alertError("File deleting Error");
                 System.out.println(" delete Error");
             }
+            Imageview.setImage(null);
+            Imageview_select.setImage(null);
+        } else {
+            alertError("image deleting Error");
+            System.out.println(" delete Error");
+        }
     }
-    
+
     private void alertINFORMATION(String msg) {
         Alert a1 = new Alert(Alert.AlertType.INFORMATION);
         a1.setTitle("Done");
@@ -178,7 +198,7 @@ public class AdminTimeTableController implements Initializable {
         a1.setHeaderText(null);
         a1.showAndWait();
     }
-    
+
     private void alertError(String msg) {
         Alert a1 = new Alert(Alert.AlertType.ERROR);
         a1.setTitle("Error");

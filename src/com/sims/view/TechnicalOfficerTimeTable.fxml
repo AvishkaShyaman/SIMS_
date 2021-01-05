@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resource/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sims.control.TechnicalOfficerTimeTableController">
    <children>
       <Pane prefHeight="12.0" prefWidth="1000.0" styleClass="dashbord-right-titlebar">
@@ -22,7 +21,7 @@
       </Pane>
       <Pane prefHeight="734.0" prefWidth="1000.0">
          <children>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="727.0" prefWidth="1000.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="691.0" prefWidth="1000.0">
                <children>
                   <ImageView fx:id="Imageview_select" fitHeight="583.0" fitWidth="948.0" layoutX="28.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="btn_select" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#btn_selectActionhandler" prefHeight="45.0" prefWidth="141.0" styleClass="btn-search" text="Select" />

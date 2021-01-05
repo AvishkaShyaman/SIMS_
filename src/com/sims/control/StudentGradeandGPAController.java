@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,13 +48,15 @@ public class StudentGradeandGPAController implements Initializable {
     @FXML
     private Label lable_cgpa;
     
-    ObservableList<Course> obslist = FXCollections.observableArrayList();
-    
     CourseDAO dao = new CourseDAO();
     
     private Student student;
     @FXML
     private Button btn_gnarate;
+    @FXML
+    private ComboBox<Integer> combo_level;
+    @FXML
+    private ComboBox<Integer> comobo_sem;
 
     /**
      * Initializes the controller class.
@@ -61,13 +64,19 @@ public class StudentGradeandGPAController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        comobo_sem.getItems().addAll(1, 2);
+        combo_level.getItems().addAll(1, 2,3, 4);
+        
     }
     
-    private void setdetails(String id,int year,int sem){
-        ArrayList<Course> courses = dao.getStudentAllCourseList(student.getUserID(), 1, 2);
+    private void setdetails(int year,int sem){
+        
+        ObservableList<Course> obslist = FXCollections.observableArrayList();
+        
+        ArrayList<Course> courses = dao.getStudentAllCourseList(student.getUserID(), year, sem);
         
         for(Course course : courses){
-            course.setGrade(dao.getCoursegrade(course.getCourseid(), student.getUserID()));
+//            course.setGrade(dao.getCoursegrade(course.getCourseid(), student.getUserID()));
             obslist.add(course);
             System.out.println(course.getCourseid());
         }
@@ -80,6 +89,10 @@ public class StudentGradeandGPAController implements Initializable {
         
         double sgpa = student.getSGPA(courses);
         
+        if (sgpa == -100){
+            sgpa = 0;
+        }
+        
         DecimalFormat df = new DecimalFormat("####0.00");
         System.out.println("Value: " + df.format(sgpa));
         
@@ -89,12 +102,12 @@ public class StudentGradeandGPAController implements Initializable {
 
     public void setStudent(Student student) {
         this.student = student;
-        setdetails(student.getUserID(),student.getYear(),student.getSemester());
+        setdetails(student.getYear(),student.getSemester());
     }
 
     @FXML
     private void btn_gnarateActionhandler(ActionEvent event) {
-        setdetails(student.getUserID(),1,2);
+        setdetails(combo_level.getValue(),comobo_sem.getValue());
     }
     
 }
