@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author acer
+ * 
  */
 public class CourseDAO {
 
@@ -179,7 +179,7 @@ public class CourseDAO {
         }
 
         if (gradeDetails[2] > 0) {
-            mark += getCAmaks(courseid, studentid, "A") * gradeDetails[2];
+            mark += getCAmaks(courseid, studentid, "M") * gradeDetails[2];
         }
 
         if (gradeDetails[3] > 0) {

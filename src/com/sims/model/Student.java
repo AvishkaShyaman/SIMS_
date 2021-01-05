@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author acer
+ * 
  */
 public class Student extends User {
 

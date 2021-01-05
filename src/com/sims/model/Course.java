@@ -7,7 +7,7 @@ package com.sims.model;
 
 /**
  *
- * @author acer
+ *
  */
 public class Course {
     

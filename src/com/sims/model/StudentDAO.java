@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author acer
+ * 
  */
 public class StudentDAO extends UserDAO {
 
@@ -127,7 +127,7 @@ public class StudentDAO extends UserDAO {
         student.setEmail(user.getEmail());
         student.setAddress(user.getAddress());
         student.setDob(user.getDob());
-        student.setGender(user.getGender());
+        student.setGender(user.getGender()); 
         try {
             Connection con = DBConnectionUtil.getDBConnection();
 
